@@ -31,6 +31,7 @@ function App() {
         <p>Samhain Ackerman</p>
         <p>Leif Keane</p>
         <p>Sophia Heicksen</p>
+        <p>Henry Leap</p>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
