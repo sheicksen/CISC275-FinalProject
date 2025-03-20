@@ -24,21 +24,20 @@
 }/*Style for the navigation buttons*/
 
 .button-style{
-  background-color: cyan;
+  background-color: #dc267f ;
   color: black;
   margin: 2px;
   padding: 5px;
-}/*Style for all buttons*/
-
-.button-style:hover{
-  transition: ease background-color 200ms;
-  background-color:lime;
   &:disabled{
     opacity: 0.7;
   }
+}/*Style for all buttons*/
+
+#hover{
+  background-color: #785ef0 ;
 }/*Hovering effect for buttons*/
 
-.button-style:focus{
+#focus{
   background-color: red;
 }/*When something is clicked (for buttons)*/
 
