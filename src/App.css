@@ -2,6 +2,51 @@
   text-align: center;
 }
 
+.navbar {
+  background-color: #0000ff; 
+  overflow: hidden; 
+  height: 55px;
+  display: flex;
+  align-items: left;
+}/*Style for the navbar, specifically the */
+
+#rightallign{
+  position: absolute;
+  right: 0px;
+  margin-right: 5px;
+}
+
+.nav-button{
+  padding-bottom: 5px;
+  display: flex;
+  align-items: left;
+  margin-left: 7px;
+}/*Style for the navigation buttons*/
+
+.button-style{
+  background-color: cyan;
+  color: black;
+  margin: 2px;
+  padding: 5px;
+}/*Style for all buttons*/
+
+.button-style:hover{
+  transition: ease background-color 200ms;
+  background-color:lime;
+  &:disabled{
+    opacity: 0.7;
+  }
+}/*Hovering effect for buttons*/
+
+.button-style:focus{
+  background-color: red;
+}/*When something is clicked (for buttons)*/
+
+.testimage{
+  width: 40px;
+  height: 40px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
