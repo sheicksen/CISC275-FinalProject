@@ -14,11 +14,10 @@ export function NavBar () : React.JSX.Element{
             <div className="navbar">
                 {/*MAIN NAVBAR CODE*/}
                 <div className="nav-button">
-                <Button className="button-style">Active Button</Button>
-                <Button disabled = {true} className="button-style">Inactive Button</Button>
-                <Button className="button-style">Questions</Button>
-                <Button className="button-style">Detailed Questions</Button>
-                <Button className="button-style" id="rightallign">Login/Signup</Button>
+                    <img src="https://imgur.com/jPdH44f.png" alt = "pingas" className = "test-image"/>
+                    <Button className="button-style">Home</Button>
+                    <Button className="button-style">Explore</Button>
+                    <Button className="button-style" id="rightallign">Login/Signup</Button>
                 </div>
                 {/*^ Buttons ^*/}
             </div>

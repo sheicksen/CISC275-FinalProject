@@ -1,19 +1,44 @@
 .App {
   text-align: center;
+  /* top: 55px; */
 }
 
 .navbar {
-  background-color: #0000ff; 
+  background-color: rgb(100, 100, 255); 
   overflow: hidden; 
   height: 55px;
   display: flex;
   align-items: left;
+  position: fixed;
+  width: 100vw;
 }/*Style for the navbar, specifically the */
+
+.footer {
+  background-color: rgb(100, 100, 255); 
+  color: white;
+  overflow: hidden;
+  display: column;
+  align-items: center;
+}
+
+.footer Form{
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
 
 #rightallign{
   position: absolute;
   right: 0px;
   margin-right: 5px;
+}
+
+.footer-items {
+  display: flex;
+  align-items: center;
 }
 
 .nav-button{
@@ -24,24 +49,26 @@
 }/*Style for the navigation buttons*/
 
 .button-style{
-  background-color: #dc267f ;
+  background-color: #a4d ;
   color: black;
   margin: 2px;
   padding: 5px;
   &:disabled{
+    color: black;
+    background-color: rgb(99, 50, 212) ;
     opacity: 0.7;
   }
 }/*Style for all buttons*/
 
-#hover{
-  background-color: #785ef0 ;
+.button-style:hover{
+  background-color: #44F ;
 }/*Hovering effect for buttons*/
 
 #focus{
   background-color: red;
 }/*When something is clicked (for buttons)*/
 
-.testimage{
+.test-image{
   width: 40px;
   height: 40px;
 }
@@ -58,7 +85,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #132343;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
