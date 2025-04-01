@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { ReactEventHandler, useState } from 'react';
+import { Page } from './custom-types';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
@@ -12,8 +12,11 @@ if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 
+
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
+  const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -25,15 +28,39 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+  //instead of urls, changes which 'page' will be visible to the user.
+  function changePage(value:Page){
+    setPage(value);
+  }
+  function logIn(){
+    setLoggedIn(true);
+  }
   return (
-    <div><NavBar></NavBar>
-    <div className="App">
+    <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
+    { page === "Home" && 
+          <header className="App-header">
+            <h1> Seeking Answers?</h1>
+            <p> ajdslfjdskfjklsdjfkldsjklfjsdklfds</p>
+            <Button className="button-style" style = {{fontSize: "50px"}} onClick={()=>{changePage("Basic Questions")}}>Start Quiz</Button>
+            <button className="link-button" style = {{fontSize: "15px"}} onClick={()=>{changePage("Detailed Questions")}}>Detailed Quiz</button>
+          </header>
+    }
+    { (page === "Results" && loggedIn) &&
       <header className="App-header">
-        <h1> Seeking Answers?</h1>
-        <p> ajdslfjdskfjklsdjfkldsjklfjsdklfds</p>
-        <Button className="button-style" style = {{fontSize: "50px"}}>Start Quiz</Button>
-        <a href="https://www.youtube.com/" style = {{fontSize: "15px"}}> detailed quiz</a>
+        <p>Here, you'll see your results from previous quizzes</p>
       </header>
+    }
+    { (page === "Basic Questions") &&
+      <header className="App-header">
+        <p>Here, you'll be guided through a simple quiz </p>
+      </header>
+    }
+    { (page === "Detailed Questions") &&
+      <header className="App-header">
+        <p>Here, you'll be asked detailed questions</p>
+      </header>
+    }
+    <div className="App">
       <div className="footer">
         <Form>
           <Form.Label>API Key:</Form.Label>
