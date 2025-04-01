@@ -20,7 +20,16 @@
   display: column;
   align-items: center;
 }
-
+.link-button {
+  display: inline;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+} /* Styles plain html buttons to look like links so we don't need hrefs */
 .footer Form{
   display: flex;
   overflow: hidden;
@@ -99,11 +108,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
