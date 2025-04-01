@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 import { Page } from './custom-types';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';

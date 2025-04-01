@@ -1,6 +1,5 @@
 import {Button} from "react-bootstrap";
 import { Page } from '../custom-types';
-import { useState } from "react";
 
 /*
     DESCRIPTION: Basic Navbar code
