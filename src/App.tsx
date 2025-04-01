@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { ReactEventHandler, useState } from 'react';
+import { Page } from './custom-types';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
@@ -11,8 +12,10 @@ if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 
+
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
+  const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
   
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -25,14 +28,16 @@ function App() {
     setKey(event.target.value);
   }
   return (
-    <div><NavBar></NavBar>
+    <div><NavBar selectPage={(value:Page)=>{setPage(value)}}></NavBar>
+    { page === "Home" && 
+          <header className="App-header">
+            <h1> Seeking Answers?</h1>
+            <p> ajdslfjdskfjklsdjfkldsjklfjsdklfds</p>
+            <Button className="button-style" style = {{fontSize: "50px"}}>Start Quiz</Button>
+            <a href="https://www.youtube.com/" style = {{fontSize: "15px"}}> detailed quiz</a>
+          </header>
+    }
     <div className="App">
-      <header className="App-header">
-        <h1> Seeking Answers?</h1>
-        <p> ajdslfjdskfjklsdjfkldsjklfjsdklfds</p>
-        <Button className="button-style" style = {{fontSize: "50px"}}>Start Quiz</Button>
-        <a href="https://www.youtube.com/" style = {{fontSize: "15px"}}> detailed quiz</a>
-      </header>
       <div className="footer">
         <Form>
           <Form.Label>API Key:</Form.Label>
