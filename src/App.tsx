@@ -16,6 +16,7 @@ if (prevKey !== null) {
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
   const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -27,8 +28,15 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
+  function changePage(value:Page){
+    setPage(value);
+  }
+  function logIn(){
+    setLoggedIn(true);
+  }
   return (
-    <div><NavBar selectPage={(value:Page)=>{setPage(value)}}></NavBar>
+    <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
     { page === "Home" && 
           <header className="App-header">
             <h1> Seeking Answers?</h1>
@@ -36,6 +44,9 @@ function App() {
             <Button className="button-style" style = {{fontSize: "50px"}}>Start Quiz</Button>
             <a href="https://www.youtube.com/" style = {{fontSize: "15px"}}> detailed quiz</a>
           </header>
+    }
+    { (page === "Results" && loggedIn) &&
+      <p>Here, you'll see your results from previous quizzes</p>
     }
     <div className="App">
       <div className="footer">
