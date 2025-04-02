@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (44 ms)
+  ✕ renders learn react link (48 ms)
 
   ● renders learn react link
 
@@ -44,25 +44,57 @@ FAIL src/App.test.tsx
           [36m<header[39m
             [33mclass[39m=[32m"App-header"[39m
           [36m>[39m
-            [36m<h1>[39m
-              [0m Seeking Answers?[0m
-            [36m</h1>[39m
-            [36m<p>[39m
-              [0m ajdslfjdskfjklsdjfkldsjklfjsdklfds[0m
-            [36m</p>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"button-style btn btn-primary"[39m
-              [33mstyle[39m=[32m"font-size: 50px;"[39m
-              [33mtype[39m=[32m"button"[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"container"[39m
             [36m>[39m
-              [0mStart Quiz[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"link-button"[39m
-              [33mstyle[39m=[32m"font-size: 15px;"[39m
-            [36m>[39m
-              [0mDetailed Quiz[0m
-            [36m</button>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"row"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"col"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"image-container"[39m
+                  [36m>[39m
+                    [36m<img[39m
+                      [33malt[39m=[32m"Cool graphic of people with careers"[39m
+                    [36m/>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"col"[39m
+                [36m>[39m
+                  [36m<h1>[39m
+                    [0m Seeking Answers?[0m
+                  [36m</h1>[39m
+                  [36m<p>[39m
+                    [0mNot sure where you see yourself in the future? You're only one click away from finding out.[0m
+                  [36m</p>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"button-style basic-quiz-button btn btn-primary"[39m
+                    [33mstyle[39m=[32m"font-size: 45px;"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mStart Quiz[0m
+                  [36m</button>[39m
+                  [0m [0m
+                  [36m<br />[39m
+                  [36m<div>[39m
+                    [36m<p[39m
+                      [33mstyle[39m=[32m"font-size: 24px; display: inline;"[39m
+                    [36m>[39m
+                      [0mHave some extra time to spend? Try out our [0m
+                    [36m</p>[39m
+                    [36m<button[39m
+                      [33mclass[39m=[32m"link-button"[39m
+                      [33mstyle[39m=[32m"font-size: 24px;"[39m
+                    [36m>[39m
+                      [0mDetailed Quiz[0m
+                    [36m</button>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
           [36m</header>[39m
           [36m<div[39m
             [33mclass[39m=[32m"App"[39m
@@ -123,7 +155,7 @@ File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #
 ---------------------|---------|----------|---------|---------|-------------------
 All files            |      30 |     42.1 |   16.66 |      30 |                   
  src                 |   29.62 |       40 |   11.11 |   29.62 |                   
-  App.tsx            |      50 |    54.54 |   14.28 |      50 | 12,23-36,44-45    
+  App.tsx            |      50 |    54.54 |   14.28 |      50 | 12,23-36,52-55    
   custom-types.tsx   |       0 |        0 |       0 |       0 |                   
   index.tsx          |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
@@ -133,7 +165,7 @@ All files            |      30 |     42.1 |   16.66 |      30 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.853 s
+Time:        2.826 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
