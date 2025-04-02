@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Page } from './custom-types';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -39,10 +39,25 @@ function App() {
     <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
     { page === "Home" && 
           <header className="App-header">
-            <h1> Seeking Answers?</h1>
-            <p> ajdslfjdskfjklsdjfkldsjklfjsdklfds</p>
-            <Button className="button-style" style = {{fontSize: "50px"}} onClick={()=>{changePage("Basic Questions")}}>Start Quiz</Button>
-            <button className="link-button" style = {{fontSize: "15px"}} onClick={()=>{changePage("Detailed Questions")}}>Detailed Quiz</button>
+            <Container>
+              <Row>
+                <Col>
+                  <div className="image-container">
+                    <img alt="Cool graphic of people with careers"></img>
+                  </div>
+                </Col>
+                <Col>
+                  <h1> Seeking Answers?</h1>
+                  <p>Not sure where you see yourself in the future? You're only one click away from finding out.</p>
+                  <Button className="button-style basic-quiz-button" style = {{fontSize: "45px"}} onClick={()=>{changePage("Basic Questions")}}>Start Quiz</Button> <br/>
+                  <div>
+                  <p style={{fontSize: "24px", display:"inline"}}>Have some extra time to spend? Try out our </p>
+                  <button className="link-button" style = {{fontSize: "24px"}} onClick={()=>{changePage("Detailed Questions")}}>Detailed Quiz</button>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+            
           </header>
     }
     { (page === "Results" && loggedIn) &&

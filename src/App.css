@@ -20,6 +20,11 @@
   display: column;
   align-items: center;
 }
+.image-container{
+  width: 600px;
+  height: 600px;
+  background-color: #181522;
+}
 .link-button {
   display: inline;
   padding: 0;
@@ -68,7 +73,9 @@
     opacity: 0.7;
   }
 }/*Style for all buttons*/
-
+.basic-quiz-button{
+  width: 100%;
+}
 .button-style:hover{
   background-color: #44F ;
 }/*Hovering effect for buttons*/
