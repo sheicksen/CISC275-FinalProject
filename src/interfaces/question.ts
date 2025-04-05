@@ -2,8 +2,9 @@ export type QuestionType = "text" | "scaled"
 
 /**
  * @interface Question A generic question that could be of either type
+ * @param {extends QuestionType} T The type of the question
  * @member {string} question The question to be asked
- * @member {QuestionType} type The type of question, either "text" or "scaled"
+ * @member {T} type The type of question, either "text" or "scaled"
  * @member {(T extends "text" ? string : number) | undefined} answer The answer provided, if any
  * @member {T extends "scaled" ? [string, string] : never} scale The [lowEnd, highEnd] of the scale, if any
  */
@@ -21,7 +22,6 @@ export interface Question<T extends QuestionType> {
  * @member {string | undefined} answer The answer provided, if any
  */
 export interface TextQuestion extends Question<"text"> {
-    // type: "text"
     answer: string | undefined
     scale: never
 }
@@ -34,18 +34,18 @@ export interface TextQuestion extends Question<"text"> {
  * @member {[string, string]} scale The [lowEnd, highEnd] of the scale
  */
 export interface ScaledQuestion extends Question<"scaled"> {
-    // type: "scaled"
     answer: number | undefined
     scale: [string, string]
 }
 
 /**
  * @interface AnsweredQuestion A generic question that is gauranteed to have an answer
+ * @param {extends QuestionType} T The type of the question
  * @member {string} question The question to be asked
- * @member {QuestionType} type The type of question, either "text" or "scaled"
- * @member {string | number} answer The answer provided
+ * @member {T} type The type of question, either "text" or "scaled"
+ * @member {T extends "text" ? string : number} answer The answer provided
  * @member {T extends "scaled" ? [string, string] : never} scale The [lowEnd, highEnd] of the scale, if any
  */
-export interface AnsweredQuestion extends Question<QuestionType> {
-    answer: string | number
+export interface AnsweredQuestion<T extends QuestionType> extends Question<T> {
+    answer: T extends "text" ? string : number
 }
