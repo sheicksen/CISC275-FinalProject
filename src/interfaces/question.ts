@@ -38,3 +38,14 @@ export interface ScaledQuestion extends Question<"scaled"> {
     answer: number | undefined
     scale: [string, string]
 }
+
+/**
+ * @interface AnsweredQuestion A generic question that is gauranteed to have an answer
+ * @member {string} question The question to be asked
+ * @member {QuestionType} type The type of question, either "text" or "scaled"
+ * @member {string | number} answer The answer provided
+ * @member {T extends "scaled" ? [string, string] : never} scale The [lowEnd, highEnd] of the scale, if any
+ */
+export interface AnsweredQuestion extends Question<QuestionType> {
+    answer: string | number
+}
