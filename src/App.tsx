@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
 import { Home } from './components/home'
 import { Results } from './components/results';
+import { Questions } from './components/questions';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -41,16 +42,12 @@ function App() {
     <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
     { page === "Home" && <Home selectPage={changePage}></Home> }
     { (page === "Results" && loggedIn) && <Results></Results> }
-    { (page === "Basic Questions") &&
-      <header className="App-header">
-        <p>Here, you'll be guided through a simple quiz </p>
-      </header>
-    }
-    { (page === "Detailed Questions") &&
+    { page === "Questions" && <Questions></Questions> }
+    {/* { (page === "Detailed Questions") &&
       <header className="App-header">
         <p>Here, you'll be asked detailed questions</p>
       </header>
-    }
+    } */}
     <div className="App">
       <div className="footer">
         <Form>
