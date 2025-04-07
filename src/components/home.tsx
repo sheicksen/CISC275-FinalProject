@@ -19,14 +19,12 @@ export function Home({selectPage}: HomeProps): React.JSX.Element {
                         <h1> Seeking Answers?</h1>
                         <p>Not sure where you see yourself in the future? You're only one click away from finding out.</p>
                         <Button className="button-style basic-quiz-button" style = {{fontSize: "45px"}} onClick={()=>{
-                            localStorage.setItem("continueDetailed", "false");
-                            selectPage("Questions");
+                            selectPage("Basic Questions");
                         }}>Start Quiz</Button> <br/>
                         <div>
                             <p style={{fontSize: "24px", display:"inline"}}>Have some extra time to spend? Try out our </p>
                             <button className="link-button" style = {{fontSize: "24px"}} onClick={()=>{
-                                localStorage.setItem("continueDetailed", "true");
-                                selectPage("Questions");
+                                selectPage("Detailed Questions");
                             }}>Detailed Quiz</button>
                         </div>
                     </Col>
