@@ -1,0 +1,7 @@
+[
+    {
+        "question":"An example scaled question?",
+        "type": "scaled",
+        "scale": ["lower bound", "upper bound"]
+    }
+]

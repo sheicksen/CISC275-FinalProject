@@ -1,0 +1,11 @@
+[
+    {
+        "question": "An example text question?",
+        "type": "text"
+    },
+    {
+        "question":"An example scaled question?",
+        "type": "scaled",
+        "scale": ["lower bound", "upper bound"]
+    }
+]
