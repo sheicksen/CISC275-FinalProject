@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (50 ms)
+  ✕ renders learn react link (49 ms)
 
   ● renders learn react link
 
@@ -150,29 +150,33 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
----------------------|---------|----------|---------|---------|-------------------
-File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
----------------------|---------|----------|---------|---------|-------------------
-All files            |      25 |    38.09 |   11.11 |   26.47 |                   
- src                 |   29.62 |       40 |   11.11 |   29.62 |                   
-  App.tsx            |      50 |    54.54 |   14.28 |      50 | 12,23-36,52-55    
-  custom-types.tsx   |       0 |        0 |       0 |       0 |                   
-  index.tsx          |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
- src/components      |   33.33 |       50 |   33.33 |   33.33 |                   
-  navbar.tsx         |   33.33 |       50 |   33.33 |   33.33 | 24-28             
- src/functions       |       0 |        0 |       0 |       0 |                   
-  storage.ts         |       0 |        0 |       0 |       0 | 8-33              
- src/interfaces      |       0 |        0 |       0 |       0 |                   
-  analysis.ts        |       0 |        0 |       0 |       0 |                   
-  question.ts        |       0 |        0 |       0 |       0 |                   
-  responses.ts       |       0 |        0 |       0 |       0 |                   
-  user.ts            |       0 |        0 |       0 |       0 |                   
----------------------|---------|----------|---------|---------|-------------------
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |      25 |    38.09 |   13.63 |   26.31 |                   
+ src                     |      32 |       40 |   14.28 |      32 |                   
+  App.tsx                |   57.14 |    54.54 |      20 |   57.14 | 16,27-40          
+  custom-types.tsx       |       0 |        0 |       0 |       0 |                   
+  index.tsx              |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts     |       0 |        0 |       0 |       0 | 3-10              
+ src/components          |   22.22 |       50 |   22.22 |   22.22 |                   
+  basic-questions.tsx    |       0 |      100 |       0 |       0 | 7                 
+  detailed-questions.tsx |       0 |      100 |       0 |       0 | 7                 
+  home.tsx               |   33.33 |      100 |   33.33 |   33.33 | 22-27             
+  navbar.tsx             |   33.33 |       50 |   33.33 |   33.33 | 24-28             
+  results.tsx            |       0 |      100 |       0 |       0 | 8                 
+ src/functions           |       0 |        0 |       0 |       0 |                   
+  storage.ts             |       0 |        0 |       0 |       0 | 8-33              
+ src/interfaces          |       0 |        0 |       0 |       0 |                   
+  analysis.ts            |       0 |        0 |       0 |       0 |                   
+  question.ts            |       0 |        0 |       0 |       0 |                   
+  responses.ts           |       0 |        0 |       0 |       0 |                   
+  user.ts                |       0 |        0 |       0 |       0 |                   
+-------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.932 s
+Time:        3.007 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
