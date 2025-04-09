@@ -1,0 +1,16 @@
+.login-button {
+    width: calc(50% - 4px);
+}
+
+#login-failure {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #600;
+    background-color: #f67;
+    color: #600;
+    font-size: .6em;
+}

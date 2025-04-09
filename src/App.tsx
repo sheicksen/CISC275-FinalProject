@@ -7,6 +7,7 @@ import { Home } from './components/home'
 import { Results } from './components/results';
 import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
+import { Login } from './components/login';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -36,15 +37,16 @@ function App() {
   function changePage(value:Page){
     setPage(value);
   }
-  function logIn(){
-    setLoggedIn(true);
+  function logOut(){
+    setLoggedIn(false);
   }
   return (
-    <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
+    <div><NavBar selectPage={changePage} logOut={logOut} loggedIn={loggedIn}></NavBar>
     { page === "Home" && <Home selectPage={changePage}></Home> }
     { (page === "Results" && loggedIn) && <Results></Results> }
     { page === "Detailed Questions" && <DetailedQuestions></DetailedQuestions> }
     { page === "Basic Questions" && <BasicQuestions></BasicQuestions> }
+    { page === "Login" && <Login selectPage={changePage}></Login> }
     {/* { (page === "Detailed Questions") &&
       <header className="App-header">
         <p>Here, you'll be asked detailed questions</p>

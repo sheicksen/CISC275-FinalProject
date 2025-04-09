@@ -118,3 +118,8 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.align-to-button {
+  width: calc(100% - 4px);
+  margin: 0 2px;
+}
