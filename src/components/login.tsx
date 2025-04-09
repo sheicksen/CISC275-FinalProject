@@ -23,7 +23,7 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
                     <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
                     <Button className="button-style login-button" onClick={() => {
                         if (loadUser(usrnm)) {
-                            localStorage.setItem("usrnm", JSON.stringify(usrnm));
+                            localStorage.setItem("usrnm", usrnm);
                             selectPage("Home");
                         }
                         else setFailed("login");
@@ -31,7 +31,7 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
                     <Button className="button-style login-button" onClick={() => {
                         if (!loadUser(usrnm)) {
                             saveUser({name: usrnm, quizzes: []});
-                            localStorage.setItem("usrnm", JSON.stringify(usrnm));
+                            localStorage.setItem("usrnm", usrnm);
                             selectPage("Home");
                         }
                         else setFailed("newusr");
