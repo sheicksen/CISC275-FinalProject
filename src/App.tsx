@@ -21,7 +21,6 @@ if (prevKey !== null) {
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
   const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
-  // const [loggedIn, setLoggedIn] = useState<boolean>(false);
   
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -37,22 +36,13 @@ function App() {
   function changePage(value:Page){
     setPage(value);
   }
-  // function logOut(){
-  //   localStorage.removeItem("usrnm");
-  //   // setLoggedIn(false);
-  // }
   return (
-    <div><NavBar selectPage={changePage} /* logOut={logOut} loggedIn={loggedIn} */></NavBar>
+    <div><NavBar selectPage={changePage}></NavBar>
     { page === "Home" && <Home selectPage={changePage}></Home> }
-    { (page === "Results" /* && loggedIn */) && <Results></Results> }
+    { page === "Results" && <Results></Results> }
     { page === "Detailed Questions" && <DetailedQuestions></DetailedQuestions> }
     { page === "Basic Questions" && <BasicQuestions></BasicQuestions> }
     { page === "Login" && <Login selectPage={changePage}></Login> }
-    {/* { (page === "Detailed Questions") &&
-      <header className="App-header">
-        <p>Here, you'll be asked detailed questions</p>
-      </header>
-    } */}
     <div className="App">
       <div className="footer">
         <Form>

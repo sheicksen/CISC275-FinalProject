@@ -12,15 +12,12 @@ import { loggedIn, logOut } from "../functions/login";
 */
 interface NavBarProps {
     selectPage: (value:Page) => void,
-    // logOut: () => void,
-    // loggedIn:boolean
 }
-export function NavBar ({ selectPage/* , logOut, loggedIn */ }:NavBarProps) : React.JSX.Element{
+export function NavBar ({ selectPage }:NavBarProps) : React.JSX.Element{
     return (
         <div>
             <div className="mynavbar">
                 {/*MAIN NAVBAR CODE*/}
-                {/* <div className="nav-button"> */}
                     <img src="https://imgur.com/jPdH44f.png" alt = "pingas" className = "test-image"/>
                     <Button className="nav-button button-style" onClick={()=>{
                         selectPage("Home");
@@ -38,7 +35,6 @@ export function NavBar ({ selectPage/* , logOut, loggedIn */ }:NavBarProps) : Re
                     }}>{
                         loggedIn() ? "Log Out" : "Log In / Sign Up"
                     }</Button>
-                {/* </div> */}
                 {/*^ Buttons ^*/}
             </div>
         </div>
