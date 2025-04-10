@@ -48,15 +48,17 @@ function App() {
     return (
         <div className="App">
             <NavBar selectPage={changePage}></NavBar>
-            <div id="app-body">{ pages.get(page) }</div>
-            <div className="footer">
-                <Form>
-                    <Form.Label>API Key:</Form.Label>
-                    <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-                    <br></br>
-                    <Button className="button-style" onClick={handleSubmit}>Submit</Button>
-                </Form>
-                <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
+            <div id="app-body">
+                { pages.get(page) }
+                <div className="footer">
+                    <Form>
+                        <Form.Label>API Key:</Form.Label>
+                        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
+                        <br></br>
+                        <Button className="button-style" onClick={handleSubmit}>Submit</Button>
+                    </Form>
+                    <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
+                </div>
             </div>
         </div>
     );
