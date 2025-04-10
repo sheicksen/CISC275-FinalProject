@@ -1,8 +1,8 @@
+import "./login.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { loadUser, saveUser } from "../functions/storage";
 import { Page } from "../custom-types";
-import "./login.css";
 
 interface LoginProps {
     selectPage: (value: Page) => void
