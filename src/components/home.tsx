@@ -22,10 +22,10 @@ export function Home({selectPage}: HomeProps): React.JSX.Element {
                         selectPage("Basic Questions");
                     }}>Start Quiz</Button><br/>
                     <div>
-                        <p style={{fontSize: "24px", display:"inline"}}>Have some extra time to spend? Try out our </p>
-                        <button className="link-button" style={{fontSize: "24px"}} onClick={()=>{
+                        <p style={{fontSize: "24px", display:"inline"}}>Have some extra time to spend? Try out our &#8203;
+                        <button className="link-button" onClick={()=>{
                             selectPage("Detailed Questions");
-                        }}>Detailed Quiz</button>
+                        }}>Detailed Quiz</button>.</p>
                     </div>
                 </Col>
             </Row>
