@@ -59,17 +59,20 @@
     background-color: rgb(99, 50, 212) ;
     opacity: 0.7;
   }
+  &:focus {
+    background-color: #a4d;
+    color: black;
+  }
+  &:hover {
+    background-color: #44f;
+  }
+  &:active {
+    background-color: #33b;
+  }
 }/*Style for all buttons*/
 .basic-quiz-button{
   width: 100%;
 }
-.button-style:hover{
-  background-color: #44F ;
-}/*Hovering effect for buttons*/
-
-#focus{
-  background-color: red;
-}/*When something is clicked (for buttons)*/
 
 .test-image{
   width: 40px;
