@@ -16,36 +16,34 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
     }
 
     return (
-        <header className="App-header">
-            <div style={{width: "min(250px, 100vw)"}}>
-                <Form>
-                    <Form.Label>Login:</Form.Label>
-                    <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
-                    <Button className="button-style login-button" onClick={() => {
-                        if (loadUser(usrnm)) {
-                            localStorage.setItem("usrnm", usrnm);
-                            selectPage("Home");
-                        }
-                        else setFailed("login");
-                    }}>Login</Button>
-                    <Button className="button-style login-button" onClick={() => {
-                        if (!loadUser(usrnm)) {
-                            saveUser({name: usrnm, quizzes: []});
-                            localStorage.setItem("usrnm", usrnm);
-                            selectPage("Home");
-                        }
-                        else setFailed("newusr");
-                    }}>Create User</Button>
-                </Form>
-                {failed &&
-                    <div id="login-failure" className="align-to-button">
-                        {failed === "login" ?
-                            `User "${usrnm}" does not exist.`
-                        :   `User "${usrnm}" already exists.`
-                        }
-                    </div>
-                }
-            </div>
-        </header>
+        <div id="login" style={{width: "min(250px, 100vw)"}}>
+            <Form>
+                <Form.Label>Login:</Form.Label>
+                <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
+                <Button className="button-style login-button" onClick={() => {
+                    if (loadUser(usrnm)) {
+                        localStorage.setItem("usrnm", usrnm);
+                        selectPage("Home");
+                    }
+                    else setFailed("login");
+                }}>Login</Button>
+                <Button className="button-style login-button" onClick={() => {
+                    if (!loadUser(usrnm)) {
+                        saveUser({name: usrnm, quizzes: []});
+                        localStorage.setItem("usrnm", usrnm);
+                        selectPage("Home");
+                    }
+                    else setFailed("newusr");
+                }}>Create User</Button>
+            </Form>
+            {failed &&
+                <div id="login-failure" className="align-to-button">
+                    {failed === "login" ?
+                        `User "${usrnm}" does not exist.`
+                    :   `User "${usrnm}" already exists.`
+                    }
+                </div>
+            }
+        </div>
     )
 }

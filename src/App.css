@@ -6,6 +6,7 @@
 #app-body {
     top: 55px;
     height: calc(100vh - 55px);
+    width: 100vw;
     position: absolute;
     overflow-y: scroll;
     overscroll-behavior-y: none;
@@ -77,7 +78,7 @@
     }
 } */
 
-.App-header {
+.page {
     background-color: #132343;
     min-height: 100vh;
     display: flex;
@@ -86,6 +87,7 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    width: 100%;
 }
 
 /* .App-link {
@@ -99,8 +101,4 @@
 .align-to-button {
     width: calc(100% - 4px);
     margin: 0 2px;
-}
-
-div {
-    width: 100%;
 }

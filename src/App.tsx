@@ -49,7 +49,9 @@ function App() {
         <div className="App">
             <NavBar selectPage={changePage}></NavBar>
             <div id="app-body">
-                { pages.get(page) }
+                <div className="page">
+                    { pages.get(page) }
+                </div>
                 <div className="footer">
                     <Form>
                         <Form.Label>API Key:</Form.Label>

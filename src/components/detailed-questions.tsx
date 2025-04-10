@@ -5,8 +5,8 @@
 // }
 export function DetailedQuestions(/* {selectPage}: DetailedQuestionsProps */): React.JSX.Element {
     return (
-        <header className="App-header">
+        <div id="detailed-questions">
             <p>Here, you'll be asked detailed questions</p>
-        </header>
+        </div>
     )
 }
