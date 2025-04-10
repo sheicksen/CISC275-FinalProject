@@ -1,0 +1,13 @@
+.image-container{
+    width: min(600px, 45vw);
+    height: min(600px, 45vw);
+    background-color: #181522;
+}
+
+.basic-quiz-button{
+    width: 100%;
+}
+
+#home {
+    max-width: calc(100% - 40px);
+}

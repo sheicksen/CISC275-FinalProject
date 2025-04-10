@@ -6,8 +6,8 @@
 // }
 export function Results(/* {selectPage}: ResultsProps */): React.JSX.Element {
     return (
-        <header className="App-header">
+        <div id="results">
             <p>Here, you'll see your results from previous quizzes</p>
-        </header>
+        </div>
     )
 }
