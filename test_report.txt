@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (49 ms)
+  ✕ renders learn react link (47 ms)
 
   ● renders learn react link
 
@@ -15,30 +15,25 @@ FAIL src/App.test.tsx
         [36m<div>[39m
           [36m<div>[39m
             [36m<div[39m
-              [33mclass[39m=[32m"navbar"[39m
+              [33mclass[39m=[32m"mynavbar"[39m
             [36m>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"nav-button"[39m
+              [36m<img[39m
+                [33malt[39m=[32m"pingas"[39m
+                [33mclass[39m=[32m"test-image"[39m
+                [33msrc[39m=[32m"https://imgur.com/jPdH44f.png"[39m
+              [36m/>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"nav-button button-style btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
               [36m>[39m
-                [36m<img[39m
-                  [33malt[39m=[32m"pingas"[39m
-                  [33mclass[39m=[32m"test-image"[39m
-                  [33msrc[39m=[32m"https://imgur.com/jPdH44f.png"[39m
-                [36m/>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"button-style btn btn-primary"[39m
-                  [33mtype[39m=[32m"button"[39m
-                [36m>[39m
-                  [0mHome[0m
-                [36m</button>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"button-style btn btn-primary"[39m
-                  [33mid[39m=[32m"rightallign"[39m
-                  [33mtype[39m=[32m"button"[39m
-                [36m>[39m
-                  [0mLog In / Sign Up[0m
-                [36m</button>[39m
-              [36m</div>[39m
+                [0mHome[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"nav-button button-style rightalign btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mLog In / Sign Up[0m
+              [36m</button>[39m
             [36m</div>[39m
           [36m</div>[39m
           [36m<header[39m
@@ -153,19 +148,21 @@ FAIL src/App.test.tsx
 -------------------------|---------|----------|---------|---------|-------------------
 File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -------------------------|---------|----------|---------|---------|-------------------
-All files                |      25 |    38.09 |   13.63 |   26.31 |                   
- src                     |      32 |       40 |   14.28 |      32 |                   
-  App.tsx                |   57.14 |    54.54 |      20 |   57.14 | 16,27-40          
+All files                |   18.18 |    29.41 |   14.28 |   18.86 |                   
+ src                     |   30.43 |    43.75 |   16.66 |   30.43 |                   
+  App.tsx                |   58.33 |    58.33 |      25 |   58.33 | 17,27-37          
   custom-types.tsx       |       0 |        0 |       0 |       0 |                   
   index.tsx              |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts     |       0 |        0 |       0 |       0 | 3-10              
- src/components          |   22.22 |       50 |   22.22 |   22.22 |                   
+ src/components          |    8.69 |    18.75 |   14.28 |    8.69 |                   
   basic-questions.tsx    |       0 |      100 |       0 |       0 | 7                 
   detailed-questions.tsx |       0 |      100 |       0 |       0 | 7                 
   home.tsx               |   33.33 |      100 |   33.33 |   33.33 | 22-27             
-  navbar.tsx             |   33.33 |       50 |   33.33 |   33.33 | 24-28             
+  login.tsx              |       0 |        0 |       0 |       0 | 11-37             
+  navbar.tsx             |      25 |     37.5 |      25 |      25 | 23-34             
   results.tsx            |       0 |      100 |       0 |       0 | 8                 
- src/functions           |       0 |        0 |       0 |       0 |                   
+ src/functions           |   11.11 |        0 |    12.5 |   14.28 |                   
+  login.ts               |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts             |       0 |        0 |       0 |       0 | 8-33              
  src/interfaces          |       0 |        0 |       0 |       0 |                   
   analysis.ts            |       0 |        0 |       0 |       0 |                   
@@ -176,7 +173,7 @@ All files                |      25 |    38.09 |   13.63 |   26.31 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.007 s
+Time:        3.049 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
