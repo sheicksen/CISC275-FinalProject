@@ -7,6 +7,7 @@ import { Home } from './components/home'
 import { Results } from './components/results';
 import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
+import { Login } from './components/login';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -20,7 +21,6 @@ if (prevKey !== null) {
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
   const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
@@ -36,20 +36,13 @@ function App() {
   function changePage(value:Page){
     setPage(value);
   }
-  function logIn(){
-    setLoggedIn(true);
-  }
   return (
-    <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
+    <div><NavBar selectPage={changePage}></NavBar>
     { page === "Home" && <Home selectPage={changePage}></Home> }
-    { (page === "Results" && loggedIn) && <Results></Results> }
+    { page === "Results" && <Results></Results> }
     { page === "Detailed Questions" && <DetailedQuestions></DetailedQuestions> }
     { page === "Basic Questions" && <BasicQuestions></BasicQuestions> }
-    {/* { (page === "Detailed Questions") &&
-      <header className="App-header">
-        <p>Here, you'll be asked detailed questions</p>
-      </header>
-    } */}
+    { page === "Login" && <Login selectPage={changePage}></Login> }
     <div className="App">
       <div className="footer">
         <Form>
