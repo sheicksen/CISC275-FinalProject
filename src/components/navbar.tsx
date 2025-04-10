@@ -1,4 +1,4 @@
-import "./navbar.css";
+import "./css/navbar.css";
 import {Button} from "react-bootstrap";
 import { Page } from '../custom-types';
 import { loggedIn, logOut } from "../functions/login";
