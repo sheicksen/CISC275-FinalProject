@@ -43,7 +43,7 @@ function App() {
     <div><NavBar selectPage={changePage} logIn={logIn} loggedIn={loggedIn}></NavBar>
     { page === "Home" && <Home selectPage={changePage}></Home> }
     { (page === "Results" && loggedIn) && <Results></Results> }
-    { page === "Detailed Questions" && <DetailedQuestions></DetailedQuestions> }
+    { page === "Detailed Questions" && <DetailedQuestions apiKey={key}></DetailedQuestions> }
     { page === "Basic Questions" && <BasicQuestions></BasicQuestions> }
     {/* { (page === "Detailed Questions") &&
       <header className="App-header">

@@ -8,11 +8,11 @@ import { GoogleGenAI } from "@google/genai";
  */
 export async function askQuestion(apiKey: string, question: string){
     const ai = new GoogleGenAI({ apiKey: apiKey});
-    const reponse = await ai.models.generateContent({
+    const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
         contents: question
     });
-    return reponse;
+    return response.text;
 }
 
 export async function generateResults(apiKey: string, data: string){
@@ -21,5 +21,5 @@ export async function generateResults(apiKey: string, data: string){
         model:"gemini-2.0-flash",
         contents: "Could you recommend me a career based on the following questions and answers?"
     })
-    return response;
+    return response.text;
 }
