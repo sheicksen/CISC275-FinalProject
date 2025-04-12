@@ -23,3 +23,19 @@ export async function generateResults(apiKey: string, data: string){
     })
     return response.text;
 }
+
+export async function genrateQuestions(apiKey: string, careerField:string){
+    const ai = new GoogleGenAI({ apiKey: apiKey});
+    const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
+    ` using this JSON scheme for Likert scale questions:
+        Question = {'question':string, 'type':"scaled", scale:[string, string]}
+    and this JSON scheme for text answered questions:
+        Question = {'question':string, 'type':"text"}
+        Return: Array<Question>
+    `;
+    const response = await ai.models.generateContent({
+        model:"gemini-2.0-flash",
+        contents: prompt
+    });
+    return response.text;
+}

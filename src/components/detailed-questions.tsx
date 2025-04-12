@@ -1,6 +1,6 @@
 // import { Page } from '../custom-types';
 import { Button, Form } from 'react-bootstrap';
-import { ChangeEvent, FormEvent, MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { askQuestion } from '../gemini/ai-conversation-handler';
 
 interface DetailedQuestionsProps {
@@ -29,11 +29,9 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
     }
     let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(event.target.value);
-        console.log(textInput);
     };
 
     let handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Hey, I was submitted!");
         askGemini(textInput);
     };
     return (
@@ -45,7 +43,6 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                 <Form.Group>
                     <Form.Text>What type of careers are you interested in exploring today?</Form.Text>
                     <Form.Control type="textarea" onChange={updateText}>
-
                     </Form.Control>
                     <Button onClick={handleSubmit}>Submit</Button>
                 </Form.Group>
