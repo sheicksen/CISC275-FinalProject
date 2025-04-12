@@ -1,6 +1,6 @@
 // import { Page } from '../custom-types';
 import { Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, MouseEventHandler, useState } from 'react';
 import { askQuestion } from '../gemini/ai-conversation-handler';
 
 interface DetailedQuestionsProps {
@@ -8,11 +8,16 @@ interface DetailedQuestionsProps {
 }
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
-    function askGemini(){
-        let answer: Promise<string | undefined> = askQuestion(apiKey, "How are you?");
+    const [textInput, setTextInput] = useState("")
+    /**
+     * @function askGemini
+     */
+    function askGemini(question:string){
+        let answer: Promise<string | undefined> = askQuestion(apiKey, question);
         answer
             .then((value) => {
                 if (value){
+                    console.log(value);
                     setResponse(value);
                 }
               }
@@ -21,8 +26,16 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                 console.log(error);
                 setResponse("Oops, something went wrong. Try again later.");
             });
-        
     }
+    let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
+        setTextInput(event.target.value);
+        console.log(textInput);
+    };
+
+    let handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log("Hey, I was submitted!");
+        askGemini(textInput);
+    };
     return (
         <header className="App-header">
             <h1>An AI Enhanced Quiz Experience</h1>
@@ -31,10 +44,10 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             <Form>
                 <Form.Group>
                     <Form.Text>What type of careers are you interested in exploring today?</Form.Text>
-                    <Form.Control type="textarea">
+                    <Form.Control type="textarea" onChange={updateText}>
 
                     </Form.Control>
-                    <Button onClick={askGemini}>Submit</Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
                 </Form.Group>
             </Form>
             {response && 
