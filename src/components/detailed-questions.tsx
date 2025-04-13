@@ -70,7 +70,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
 
             }
             <TextQuestion></TextQuestion>
-            <ScaledQuestion></ScaledQuestion>
+            <ScaledQuestion id={1} question={{question:"I'm a question", type:"scaled", answer:undefined, scale:["yes", "no"]}}></ScaledQuestion>
         </header>
     )
 }

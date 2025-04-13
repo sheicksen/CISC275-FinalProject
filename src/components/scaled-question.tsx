@@ -1,20 +1,25 @@
 import { Form, Button } from "react-bootstrap";
-export function ScaledQuestion(){
+import { Question } from "../interfaces/question";
+interface ScaledQuestionProps {
+    id:number,
+    question:Question<"scaled">
+}
+export function ScaledQuestion({id, question}:ScaledQuestionProps){
     let scale = ["1", "2", "3", "4", "5"]
     return (
         <div>
             <Form>
                 <Form.Text>
-                    This is a Question
+                    {question.question}
                 </Form.Text>
                 <div>
-                    {scale.map((id:string)=>(
+                    {scale.map((num:string)=>(
                         <Form.Check
                         inline
                         type="radio"
-                        label={id}
-                        name="group-"
-                        id={id}
+                        label={num === "1" ? question.scale[0] : num === "5" ? question.scale[1] : num}
+                        name={"group-" + id.toString()}
+                        id={num}
                         ></Form.Check>
                     )
                     )}
