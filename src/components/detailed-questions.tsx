@@ -1,36 +1,36 @@
-// import { Page } from '../custom-types';
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
-import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
+// import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
+import {generateQuestions } from '../gemini/ai-conversation-handler';
 import { Question } from '../interfaces/question';
 
 interface DetailedQuestionsProps {
     apiKey:string
 }
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
-    const [response, setResponse] = useState("");
+    // const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question<"scaled" | "text">[]>([]);
-    /**
-     * @function askGemini sends Gemini raw text and sets response to the returned answer.
-     * @param {string} question a string containing what you would like to ask Gemini.
-     */
-    function askGemini(question:string){
-        let answer: Promise<string | undefined> = askQuestion(apiKey, question);
-        // let answer: Promise<string | undefined> = generateQuestions(apiKey, question);
-        answer
-            .then((value) => {
-                if (value){
-                    console.log(value);
-                    setResponse(value);
-                }
-              }
-            )
-            .catch((error)=>{
-                console.log(error);
-                setResponse("Oops, something went wrong. Try again later.");
-            });
-    }
+    // /**
+    //  * @function askGemini sends Gemini raw text and sets response to the returned answer.
+    //  * @param {string} question a string containing what you would like to ask Gemini.
+    //  */
+    // function askGemini(question:string){
+    //     let answer: Promise<string | undefined> = askQuestion(apiKey, question);
+    //     // let answer: Promise<string | undefined> = generateQuestions(apiKey, question);
+    //     answer
+    //         .then((value) => {
+    //             if (value){
+    //                 console.log(value);
+    //                 setResponse(value);
+    //             }
+    //           }
+    //         )
+    //         .catch((error)=>{
+    //             console.log(error);
+    //             setResponse("Oops, something went wrong. Try again later.");
+    //         });
+    // }
     let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(event.target.value);
     };
@@ -60,9 +60,9 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                     <Button onClick={getQuestions}>Get your quiz</Button>
                 </Form.Group>
             </Form>
-            {response && 
+            {/* {response && 
                 <p>{response}</p>
-            }
+            } */}
             {questions.length > 0 &&
                 <p>{questions[0].question}</p>
 
