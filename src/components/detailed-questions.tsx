@@ -1,7 +1,8 @@
 // import { Page } from '../custom-types';
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
-import { askQuestion } from '../gemini/ai-conversation-handler';
+import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
+import { Question } from '../interfaces/question';
 
 interface DetailedQuestionsProps {
     apiKey:string
@@ -9,11 +10,13 @@ interface DetailedQuestionsProps {
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
+    const [questions, setQuestions] = useState<Question<"scaled" | "text">[]>([]);
     /**
      * @function askGemini
      */
     function askGemini(question:string){
         let answer: Promise<string | undefined> = askQuestion(apiKey, question);
+        // let answer: Promise<string | undefined> = generateQuestions(apiKey, question);
         answer
             .then((value) => {
                 if (value){
@@ -31,8 +34,17 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
         setTextInput(event.target.value);
     };
 
-    let handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-        askGemini(textInput);
+    let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
+        let questions: Promise<Question<"scaled" | "text">[]> = generateQuestions(apiKey, textInput);
+        questions 
+            .then((value)=>{
+                console.log(value);
+                setQuestions(value);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
     };
     return (
         <header className="App-header">
@@ -41,14 +53,18 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
 
             <Form>
                 <Form.Group>
-                    <Form.Text>What type of careers are you interested in exploring today?</Form.Text>
+                    <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                     <Form.Control type="textarea" onChange={updateText}>
                     </Form.Control>
-                    <Button onClick={handleSubmit}>Submit</Button>
+                    <Button onClick={getQuestions}>Get your quiz</Button>
                 </Form.Group>
             </Form>
             {response && 
                 <p>{response}</p>
+            }
+            {questions &&
+                <p>{questions[0].question}</p>
+
             }
         </header>
     )

@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import {Question} from "../interfaces/question"
 
 /**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
@@ -24,7 +25,7 @@ export async function generateResults(apiKey: string, data: string){
     return response.text;
 }
 
-export async function genrateQuestions(apiKey: string, careerField:string){
+export async function generateQuestions(apiKey: string, careerField:string){
     const ai = new GoogleGenAI({ apiKey: apiKey});
     const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
     ` using this JSON scheme for Likert scale questions:
@@ -37,5 +38,24 @@ export async function genrateQuestions(apiKey: string, careerField:string){
         model:"gemini-2.0-flash",
         contents: prompt
     });
-    return response.text;
+    let questions = parseQuestions(response.text);
+    return questions;
+}
+
+function parseQuestions(questionsString: string | undefined){
+    //string format: json[{...},{...}]
+    let questions:Question<"scaled" | "text">[] = [];
+    if (questionsString !== undefined){
+        let objects:string[] = questionsString.substring(5,questionsString.length-1).split(",");
+        for(let i = 0; i < objects.length; i++){
+            try{
+                let object:Question <"scaled" | "text"> = JSON.parse(objects[i]);
+                questions.push(object);
+            } catch (error){
+                console.log("Could not parse JSON ", error);
+            }
+
+        }
+    }
+    return questions;
 }
