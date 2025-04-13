@@ -62,7 +62,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             {response && 
                 <p>{response}</p>
             }
-            {questions &&
+            {questions.length > 0 &&
                 <p>{questions[0].question}</p>
 
             }

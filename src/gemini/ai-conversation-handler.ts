@@ -28,34 +28,42 @@ export async function generateResults(apiKey: string, data: string){
 export async function generateQuestions(apiKey: string, careerField:string){
     const ai = new GoogleGenAI({ apiKey: apiKey});
     const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
-    ` using this JSON scheme for Likert scale questions:
-        Question = {'question':string, 'type':"scaled", scale:[string, string]}
+    ` using this object format for Likert scale questions:
+        Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
     and this JSON scheme for text answered questions:
-        Question = {'question':string, 'type':"text"}
+        Question = {'question':string, 'type':"text", answer:undefined }
         Return: Array<Question>
     `;
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt
     });
+    console.log(response.text);
     let questions = parseQuestions(response.text);
     return questions;
 }
 
 function parseQuestions(questionsString: string | undefined){
-    //string format: json[{...},{...}]
+    //string format: ```json[{...},{...}]```
     let questions:Question<"scaled" | "text">[] = [];
     if (questionsString !== undefined){
-        let objects:string[] = questionsString.substring(5,questionsString.length-1).split(",");
+        let objects:string[] = questionsString.substring(8,questionsString.length-4).split(",");
         for(let i = 0; i < objects.length; i++){
             try{
                 let object:Question <"scaled" | "text"> = JSON.parse(objects[i]);
                 questions.push(object);
             } catch (error){
+                console.log(objects[i]);
                 console.log("Could not parse JSON ", error);
             }
 
         }
+        // try{
+        //     let object:Question<"scaled" | "text">[] = JSON.parse(questionsString.substring(3));
+        //     questions = object;
+        // } catch (error){
+        //             console.log("Could not parse JSON ", error);
+        // }
     }
     return questions;
 }
