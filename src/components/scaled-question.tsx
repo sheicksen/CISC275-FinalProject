@@ -1,5 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import { Question } from "../interfaces/question";
+import "./css/question-tile.css";
 interface ScaledQuestionProps {
     id:number,
     question:Question<"scaled">
@@ -7,7 +8,7 @@ interface ScaledQuestionProps {
 export function ScaledQuestionTile({id, question}:ScaledQuestionProps){
     let scale = ["1", "2", "3", "4", "5"]
     return (
-        <div>
+        <div className="tile">
             <Form>
                 <Form.Text>
                     {question.question}
