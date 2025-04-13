@@ -21,9 +21,8 @@ export interface Question<T extends QuestionType> {
  * @member {"text"} type The type of question, "text"
  * @member {string | undefined} answer The answer provided, if any
  */
-export interface TextQuestion extends Question<"text"> {
+export interface TextQuestion extends Omit<Question<"text">, "scale"> {
     answer: string | undefined
-    scale: never
 }
 
 /**
@@ -49,3 +48,5 @@ export interface ScaledQuestion extends Question<"scaled"> {
 export interface AnsweredQuestion<T extends QuestionType> extends Question<T> {
     answer: T extends "text" ? string : number
 }
+
+export type BasicQuestion = ScaledQuestion | TextQuestion;
