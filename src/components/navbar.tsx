@@ -1,5 +1,7 @@
+import "./css/navbar.css";
 import {Button} from "react-bootstrap";
 import { Page } from '../custom-types';
+import { loggedIn, logOut } from "../functions/login";
 
 /*
     DESCRIPTION: Basic Navbar code
@@ -9,29 +11,28 @@ import { Page } from '../custom-types';
     LAST UPDATED: 4/1/2025
 */
 interface NavBarProps {
-    selectPage: (value:Page) => void,
-    logIn: () => void,
-    loggedIn:boolean
+    selectPage: (value: Page) => void,
 }
-export function NavBar ({ selectPage, logIn, loggedIn }:NavBarProps) : React.JSX.Element{
+export function NavBar({ selectPage }:NavBarProps) : React.JSX.Element{
     return (
-        <div>
-            <div className="navbar">
-                {/*MAIN NAVBAR CODE*/}
-                <div className="nav-button">
-                    <img src="https://imgur.com/jPdH44f.png" alt = "pingas" className = "test-image"/>
-                    <Button className="button-style" onClick={()=>{
-                        selectPage("Home");
-                    }}>Home</Button>
-                    { loggedIn && 
-                        <Button className="button-style" onClick={()=>{
-                            selectPage("Results");
-                        }}>Results</Button> // Results page is only accessible to logged in users
-                    } 
-                    <Button className="button-style" id="rightallign" onClick={logIn}>{loggedIn ? "Hello there!" : "Log In / Sign Up"}</Button>
-                </div>
-                {/*^ Buttons ^*/}
-            </div>
+        <div className="mynavbar">
+            {/*MAIN NAVBAR CODE*/}
+                <img src="https://imgur.com/jPdH44f.png" alt="pingas" className="test-image"/>
+                <Button className="nav-button button-style" onClick={()=>{
+                    selectPage("Home");
+                }}>Home</Button>
+                { loggedIn() && 
+                    <Button className="nav-button button-style" onClick={()=>{
+                        selectPage("Results");
+                    }}>Results</Button> // Results button is only accessible to logged in users
+                }
+                { loggedIn() && <div id="welcome">Welcome, {loggedIn()}</div> }
+                <Button className="nav-button button-style rightalign" onClick={() => {
+                    loggedIn() ? logOut() : selectPage("Login");
+                }}>{
+                    loggedIn() ? "Log Out" : "Log In / Sign Up"
+                }</Button>
+            {/*^ Buttons ^*/}
         </div>
     )
 }

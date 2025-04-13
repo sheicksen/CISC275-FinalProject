@@ -1,0 +1,39 @@
+.mynavbar {
+    background-color: rgb(100, 100, 255); 
+    overflow: hidden; 
+    height: 55px;
+    align-items: left;
+    position: fixed;
+    width: 100vw;
+    padding: 1ex;
+}/*Style for the navbar, specifically the */
+
+.nav-button{
+    white-space: nowrap;
+}/*Style for the navigation buttons*/
+
+#welcome {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    color: white;
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.rightalign{
+    position: absolute;
+    right: 1ex;
+}
+
+.test-image{
+    width: 40px;
+    height: 40px;
+}
+
+  

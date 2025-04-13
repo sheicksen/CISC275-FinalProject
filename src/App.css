@@ -1,120 +1,104 @@
-.App {
-  text-align: center;
-  /* top: 55px; */
-}
+/* .App {
+    top: 55px;
+    position: absolute;
+} */
 
-.navbar {
-  background-color: rgb(100, 100, 255); 
-  overflow: hidden; 
-  height: 55px;
-  display: flex;
-  align-items: left;
-  position: fixed;
-  width: 100vw;
-}/*Style for the navbar, specifically the */
+#app-body {
+    top: 55px;
+    height: calc(100vh - 55px);
+    width: 100vw;
+    position: absolute;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+}
 
 .footer {
-  background-color: rgb(100, 100, 255); 
-  color: white;
-  overflow: hidden;
-  display: column;
-  align-items: center;
+    text-align: center;
+    background-color: rgb(100, 100, 255); 
+    color: white;
+    overflow: hidden;
+    display: column;
+    align-items: center;
 }
-.image-container{
-  width: 600px;
-  height: 600px;
-  background-color: #181522;
-}
-.link-button {
-  display: inline;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  text-decoration: underline;
-  cursor: pointer;
-  background: transparent;
-  color: white;
-} /* Styles plain html buttons to look like links so we don't need hrefs */
 .footer Form{
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
 }
-
-#rightallign{
-  position: absolute;
-  right: 0px;
-  margin-right: 5px;
-}
-
 .footer-items {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
-.nav-button{
-  padding-bottom: 5px;
-  display: flex;
-  align-items: left;
-  margin-left: 7px;
-}/*Style for the navigation buttons*/
+
+.link-button {
+    display: inline;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    background: transparent;
+    color: white;
+} /* Styles plain html buttons to look like links so we don't need hrefs */
 
 .button-style{
-  background-color: #a4d ;
-  color: black;
-  margin: 2px;
-  padding: 5px;
-  &:disabled{
+    background-color: #a4d ;
     color: black;
-    background-color: rgb(99, 50, 212) ;
-    opacity: 0.7;
-  }
+    margin: 2px;
+    padding: 5px;
+    &:disabled{
+        color: black;
+        background-color: rgb(99, 50, 212) ;
+        opacity: 0.7;
+    }
+    &:focus {
+        background-color: #a4d;
+        color: black;
+    }
+    &:hover {
+        background-color: #44f;
+    }
+    &:active {
+        background-color: #33b;
+    }
 }/*Style for all buttons*/
-.basic-quiz-button{
-  width: 100%;
-}
-.button-style:hover{
-  background-color: #44F ;
-}/*Hovering effect for buttons*/
 
-#focus{
-  background-color: red;
-}/*When something is clicked (for buttons)*/
-
-.test-image{
-  width: 40px;
-  height: 40px;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+} */
+
+.page {
+    background-color: #132343;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 100%;
 }
 
-.App-header {
-  background-color: #132343;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
+/* .App-link {
+    color: #61dafb;
+} */
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
+}
+
+.align-to-button {
+    width: calc(100% - 4px);
+    margin: 0 2px;
 }
