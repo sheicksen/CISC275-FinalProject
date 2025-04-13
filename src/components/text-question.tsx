@@ -10,11 +10,11 @@ export function TextQuestionTile({id, question}:TextQuestionProps){
     return (
         <div className="tile">
             <Form>
-                <Form.Text>
-                    {id.toString() + ". " + question.question}
+                <Form.Text className="text-color">
+                    {(id+1).toString() + ". " + question.question}
                 </Form.Text>
                 <Form.Control type="textarea"></Form.Control>
-                <Button>Submit</Button>
+                <Button className="button-color">Submit</Button>
             </Form>
         </div>
     );

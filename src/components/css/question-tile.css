@@ -1,5 +1,14 @@
 .tile {
     max-width: 70vw;
-    background-color: cornflowerblue;
+    background-color: rgb(100, 100, 255);
     border-radius: 15px;
+    padding:50px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.text-color{
+    color: #181522;
+}
+.button-color{
+    background-color: #132343;
 }

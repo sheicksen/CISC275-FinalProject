@@ -10,8 +10,8 @@ export function ScaledQuestionTile({id, question}:ScaledQuestionProps){
     return (
         <div className="tile">
             <Form>
-                <Form.Text>
-                    {question.question}
+                <Form.Text className="text-color">
+                    {(id+1).toString() + ". " + question.question}
                 </Form.Text>
                 <div>
                     {scale.map((num:string)=>(
@@ -25,7 +25,7 @@ export function ScaledQuestionTile({id, question}:ScaledQuestionProps){
                     )
                     )}
                 </div>
-                <Button>Submit</Button>
+                <Button className="button-color">Submit</Button>
             </Form>
         </div>
     );
