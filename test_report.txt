@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (51 ms)
+  ✕ renders learn react link (48 ms)
 
   ● renders learn react link
 
@@ -148,19 +148,21 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   12.64 |    14.28 |   10.81 |   12.94 |                   
+All files                    |   10.67 |    10.52 |    9.09 |   10.89 |                   
  src                         |   33.33 |    16.66 |   16.66 |   33.33 |                   
   App.tsx                    |   61.53 |       50 |      25 |   61.53 | 17,27-37          
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    6.06 |    16.66 |   11.11 |    6.06 |                   
+ src/components              |    4.08 |    10.71 |       8 |    4.08 |                   
   basic-questions.tsx        |       0 |      100 |       0 |       0 | 7                 
-  detailed-questions.tsx     |       0 |        0 |       0 |       0 | 12-50             
+  detailed-questions.tsx     |       0 |        0 |       0 |       0 | 13-66             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 22-27             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 22-31             
   results.tsx                |       0 |      100 |       0 |       0 | 8                 
+  scaled-question.tsx        |       0 |        0 |       0 |       0 | 9-18              
+  text-question.tsx          |       0 |      100 |       0 |       0 | 10                
  src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
@@ -175,7 +177,7 @@ All files                    |   12.64 |    14.28 |   10.81 |   12.94 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.184 s
+Time:        3.23 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
