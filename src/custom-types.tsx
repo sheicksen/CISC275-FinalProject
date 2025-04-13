@@ -1,1 +1,1 @@
-export type Page = "Home" | "Basic Questions" | "Detailed Questions" | "Results" | "Login";
+export type Page = "Home" | "Basic Questions" | "Detailed Questions" | "Results";
