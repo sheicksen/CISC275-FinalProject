@@ -12,7 +12,8 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question<"scaled" | "text">[]>([]);
     /**
-     * @function askGemini
+     * @function askGemini sends Gemini raw text and sets response to the returned answer.
+     * @param {string} question a string containing what you would like to ask Gemini.
      */
     function askGemini(question:string){
         let answer: Promise<string | undefined> = askQuestion(apiKey, question);
