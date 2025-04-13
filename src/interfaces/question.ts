@@ -48,3 +48,5 @@ export interface ScaledQuestion extends Question<"scaled"> {
 export interface AnsweredQuestion<T extends QuestionType> extends Question<T> {
     answer: T extends "text" ? string : number
 }
+
+export type BasicQuestion = ScaledQuestion | TextQuestion;

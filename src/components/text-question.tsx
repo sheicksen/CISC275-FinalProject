@@ -1,8 +1,8 @@
 import { Form, Button } from "react-bootstrap";
-import { TextQuestion } from "../interfaces/question";
+import { BasicQuestion } from "../interfaces/question";
 interface TextQuestionProps {
     id: number,
-    question:TextQuestion
+    question:BasicQuestion
 }
 export function TextQuestionTile({id, question}:TextQuestionProps){
     return (

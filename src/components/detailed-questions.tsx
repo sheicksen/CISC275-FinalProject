@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 // import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
 import {generateQuestions } from '../gemini/ai-conversation-handler';
-import { Question } from '../interfaces/question';
+import { BasicQuestion } from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
 
@@ -12,7 +12,7 @@ interface DetailedQuestionsProps {
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     // const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
-    const [questions, setQuestions] = useState<Question<"scaled" | "text">[]>([]);
+    const [questions, setQuestions] = useState<BasicQuestion[]>([]);
     // /**
     //  * @function askGemini sends Gemini raw text and sets response to the returned answer.
     //  * @param {string} question a string containing what you would like to ask Gemini.
@@ -38,7 +38,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
     };
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
-        let questions: Promise<Question<"scaled" | "text">[]> = generateQuestions(apiKey, textInput);
+        let questions: Promise<BasicQuestion[]> = generateQuestions(apiKey, textInput);
         questions 
             .then((value)=>{
                 console.log(value);
@@ -49,6 +49,11 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             })
 
     };
+    let quizBody = questions.map((question, index)=>(
+        question.type === "text" ? <TextQuestionTile id={index} question={question}></TextQuestionTile> : 
+        <ScaledQuestionTile id = {index} question={question}></ScaledQuestionTile>
+    )
+    );
     return (
         <header className="App-header">
             <h1>An AI Enhanced Quiz Experience</h1>
@@ -62,15 +67,9 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                     <Button onClick={getQuestions}>Get your quiz</Button>
                 </Form.Group>
             </Form>
-            {/* {response && 
-                <p>{response}</p>
-            } */}
             {questions.length > 0 &&
-                <p>{questions[0].question}</p>
-
+                quizBody
             }
-            <TextQuestionTile id={1} question={{question:"How are you", type:"text", answer:undefined}}></TextQuestionTile>
-            <ScaledQuestionTile id={2} question={{question:"I'm a question", type:"scaled", answer:undefined, scale:["yes", "no"]}}></ScaledQuestionTile>
         </header>
     )
 }
