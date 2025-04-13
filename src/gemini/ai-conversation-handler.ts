@@ -47,23 +47,15 @@ function parseQuestions(questionsString: string | undefined){
     //string format: ```json[{...},{...}]```
     let questions:Question<"scaled" | "text">[] = [];
     if (questionsString !== undefined){
-        let objects:string[] = questionsString.substring(8,questionsString.length-4).split(",");
-        for(let i = 0; i < objects.length; i++){
-            try{
-                let object:Question <"scaled" | "text"> = JSON.parse(objects[i]);
-                questions.push(object);
-            } catch (error){
-                console.log(objects[i]);
-                console.log("Could not parse JSON ", error);
-            }
-
+        try{
+            let object:Question<"scaled" | "text">[] = JSON.parse(questionsString.substring(8,questionsString.length-4), (key, value)=>{
+                return value;
+            });
+            console.log(object);
+            questions = object;
+        } catch (error){
+                    console.log("Could not parse JSON ", error);
         }
-        // try{
-        //     let object:Question<"scaled" | "text">[] = JSON.parse(questionsString.substring(3));
-        //     questions = object;
-        // } catch (error){
-        //             console.log("Could not parse JSON ", error);
-        // }
     }
     return questions;
 }
