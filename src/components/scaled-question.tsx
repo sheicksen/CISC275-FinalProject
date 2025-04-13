@@ -4,7 +4,7 @@ interface ScaledQuestionProps {
     id:number,
     question:Question<"scaled">
 }
-export function ScaledQuestion({id, question}:ScaledQuestionProps){
+export function ScaledQuestionTile({id, question}:ScaledQuestionProps){
     let scale = ["1", "2", "3", "4", "5"]
     return (
         <div>

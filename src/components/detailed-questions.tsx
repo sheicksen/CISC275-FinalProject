@@ -3,8 +3,8 @@ import { useState } from 'react';
 // import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
 import {generateQuestions } from '../gemini/ai-conversation-handler';
 import { Question } from '../interfaces/question';
-import { TextQuestion } from './text-question';
-import { ScaledQuestion } from './scaled-question';
+import { TextQuestionTile } from './text-question';
+import { ScaledQuestionTile } from './scaled-question';
 
 interface DetailedQuestionsProps {
     apiKey:string
@@ -69,8 +69,8 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                 <p>{questions[0].question}</p>
 
             }
-            <TextQuestion></TextQuestion>
-            <ScaledQuestion id={1} question={{question:"I'm a question", type:"scaled", answer:undefined, scale:["yes", "no"]}}></ScaledQuestion>
+            <TextQuestionTile id={1} question={{question:"How are you", type:"text", answer:undefined}}></TextQuestionTile>
+            <ScaledQuestionTile id={2} question={{question:"I'm a question", type:"scaled", answer:undefined, scale:["yes", "no"]}}></ScaledQuestionTile>
         </header>
     )
 }

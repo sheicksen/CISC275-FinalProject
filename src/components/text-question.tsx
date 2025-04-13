@@ -1,10 +1,15 @@
 import { Form, Button } from "react-bootstrap";
-export function TextQuestion(){
+import { TextQuestion } from "../interfaces/question";
+interface TextQuestionProps {
+    id: number,
+    question:TextQuestion
+}
+export function TextQuestionTile({id, question}:TextQuestionProps){
     return (
         <div>
             <Form>
                 <Form.Text>
-                    This is a Question
+                    {id.toString() + ". " + question.question}
                 </Form.Text>
                 <Form.Control type="textarea"></Form.Control>
                 <Button>Submit</Button>
