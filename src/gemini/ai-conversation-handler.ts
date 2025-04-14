@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import {BasicQuestion} from "../interfaces/question"
+import {Question} from "../interfaces/question"
 
 /**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
@@ -38,7 +38,7 @@ export async function generateQuestions(apiKey: string, careerField:string){
     ` using this object format for Likert scale questions:
         Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
     and this JSON scheme for text answered questions:
-        Question = {'question':string, 'type':"text", answer:undefined }
+        Question = {'question':string, 'type':"text", answer:undefined, scale:[] }
         Return: Array<Question>
     `;
     const response = await ai.models.generateContent({
@@ -57,10 +57,10 @@ export async function generateQuestions(apiKey: string, careerField:string){
  */
 function parseQuestions(questionsString: string | undefined){
     //string format: ```json[{...},{...}]```
-    let questions:BasicQuestion[] = [];
+    let questions:Question[] = [];
     if (questionsString !== undefined){
         try{
-            let object:BasicQuestion[] = JSON.parse(questionsString.substring(8,questionsString.length-4), (key, value)=>{
+            let object:Question[] = JSON.parse(questionsString.substring(8,questionsString.length-4), (key, value)=>{
                 return value;
             });
             console.log(object);

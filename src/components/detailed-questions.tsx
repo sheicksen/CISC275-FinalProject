@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
 // import {generateQuestions } from '../gemini/ai-conversation-handler';
-import { BasicQuestion} from '../interfaces/question';
+import { Question, isScaled, isText} from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
@@ -14,8 +14,9 @@ let quizLength = 7;
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
-    const [questions, setQuestions] = useState<BasicQuestion[]>([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
     const[answers, setAnswers] = useState<string[]>([]);
+    const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -41,7 +42,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
         askGemini(("Give me an intro of at most 3 sentences to a career quiz exploring options with " + textInput));
-        let questions: Promise<BasicQuestion[]> = generateQuestions(apiKey, textInput);
+        let questions: Promise<Question[]> = generateQuestions(apiKey, textInput);
         questions 
             .then((value)=>{
                 console.log(value);
@@ -52,21 +53,20 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             })
 
     };
-    let updateAnswers = (answer:string) =>{
-        // let search:AnsweredQ[]= answeredQs.filter((question)=>question.question===q.question);
-        // let otherQs:AnsweredQ[] = answeredQs.filter((question)=>question.question !== q.question);
-        // let answeredQ: AnsweredQ;
-        // if(q.type === "scaled"){
-        //     answeredQ = {...q, answer:parseInt(answer)}
-        // } else {
-        //     answeredQ = {...q, answer:answer}
-        // }
-
-        // setAnsweredQs([...otherQs, answeredQ])
-        setAnswers([...answers, answer]);
+    let updateAnswers = (id:number, q:Question, answer:string) =>{
+        let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
+        if (search.length > 0){
+            search[0].type === "scaled"? search[0].answer=parseInt(answer) : search[1].answer=answer;
+        } else {
+            if (isScaled(q)){
+                setAnsweredQs([...answeredQs, {...q, answer:parseInt(answer)}])
+            } else {
+                setAnsweredQs([...answeredQs, {...q, answer:answer}]);
+            }
+        }
     }
     let quizBody = questions.map((question, index)=>(
-        question.type === "text" ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
+        isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
