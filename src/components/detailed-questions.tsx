@@ -2,17 +2,20 @@ import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
 // import {generateQuestions } from '../gemini/ai-conversation-handler';
-import { BasicQuestion } from '../interfaces/question';
+import { BasicQuestion} from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
+import { ProgBar } from './progress-bar';
 
 interface DetailedQuestionsProps {
     apiKey:string
 }
+let quizLength = 7;
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<BasicQuestion[]>([]);
+    const[answers, setAnswers] = useState<string[]>([]);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -49,9 +52,22 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             })
 
     };
+    let updateAnswers = (answer:string) =>{
+        // let search:AnsweredQ[]= answeredQs.filter((question)=>question.question===q.question);
+        // let otherQs:AnsweredQ[] = answeredQs.filter((question)=>question.question !== q.question);
+        // let answeredQ: AnsweredQ;
+        // if(q.type === "scaled"){
+        //     answeredQ = {...q, answer:parseInt(answer)}
+        // } else {
+        //     answeredQ = {...q, answer:answer}
+        // }
+
+        // setAnsweredQs([...otherQs, answeredQ])
+        setAnswers([...answers, answer]);
+    }
     let quizBody = questions.map((question, index)=>(
-        question.type === "text" ? <TextQuestionTile id={index} question={question}></TextQuestionTile> : 
-        <ScaledQuestionTile id = {index} question={question}></ScaledQuestionTile>
+        question.type === "text" ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
+        <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
     let careerPrompt = (
@@ -69,8 +85,10 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             <p>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
-            {questions.length > 0 &&
-                quizBody
+            {questions.length > 0 && <div>
+                <ProgBar totalQuestions={quizLength} answeredQuestions={answers.length}></ProgBar>
+                {quizBody}
+            </div>
             }
         </header>
     )

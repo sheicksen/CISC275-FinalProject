@@ -1,3 +1,5 @@
+import { BasicQuestions } from "../components/basic-questions"
+
 export type QuestionType = "text" | "scaled"
 
 /**
@@ -50,3 +52,9 @@ export interface AnsweredQuestion<T extends QuestionType> extends Question<T> {
 }
 
 export type BasicQuestion = ScaledQuestion | TextQuestion;
+export function isScaled(question:BasicQuestion):question is ScaledQuestion{
+    return question.type === "scaled";
+}
+export function isText(question:BasicQuestion):question is TextQuestion{
+    return question.type === "text";
+}

@@ -6,11 +6,13 @@ import "./css/question-tile.css";
 interface TextQuestionProps {
     id: number,
     question:BasicQuestion
+    passAnswer: (answer:string)=>void
 }
-export function TextQuestionTile({id, question}:TextQuestionProps){
+export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
     let [answer, setAnswer] = useState("");
     let changeAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
         setAnswer(e.target.value);
+        passAnswer(e.target.value);
     }
     return (
         <div className="tile">

@@ -6,12 +6,14 @@ import { useState } from "react";
 interface ScaledQuestionProps {
     id:number,
     question:Question<"scaled">
+    passAnswer:(answer:string)=>void
 }
-export function ScaledQuestionTile({id, question}:ScaledQuestionProps){
+export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProps){
     let [answer, setAnswer] = useState(-1);
     let scale = ["1", "2", "3", "4", "5"]
     let changeAnswer = (e:React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(parseInt(e.target.value));
+        passAnswer(e.target.value);
     }
     return (
         <div className="tile">
