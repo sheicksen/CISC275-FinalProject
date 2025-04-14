@@ -1,7 +1,6 @@
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
-// import {generateQuestions } from '../gemini/ai-conversation-handler';
 import { Question, isScaled, isText} from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
@@ -15,7 +14,6 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
-    const[answers, setAnswers] = useState<string[]>([]);
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
@@ -53,16 +51,14 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             })
 
     };
-    let updateAnswers = (id:number, q:Question, answer:string) =>{
+    let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
-        if (search.length > 0){
-            search[0].type === "scaled"? search[0].answer=parseInt(answer) : search[1].answer=answer;
+        if(search.length > 0){
+            let editedAnswers:Question[] = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
+            setAnsweredQs(editedAnswers);
         } else {
-            if (isScaled(q)){
-                setAnsweredQs([...answeredQs, {...q, answer:parseInt(answer)}])
-            } else {
-                setAnsweredQs([...answeredQs, {...q, answer:answer}]);
-            }
+            let addedAnswer = [...answeredQs, {...q, answer:answer}];
+            setAnsweredQs(addedAnswer);
         }
     }
     let quizBody = questions.map((question, index)=>(
@@ -86,7 +82,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
             {questions.length > 0 && <div>
-                <ProgBar totalQuestions={quizLength} answeredQuestions={answers.length}></ProgBar>
+                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 {quizBody}
             </div>
             }
