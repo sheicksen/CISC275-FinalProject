@@ -1,13 +1,15 @@
 import { ProgressBar } from "react-bootstrap"
-// import { useState } from "react";
+import "./css/progressbar.css";
+
 interface ProgressBarProps {
     totalQuestions: number
     answeredQuestions: number
 }
 export function ProgBar({totalQuestions, answeredQuestions}:ProgressBarProps){
-    // setPercent(Math.ceil((totalQuestions/answeredQuestions)*100))
     let percent=Math.ceil((answeredQuestions/totalQuestions)*100);
     return (
-        <ProgressBar animated now={percent}></ProgressBar>
+        <div className="sticky-bar">
+            <ProgressBar animated now={percent} label="Quiz Progress"></ProgressBar>
+        </div> 
     );
 }
