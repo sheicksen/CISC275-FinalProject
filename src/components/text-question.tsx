@@ -1,4 +1,4 @@
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { BasicQuestion } from "../interfaces/question";
 import { useState } from "react";
 import "./css/question-tile.css";
