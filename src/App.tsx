@@ -41,7 +41,7 @@ function App() {
 
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results></Results>                      ],
+        ["Results",            <Results setLoading={setLoading}></Results>                      ],
         ["Detailed Questions", <DetailedQuestions apiKey={key}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions></BasicQuestions>        ],
         ["Login",              <Login selectPage={changePage}></Login>  ]
