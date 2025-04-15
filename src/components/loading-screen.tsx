@@ -16,7 +16,7 @@ export function LoadingScreen({text}: LoadingScreenProps): React.JSX.Element {
 
     return (
         <div id="loading-screen">
-            <div id="text"><span id="inv-dots">{".".repeat(dots)}</span>{ `${text}${".".repeat(dots)}` }</div>
+            <div id="text">{ text }<span id="dots">{".".repeat(dots)}</span></div>
         </div>
     )
 }
