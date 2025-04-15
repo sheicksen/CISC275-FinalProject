@@ -8,6 +8,7 @@ import { Results } from './components/results';
 import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
+import { LoadingScreen } from './components/loading-screen';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -21,6 +22,7 @@ if (prevKey !== null) {
 function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
+    const [loading, setLoading] = useState<string>("");
     
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
@@ -39,7 +41,7 @@ function App() {
 
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results></Results>                      ],
+        ["Results",            <Results setLoading={setLoading}></Results>                      ],
         ["Detailed Questions", <DetailedQuestions apiKey={key}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions></BasicQuestions>        ],
         ["Login",              <Login selectPage={changePage}></Login>  ]
@@ -62,6 +64,7 @@ function App() {
                     <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
                 </div>
             </div>
+            {loading && <LoadingScreen text={loading}></LoadingScreen>}
         </div>
     );
 }

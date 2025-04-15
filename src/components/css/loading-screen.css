@@ -1,0 +1,24 @@
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000a;
+    pointer-events: none;
+}
+
+#text {
+    color: #fff;
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#dots {
+    width: 0;
+    display: inline-block;
+}
