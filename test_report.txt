@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (49 ms)
+  ✕ renders learn react link (48 ms)
 
   ● renders learn react link
 
@@ -145,34 +145,23 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-[0;33mOne of your dependencies, babel-preset-react-app, is importing the
-"@babel/plugin-proposal-private-property-in-object" package without
-declaring it in its dependencies. This is currently working because
-"@babel/plugin-proposal-private-property-in-object" is already in your
-node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
-
-babel-preset-react-app is part of the create-react-app project, [1mwhich
-is not maintianed anymore[0;33m. It is thus unlikely that this bug will
-ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
-your devDependencies to work around this error. This will make this message
-go away.[0m
-  
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   10.67 |    10.52 |    9.09 |   10.89 |                   
- src                         |   33.33 |    16.66 |   16.66 |   33.33 |                   
-  App.tsx                    |   61.53 |       50 |      25 |   61.53 | 17,27-37          
+All files                    |   12.38 |    11.36 |    8.51 |   12.72 |                   
+ src                         |      36 |       25 |   16.66 |      36 |                   
+  App.tsx                    |   64.28 |       50 |      25 |   64.28 | 18,29-39          
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    4.08 |    10.71 |       8 |    4.08 |                   
+ src/components              |    6.89 |     9.37 |    7.14 |    7.01 |                   
   basic-questions.tsx        |       0 |      100 |       0 |       0 | 7                 
   detailed-questions.tsx     |       0 |        0 |       0 |       0 | 13-66             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 22-27             
+  loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 22-31             
-  results.tsx                |       0 |      100 |       0 |       0 | 8                 
+  results.tsx                |       0 |        0 |       0 |       0 | 10-15             
   scaled-question.tsx        |       0 |        0 |       0 |       0 | 9-18              
   text-question.tsx          |       0 |      100 |       0 |       0 | 10                
  src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
@@ -189,5 +178,17 @@ All files                    |   10.67 |    10.52 |    9.09 |   10.89 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.395 s
+Time:        3.257 s
 Ran all test suites.
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
