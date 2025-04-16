@@ -1,18 +1,20 @@
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
-// import {generateQuestions } from '../gemini/ai-conversation-handler';
-import { BasicQuestion } from '../interfaces/question';
+import { Question, isText} from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
+import { ProgBar } from './progress-bar';
 
 interface DetailedQuestionsProps {
     apiKey:string
 }
+let quizLength = 7;
 export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
-    const [questions, setQuestions] = useState<BasicQuestion[]>([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -38,7 +40,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
         askGemini(("Give me an intro of at most 3 sentences to a career quiz exploring options with " + textInput));
-        let questions: Promise<BasicQuestion[]> = generateQuestions(apiKey, textInput);
+        let questions: Promise<Question[]> = generateQuestions(apiKey, textInput);
         questions 
             .then((value)=>{
                 console.log(value);
@@ -49,9 +51,19 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             })
 
     };
+    let updateAnswers = (id:number, q:Question, answer:string | number) =>{
+        let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
+        if(search.length > 0){
+            let editedAnswers:Question[] = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
+            setAnsweredQs(editedAnswers);
+        } else {
+            let addedAnswer = [...answeredQs, {...q, answer:answer}];
+            setAnsweredQs(addedAnswer);
+        }
+    }
     let quizBody = questions.map((question, index)=>(
-        question.type === "text" ? <TextQuestionTile id={index} question={question}></TextQuestionTile> : 
-        <ScaledQuestionTile id = {index} question={question}></ScaledQuestionTile>
+        isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
+        <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
     let careerPrompt = (
@@ -69,8 +81,10 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             <p>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
-            {questions.length > 0 &&
-                quizBody
+            {questions.length > 0 && <div>
+                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
+                {quizBody}
+            </div>
             }
         </header>
     )

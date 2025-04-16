@@ -1,4 +1,4 @@
-import { AnsweredQuestion, QuestionType } from "./question";
+import { Question } from "./question";
 
 export type QuizType = "basic" | "detailed";
 
@@ -11,5 +11,5 @@ export type QuizType = "basic" | "detailed";
 export interface Responses {
     name: string
     type: QuizType
-    questions: AnsweredQuestion<QuestionType>[]
+    questions: Question[]
 }
