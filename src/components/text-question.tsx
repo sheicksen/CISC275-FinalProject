@@ -1,6 +1,5 @@
 import { Form } from "react-bootstrap";
 import { Question } from "../interfaces/question";
-import { useState } from "react";
 import "./css/question-tile.css";
 
 interface TextQuestionProps {
@@ -9,9 +8,7 @@ interface TextQuestionProps {
     passAnswer: (id:number, question:Question, answer:string)=>void
 }
 export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
-    let [answer, setAnswer] = useState("");
     let changeAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
-        setAnswer(e.target.value);
         passAnswer(id, question, e.target.value);
     }
     return (

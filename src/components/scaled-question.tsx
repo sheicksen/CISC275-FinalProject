@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { Question } from "../interfaces/question";
 import "./css/question-tile.css";
-import { useState } from "react";
+
 
 interface ScaledQuestionProps {
     id:number,
@@ -9,10 +9,8 @@ interface ScaledQuestionProps {
     passAnswer:(id:number, question:Question, answer:string | number)=>void
 }
 export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProps){
-    let [answer, setAnswer] = useState(-1);
     let scale = ["1", "2", "3", "4", "5"]
     let changeAnswer = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setAnswer(parseInt(e.target.value));
         passAnswer(id, question, parseInt(e.target.value));
     }
     return (

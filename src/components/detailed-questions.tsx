@@ -1,7 +1,7 @@
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { askQuestion, generateQuestions } from '../gemini/ai-conversation-handler';
-import { Question, isScaled, isText} from '../interfaces/question';
+import { Question, isText} from '../interfaces/question';
 import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
