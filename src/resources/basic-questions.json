@@ -1,64 +1,64 @@
 [
     [
         {
-            "question":"I consider myself a creative person",
+            "question":"I consider myself a creative person.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I enjoy solving problems",
+            "question":"I enjoy solving problems.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I tend to prefer activities that are physically active",
+            "question":"I tend to prefer activities that are physically active.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I would enjoy working behind a desk",
+            "question":"I would enjoy working behind a desk.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"It’s important that I am recognized for my work",
+            "question":"It is important that I am recognized for my work.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I prefer working in a collaborative setting",
+            "question":"I prefer working in a collaborative setting.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I prefer to interact with customers in my work",
+            "question":"I prefer to interact with customers in my work.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"Its important for me to be paid well",
+            "question":"It is important for me to be paid well.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"Its important that my work be predictable",
+            "question":"It is important that my work be predictable.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I want to work outdoors",
+            "question":"I want to work outdoors.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I like to understand subjects deeply",
+            "question":"I like to understand subjects deeply.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         },
         {
-            "question":"I want to work in a fast paced enviroment",
+            "question":"I want to work in a fast paced enviroment.",
             "type": "scaled",
-            "scale": ["strongly disagree", "strongly agree"]
+            "scale": ["Strongly disagree", "Strongly agree"]
         }
     ]    
 ]
