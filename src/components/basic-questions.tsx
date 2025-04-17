@@ -2,7 +2,8 @@ import { Question, QuestionType} from "../interfaces/question";
 import QuestionData from "../resources/basic-questions.json";
 import { useState } from "react";
 import { ScaledQuestionTile } from "./scaled-question";
-import { Button } from "react-bootstrap";
+import { ResultsButton } from "./results-button";
+
 interface GenericQuestion {
     question: string,
     type: QuestionType,
@@ -45,7 +46,7 @@ export function BasicQuestions(): React.JSX.Element {
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
-                <Button disabled={!finished}>{finished ? "Get your results!" : "Complete the Quiz"}</Button>
+                <ResultsButton enabled={finished} questions={answeredQs}></ResultsButton>
             </div>
         </header>
 
