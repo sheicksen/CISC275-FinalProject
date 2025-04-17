@@ -1,0 +1,64 @@
+[
+    [
+        {
+            "question":"I consider myself a creative person.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I enjoy solving problems.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I tend to prefer activities that are physically active.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I would enjoy working behind a desk.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"It is important that I am recognized for my work.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I prefer working in a collaborative setting.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I prefer to interact with customers in my work.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"It is important for me to be paid well.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"It is important that my work be predictable.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I want to work outdoors.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I like to understand subjects deeply.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        },
+        {
+            "question":"I want to work in a fast paced enviroment.",
+            "type": "scaled",
+            "scale": ["Strongly disagree", "Strongly agree"]
+        }
+    ]    
+]
