@@ -1,12 +1,8 @@
-// import { Page } from '../custom-types';
-
-// interface BasicQuestionsProps {
-//     selectPage: (value: Page) => void
-// }
 import { Question, QuestionType} from "../interfaces/question";
 import QuestionData from "../resources/basic-questions.json";
 import { useState } from "react";
 import { ScaledQuestionTile } from "./scaled-question";
+import { Button } from "react-bootstrap";
 interface GenericQuestion {
     question: string,
     type: QuestionType,
@@ -24,8 +20,9 @@ function parseQuestions(questions:GenericQuestion[]):Question[]{
 }
 
 let questions: Question[] = parseQuestions(genericQuestions[0]);
-export function BasicQuestions(/* {selectPage}: BasicQuestionsProps */): React.JSX.Element {
+export function BasicQuestions(): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
+    let [finished, setFinished] = useState<boolean>(false);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
         if(search.length > 0){
@@ -35,15 +32,22 @@ export function BasicQuestions(/* {selectPage}: BasicQuestionsProps */): React.J
             let addedAnswer = [...answeredQs, {...q, answer:answer}];
             setAnsweredQs(addedAnswer);
         }
+        if(answeredQs.length === questions.length){
+            setFinished(true);
+        }
     }
     let quizBody = questions.map((question, index)=>(
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
     return (
-        <div id="basic-questions">
-            <p>Here, you'll be guided through a simple quiz</p>
-            {quizBody}
-        </div>
+        <header className="App-header">
+            <div id="basic-questions">
+                <p>Here, you'll be guided through a simple quiz</p>
+                {quizBody}
+                <Button disabled={!finished}>{finished ? "Get your results!" : "Complete the Quiz"}</Button>
+            </div>
+        </header>
+
     )
 }
