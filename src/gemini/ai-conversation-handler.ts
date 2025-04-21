@@ -4,6 +4,14 @@ import {Question} from "../interfaces/question"
 const KEYNAME = "MYKEY";
 
 /**
+ * @function setAPIKey Sets the API key in localStorage.
+ * @param {string} key The new value of the key
+ */
+export function setAPIKey(key: string) {
+    localStorage.setItem(KEYNAME, JSON.stringify(key));
+}
+
+/**
  * @function getAPIKey Gets the API key from localStorage.
  * @returns {string} The API key, the empty string if not found
  */

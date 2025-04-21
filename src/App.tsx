@@ -9,6 +9,7 @@ import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
+import { setAPIKey } from './gemini/ai-conversation-handler';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -26,7 +27,7 @@ function App() {
     
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
-        localStorage.setItem(saveKeyData, JSON.stringify(key));
+        setAPIKey(key);
         window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
     }
 
