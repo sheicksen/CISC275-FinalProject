@@ -1,6 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 import {Question} from "../interfaces/question"
 
+const KEYNAME = "MYKEY";
+
+/**
+ * @function getAPIKey Gets the API key from localStorage.
+ * @returns {string} The API key, the empty string if not found
+ */
+function getAPIKey(): string {
+    return localStorage.getItem(KEYNAME) ?? "";
+}
+
 /**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
  * @param {string} apiKey The api key used for the request 
