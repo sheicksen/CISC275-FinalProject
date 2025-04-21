@@ -8,7 +8,7 @@ const KEYNAME = "MYKEY";
  * @returns {string} The API key, the empty string if not found
  */
 function getAPIKey(): string {
-    return localStorage.getItem(KEYNAME) ?? "";
+    return JSON.parse(localStorage.getItem(KEYNAME) ?? '""');
 }
 
 /**
