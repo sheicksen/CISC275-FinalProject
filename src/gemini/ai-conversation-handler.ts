@@ -29,7 +29,6 @@ function getGoogleGenAI(): GoogleGenAI {
 
 /**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
- * @param {string} apiKey The api key used for the request 
  * @param {string}question The question asked by the user
  * @returns {string} The answer Gemini generated based on the given question
  */
@@ -53,7 +52,6 @@ export async function generateResults(data: string){
 
 /**
  * @function generateQuestions takes a career field and returns a list of 7 Question objects based on that field.
- * @param {string} apiKey the api key for the Gemini request
  * @param {string} careerField the career field to base the questions off of.
  * @returns {Question<T>[]} an array of Question objects.
  *
