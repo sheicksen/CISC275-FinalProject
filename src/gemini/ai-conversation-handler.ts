@@ -12,13 +12,21 @@ function getAPIKey(): string {
 }
 
 /**
+ * @function getGoogleGenAI Gets the object for interfacing with Gemini.
+ * @returns {GoogleGenAI} The object for interfacing with Gemini
+ */
+function getGoogleGenAI(): GoogleGenAI {
+    return new GoogleGenAI({ apiKey: getAPIKey() });
+}
+
+/**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
  * @param {string} apiKey The api key used for the request 
  * @param {string}question The question asked by the user
  * @returns {string} The answer Gemini generated based on the given question
  */
 export async function askQuestion(apiKey: string, question: string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+    const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
         contents: question
@@ -27,7 +35,7 @@ export async function askQuestion(apiKey: string, question: string){
 }
 
 export async function generateResults(apiKey: string, data: string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+    const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: "Could you recommend me a career based on the following questions and answers?"
@@ -43,7 +51,7 @@ export async function generateResults(apiKey: string, data: string){
  *
  */
 export async function generateQuestions(apiKey: string, careerField:string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+    const ai = getGoogleGenAI();
     const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
     ` using this object format for Likert scale questions:
         Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
