@@ -5,7 +5,10 @@ interface ResultsButtonsProps {
     questions: Question[]
 }
 export function ResultsButton({ enabled, questions }: ResultsButtonsProps){
+    const handleSubmit = () => {
+        console.log(questions);
+    }
     return (
-        <Button disabled={!enabled}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
+        <Button disabled={!enabled} onClick={handleSubmit}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
     );
 }
