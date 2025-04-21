@@ -9,14 +9,15 @@ import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
+import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
-if (prevKey !== null) {
-    keyData = JSON.parse(prevKey);
-}
+let keyData = getAPIKey();
+// const saveKeyData = "MYKEY";
+// const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+// if (prevKey !== null) {
+//     keyData = JSON.parse(prevKey);
+// }
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
     
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
-        localStorage.setItem(saveKeyData, JSON.stringify(key));
+        setAPIKey(key);
         window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
     }
 
@@ -42,7 +43,7 @@ function App() {
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
         ["Results",            <Results setLoading={setLoading}></Results>                      ],
-        ["Detailed Questions", <DetailedQuestions apiKey={key} setLoading={setLoading}></DetailedQuestions>  ],
+        ["Detailed Questions", <DetailedQuestions /* apiKey={key} */ setLoading={setLoading}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions></BasicQuestions>        ],
         ["Login",              <Login selectPage={changePage}></Login>  ]
     ]);

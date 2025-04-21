@@ -8,7 +8,7 @@ interface ResultsProps {
 }
 export function Results({setLoading}: ResultsProps): React.JSX.Element {
     setLoading("Loading Results");
-    generateResults(localStorage.getItem("MYKEY") || "","placeholder").then((v) => {
+    generateResults("placeholder").then((v) => {
         // set some vars in the above function (likely using setStates)
         setLoading("");
     });

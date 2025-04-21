@@ -1,14 +1,39 @@
 import { GoogleGenAI } from "@google/genai";
 import {Question} from "../interfaces/question"
 
+const KEYNAME = "MYKEY";
+
+/**
+ * @function setAPIKey Sets the API key in localStorage.
+ * @param {string} key The new value of the key
+ */
+export function setAPIKey(key: string) {
+    localStorage.setItem(KEYNAME, JSON.stringify(key));
+}
+
+/**
+ * @function getAPIKey Gets the API key from localStorage.
+ * @returns {string} The API key, the empty string if not found
+ */
+export function getAPIKey(): string {
+    return JSON.parse(localStorage.getItem(KEYNAME) ?? '""');
+}
+
+/**
+ * @function getGoogleGenAI Gets the object for interfacing with Gemini.
+ * @returns {GoogleGenAI} The object for interfacing with Gemini
+ */
+function getGoogleGenAI(): GoogleGenAI {
+    return new GoogleGenAI({ apiKey: getAPIKey() });
+}
+
 /**
  * @function askQuestion Gets an answer from Gemini given a user-asked question.
- * @param {string} apiKey The api key used for the request 
  * @param {string}question The question asked by the user
  * @returns {string} The answer Gemini generated based on the given question
  */
-export async function askQuestion(apiKey: string, question: string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+export async function askQuestion(question: string){
+    const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
         contents: question
@@ -16,8 +41,8 @@ export async function askQuestion(apiKey: string, question: string){
     return response.text;
 }
 
-export async function generateResults(apiKey: string, data: string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+export async function generateResults(data: string){
+    const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: "Could you recommend me a career based on the following questions and answers?"
@@ -27,13 +52,12 @@ export async function generateResults(apiKey: string, data: string){
 
 /**
  * @function generateQuestions takes a career field and returns a list of 7 Question objects based on that field.
- * @param {string} apiKey the api key for the Gemini request
  * @param {string} careerField the career field to base the questions off of.
  * @returns {Question<T>[]} an array of Question objects.
  *
  */
-export async function generateQuestions(apiKey: string, careerField:string){
-    const ai = new GoogleGenAI({ apiKey: apiKey});
+export async function generateQuestions(careerField: string){
+    const ai = getGoogleGenAI();
     const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
     ` using this object format for Likert scale questions:
         Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
