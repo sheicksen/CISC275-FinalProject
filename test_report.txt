@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (44 ms)
+  ✕ renders learn react link (42 ms)
 
   ● renders learn react link
 
@@ -148,13 +148,13 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   13.83 |       10 |    7.81 |    13.9 |                   
- src                         |      36 |       25 |   16.66 |      36 |                   
-  App.tsx                    |   64.28 |       50 |      25 |   64.28 | 18,29-39          
+All files                    |    13.2 |     12.5 |    8.95 |   13.24 |                   
+ src                         |   28.57 |    16.66 |   16.66 |   28.57 |                   
+  App.tsx                    |      60 |       50 |      25 |      60 | 30-40             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |   11.76 |     7.89 |    6.97 |   11.45 |                   
+ src/components              |   11.76 |     8.33 |    6.97 |   11.45 |                   
   basic-questions.tsx        |   33.33 |        0 |   14.28 |   33.33 | 25-43             
   detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 16-85             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 22-27             
@@ -163,14 +163,14 @@ All files                    |   13.83 |       10 |    7.81 |    13.9 |
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 22-31             
   progress-bar.tsx           |       0 |      100 |       0 |       0 | 9-10              
   results-button.tsx         |       0 |        0 |       0 |       0 | 8-11              
-  results.tsx                |       0 |        0 |       0 |       0 | 10-15             
+  results.tsx                |       0 |      100 |       0 |       0 | 10-15             
   scaled-question.tsx        |       0 |        0 |       0 |       0 | 12-24             
   text-question.tsx          |       0 |      100 |       0 |       0 | 11-14             
  src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
- src/gemini                  |       0 |        0 |       0 |       0 |                   
-  ai-conversation-handler.ts |       0 |        0 |       0 |       0 | 11-72             
+ src/gemini                  |       8 |       50 |    12.5 |       8 |                   
+  ai-conversation-handler.ts |       8 |       50 |    12.5 |       8 | 11,27-96          
  src/interfaces              |       0 |      100 |       0 |       0 |                   
   analysis.ts                |       0 |        0 |       0 |       0 |                   
   career.ts                  |       0 |        0 |       0 |       0 |                   
@@ -182,7 +182,7 @@ All files                    |   13.83 |       10 |    7.81 |    13.9 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.042 s
+Time:        3.084 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
