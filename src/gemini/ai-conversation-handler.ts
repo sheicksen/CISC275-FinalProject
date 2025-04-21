@@ -25,7 +25,7 @@ function getGoogleGenAI(): GoogleGenAI {
  * @param {string}question The question asked by the user
  * @returns {string} The answer Gemini generated based on the given question
  */
-export async function askQuestion(apiKey: string, question: string){
+export async function askQuestion(question: string){
     const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
@@ -34,7 +34,7 @@ export async function askQuestion(apiKey: string, question: string){
     return response.text;
 }
 
-export async function generateResults(apiKey: string, data: string){
+export async function generateResults(data: string){
     const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
@@ -50,7 +50,7 @@ export async function generateResults(apiKey: string, data: string){
  * @returns {Question<T>[]} an array of Question objects.
  *
  */
-export async function generateQuestions(apiKey: string, careerField:string){
+export async function generateQuestions(careerField: string){
     const ai = getGoogleGenAI();
     const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
     ` using this object format for Likert scale questions:
