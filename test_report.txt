@@ -172,14 +172,16 @@ All files                    |   14.56 |    10.41 |    8.33 |   14.68 |
   ai-conversation-handler.ts |       0 |        0 |       0 |       0 | 11-72             
  src/interfaces              |       0 |      100 |       0 |       0 |                   
   analysis.ts                |       0 |        0 |       0 |       0 |                   
+  career.ts                  |       0 |        0 |       0 |       0 |                   
   question.ts                |       0 |      100 |       0 |       0 | 10-13             
+  report.ts                  |       0 |        0 |       0 |       0 |                   
   responses.ts               |       0 |        0 |       0 |       0 |                   
   user.ts                    |       0 |        0 |       0 |       0 |                   
 -----------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.051 s
+Time:        2.983 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
