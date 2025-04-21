@@ -1,12 +1,9 @@
-// import { Page } from '../custom-types';
-
-// interface BasicQuestionsProps {
-//     selectPage: (value: Page) => void
-// }
 import { Question, QuestionType} from "../interfaces/question";
 import QuestionData from "../resources/basic-questions.json";
 import { useState } from "react";
 import { ScaledQuestionTile } from "./scaled-question";
+import { ResultsButton } from "./results-button";
+
 interface GenericQuestion {
     question: string,
     type: QuestionType,
@@ -24,7 +21,7 @@ function parseQuestions(questions:GenericQuestion[]):Question[]{
 }
 
 let questions: Question[] = parseQuestions(genericQuestions[0]);
-export function BasicQuestions(/* {selectPage}: BasicQuestionsProps */): React.JSX.Element {
+export function BasicQuestions(): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
@@ -36,14 +33,21 @@ export function BasicQuestions(/* {selectPage}: BasicQuestionsProps */): React.J
             setAnsweredQs(addedAnswer);
         }
     }
+    function isFinished():boolean{
+        return questions.length === answeredQs.length;
+    }
     let quizBody = questions.map((question, index)=>(
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
     return (
-        <div id="basic-questions">
-            <p>Here, you'll be guided through a simple quiz</p>
-            {quizBody}
-        </div>
+        <header className="App-header">
+            <div id="basic-questions">
+                <p>Here, you'll be guided through a simple quiz</p>
+                {quizBody}
+                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
+            </div>
+        </header>
+
     )
 }
