@@ -62,6 +62,9 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             setAnsweredQs(addedAnswer);
         }
     }
+    function isFinished():boolean{
+        return questions.length === answeredQs.length;
+    }
     let quizBody = questions.map((question, index)=>(
         isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
@@ -85,7 +88,7 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
             {questions.length > 0 && <div>
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 {quizBody}
-                <ResultsButton enabled={true} questions={answeredQs}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
             </div>
             }
 

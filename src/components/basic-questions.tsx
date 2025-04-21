@@ -23,7 +23,6 @@ function parseQuestions(questions:GenericQuestion[]):Question[]{
 let questions: Question[] = parseQuestions(genericQuestions[0]);
 export function BasicQuestions(): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
-    let [finished, setFinished] = useState<boolean>(false);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
         if(search.length > 0){
@@ -33,9 +32,9 @@ export function BasicQuestions(): React.JSX.Element {
             let addedAnswer = [...answeredQs, {...q, answer:answer}];
             setAnsweredQs(addedAnswer);
         }
-        if(answeredQs.length === questions.length){
-            setFinished(true);
-        }
+    }
+    function isFinished():boolean{
+        return questions.length === answeredQs.length;
     }
     let quizBody = questions.map((question, index)=>(
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
@@ -46,7 +45,7 @@ export function BasicQuestions(): React.JSX.Element {
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
-                <ResultsButton enabled={finished} questions={answeredQs}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
             </div>
         </header>
 
