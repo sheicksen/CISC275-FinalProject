@@ -9,15 +9,15 @@ import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
-import { setAPIKey } from './gemini/ai-conversation-handler';
+import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
-if (prevKey !== null) {
-    keyData = JSON.parse(prevKey);
-}
+let keyData = getAPIKey();
+// const saveKeyData = "MYKEY";
+// const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+// if (prevKey !== null) {
+//     keyData = JSON.parse(prevKey);
+// }
 
 
 function App() {

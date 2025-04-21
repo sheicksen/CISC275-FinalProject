@@ -15,7 +15,7 @@ export function setAPIKey(key: string) {
  * @function getAPIKey Gets the API key from localStorage.
  * @returns {string} The API key, the empty string if not found
  */
-function getAPIKey(): string {
+export function getAPIKey(): string {
     return JSON.parse(localStorage.getItem(KEYNAME) ?? '""');
 }
 
