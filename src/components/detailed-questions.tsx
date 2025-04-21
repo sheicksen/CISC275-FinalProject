@@ -8,9 +8,10 @@ import { ProgBar } from './progress-bar';
 
 interface DetailedQuestionsProps {
     apiKey:string
+    setLoading: React.Dispatch<React.SetStateAction<string>>
 }
 let quizLength = 7;
-export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({apiKey, setLoading}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -27,11 +28,11 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
                     console.log(value);
                     setResponse(value);
                 }
-              }
-            )
+            })
             .catch((error)=>{
                 console.log(error);
                 setResponse("Oops, something went wrong. Try again later.");
+                setLoading("");
             });
     }
     let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -39,12 +40,14 @@ export function DetailedQuestions({apiKey}: DetailedQuestionsProps): React.JSX.E
     };
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setLoading("Loading Questions");
         askGemini(("Give me an intro of at most 3 sentences to a career quiz exploring options with " + textInput));
         let questions: Promise<Question[]> = generateQuestions(apiKey, textInput);
         questions 
             .then((value)=>{
                 console.log(value);
                 setQuestions(value);
+                setLoading("");
             })
             .catch((error) => {
                 console.log(error);
