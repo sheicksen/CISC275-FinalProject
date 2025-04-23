@@ -1,6 +1,7 @@
 import "./css/home.css"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Page } from '../custom-types';
+import Image  from './mainimage.png'
 
 
 interface HomeProps {
@@ -12,7 +13,7 @@ export function Home({selectPage}: HomeProps): React.JSX.Element {
             <Row>
                 <Col>
                     <div className="image-container">
-                        <img alt="Cool graphic of people with careers"></img>
+                        <img src={Image} alt="Picture of a sillouette of a man with a white question mark on his chest"></img>
                     </div>
                 </Col>
                 <Col>
