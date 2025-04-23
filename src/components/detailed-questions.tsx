@@ -89,8 +89,8 @@ export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsP
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
             {questions.length > 0 && <div>
-                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 {quizBody}
+                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
             </div>
             }
