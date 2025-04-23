@@ -6,13 +6,15 @@ import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
 import { ResultsButton } from './results-button';
+import { Page } from '../custom-types';
 
 interface DetailedQuestionsProps {
     // apiKey:string
-    setLoading: React.Dispatch<React.SetStateAction<string>>
+    setLoading: React.Dispatch<React.SetStateAction<string>>,
+    selectPage: (page:Page)=>void
 }
 let quizLength = 7;
-export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -91,7 +93,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsP
             {questions.length > 0 && <div>
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 {quizBody}
-                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage}></ResultsButton>
             </div>
             }
 

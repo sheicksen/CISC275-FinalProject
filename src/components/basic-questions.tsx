@@ -3,6 +3,11 @@ import QuestionData from "../resources/basic-questions.json";
 import { useState } from "react";
 import { ScaledQuestionTile } from "./scaled-question";
 import { ResultsButton } from "./results-button";
+import { Page } from '../custom-types';
+
+interface BasicQuestionsProps {
+    selectPage: (page:Page)=> void
+}
 
 interface GenericQuestion {
     question: string,
@@ -21,7 +26,7 @@ function parseQuestions(questions:GenericQuestion[]):Question[]{
 }
 
 let questions: Question[] = parseQuestions(genericQuestions[0]);
-export function BasicQuestions(): React.JSX.Element {
+export function BasicQuestions({selectPage}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
@@ -45,7 +50,7 @@ export function BasicQuestions(): React.JSX.Element {
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
-                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage}></ResultsButton>
             </div>
         </header>
 
