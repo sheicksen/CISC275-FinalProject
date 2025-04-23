@@ -83,7 +83,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsP
             </Form.Group>
         </Form>);
     return (
-        <header className="App-header">
+        <div className="detailed-questions">
             <h1>An AI Enhanced Quiz Experience</h1>
             <p>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
@@ -95,6 +95,6 @@ export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsP
             </div>
             }
 
-        </header>
+        </div>
     )
 }
