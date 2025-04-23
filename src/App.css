@@ -102,3 +102,7 @@
     width: calc(100% - 4px);
     margin: 0 2px;
 }
+
+div {
+    background-color: inherit;
+}
