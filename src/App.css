@@ -14,7 +14,7 @@
 
 .footer {
     text-align: center;
-    background-color: rgb(100, 100, 255); 
+    background-color: rgb(32, 32, 77); 
     color: white;
     overflow: hidden;
     display: column;
@@ -46,24 +46,26 @@
 } /* Styles plain html buttons to look like links so we don't need hrefs */
 
 .button-style{
-    background-color: #a4d ;
-    color: black;
+    background-color: rgb(93, 23, 128) ;
+    color: rgb(255, 255, 255);
+    border-color: rgba(0, 0, 0, 0);
     margin: 2px;
     padding: 5px;
     &:disabled{
         color: black;
-        background-color: rgb(99, 50, 212) ;
+        background-color: rgb(93, 23, 128);
         opacity: 0.7;
     }
     &:focus {
-        background-color: #a4d;
-        color: black;
+        background-color: rgb(61, 15, 84);
+        color: rgb(255, 255, 255);
     }
     &:hover {
-        background-color: #44f;
+        background-color: rgb(61, 15, 84);
+        border-color: rgba(0, 0, 0, 0);
     }
     &:active {
-        background-color: #33b;
+        background-color: rgb(93, 23, 128);
     }
 }/*Style for all buttons*/
 
@@ -79,7 +81,7 @@
 } */
 
 .page {
-    background-color: #132343;
+    background-color: #1f242e;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
