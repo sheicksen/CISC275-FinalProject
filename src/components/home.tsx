@@ -13,7 +13,7 @@ export function Home({selectPage}: HomeProps): React.JSX.Element {
             <Row>
                 <Col>
                     <div className="image-container">
-                        <img src={Image} alt="Picture of a sillouette of a man with a white question mark on his chest"></img>
+                        <img src={Image} alt="A sillouette of a man with a white question mark on his chest"></img>
                     </div>
                 </Col>
                 <Col>
