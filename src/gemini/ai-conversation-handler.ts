@@ -41,11 +41,13 @@ export async function askQuestion(question: string){
     return response.text;
 }
 
-export async function generateResults(data: string){
+export async function generateResults(data: Question[]){
     const ai = getGoogleGenAI();
+    let quizAnswers:string = parseAnswers(data);
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
-        contents: "Could you recommend me a career based on the following questions and answers?"
+        contents: "Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers,
+
     })
     return response.text;
 }
@@ -94,4 +96,17 @@ function parseQuestions(questionsString: string | undefined){
         }
     }
     return questions;
+}
+
+function parseAnswers(questions:Question[]): string{
+    let answers: string = ""
+    for (let i =0; i < questions.length; i++){
+        answers += "Question: " + questions[i].question;
+        if (questions[i].type === "scaled"){
+            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5 from " + questions[i].scale[0] + " to " + questions[i].scale[1];
+        } else {
+            answers += "I answered " + questions[i].answer;
+        }
+    }
+    return answers;
 }
