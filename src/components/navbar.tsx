@@ -2,6 +2,7 @@ import "./css/navbar.css";
 import {Button} from "react-bootstrap";
 import { Page } from '../custom-types';
 import { loggedIn, logOut } from "../functions/login";
+import Logo  from './navbarlogo.png'
 
 /*
     DESCRIPTION: Basic Navbar code
@@ -17,7 +18,7 @@ export function NavBar({ selectPage }:NavBarProps) : React.JSX.Element{
     return (
         <div className="mynavbar">
             {/*MAIN NAVBAR CODE*/}
-                <img src="https://imgur.com/jPdH44f.png" alt="pingas" className="test-image"/>
+                <img src={Logo} alt="pingas" className="test-image"/>
                 <Button className="nav-button button-style" onClick={()=>{
                     selectPage("Home");
                 }}>Home</Button>
