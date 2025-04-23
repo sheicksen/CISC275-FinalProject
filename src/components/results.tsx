@@ -1,14 +1,16 @@
 // import { Page } from '../custom-types';
 
 import { generateResults } from "../gemini/ai-conversation-handler"
+import { Question } from "../interfaces/question"
 
 
 interface ResultsProps {
-    setLoading: React.Dispatch<React.SetStateAction<string>>
+    setLoading: React.Dispatch<React.SetStateAction<string>>,
+    questions: Question[]
 }
-export function Results({setLoading}: ResultsProps): React.JSX.Element {
+export function Results({setLoading, questions}: ResultsProps): React.JSX.Element {
     setLoading("Loading Results");
-    generateResults("placeholder").then((v) => {
+    generateResults(questions).then((v) => {
         // set some vars in the above function (likely using setStates)
         setLoading("");
     });

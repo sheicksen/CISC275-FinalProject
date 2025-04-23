@@ -7,6 +7,7 @@ import { Page } from '../custom-types';
 
 interface BasicQuestionsProps {
     selectPage: (page:Page)=> void
+    passQuestions: (questions:Question[])=>void
 }
 
 interface GenericQuestion {
@@ -26,7 +27,7 @@ function parseQuestions(questions:GenericQuestion[]):Question[]{
 }
 
 let questions: Question[] = parseQuestions(genericQuestions[0]);
-export function BasicQuestions({selectPage}:BasicQuestionsProps): React.JSX.Element {
+export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
@@ -50,7 +51,7 @@ export function BasicQuestions({selectPage}:BasicQuestionsProps): React.JSX.Elem
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
             </div>
         </header>
 

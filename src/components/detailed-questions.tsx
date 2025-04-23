@@ -12,9 +12,10 @@ interface DetailedQuestionsProps {
     // apiKey:string
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     selectPage: (page:Page)=>void
+    passQuestions: (questions:Question[])=>void
 }
 let quizLength = 7;
-export function DetailedQuestions({/* apiKey,  */setLoading, selectPage}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQuestions}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -93,7 +94,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage}: Detail
             {questions.length > 0 && <div>
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 {quizBody}
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
             </div>
             }
 
