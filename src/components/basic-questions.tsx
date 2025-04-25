@@ -43,14 +43,14 @@ export function BasicQuestions(): React.JSX.Element {
     )
     );
     return (
-        <header className="App-header">
+        <div className="App-header">
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
             </div>
-        </header>
+        </div>
 
     )
 }
