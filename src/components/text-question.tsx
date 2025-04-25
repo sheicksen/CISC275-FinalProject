@@ -13,7 +13,7 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
     }
     return (
         <div className="tile">
-            <Form>
+            <Form className="wrapper">
                 <Form.Text className="text-color">
                     {(id+1).toString() + ". " + question.question}
                 </Form.Text>
