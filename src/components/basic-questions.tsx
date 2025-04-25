@@ -3,6 +3,7 @@ import QuestionData from "../resources/basic-questions.json";
 import { useState } from "react";
 import { ScaledQuestionTile } from "./scaled-question";
 import { ResultsButton } from "./results-button";
+import { ProgBar } from "./progress-bar";
 
 interface GenericQuestion {
     question: string,
@@ -10,6 +11,7 @@ interface GenericQuestion {
     scale:string[],
 }
 const genericQuestions = QuestionData as GenericQuestion[][];
+const quizLength = genericQuestions[0].length;
 
 function parseQuestions(questions:GenericQuestion[]):Question[]{
     let parsedQuestions: Question[] = [];
@@ -45,6 +47,7 @@ export function BasicQuestions(): React.JSX.Element {
             <div id="basic-questions">
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
+                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
             </div>
         </header>
