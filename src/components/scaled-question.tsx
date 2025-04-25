@@ -15,7 +15,7 @@ export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProp
     }
     return (
         <div className="tile">
-            <Form>
+            <Form className="wrapper">
                 <Form.Text className="text-color">
                     {(id+1).toString() + ". " + question.question}
                 </Form.Text>
@@ -26,7 +26,7 @@ export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProp
                         key={num}
                         type="radio"
                         onChange={changeAnswer}
-                        label={num === "1" ? question.scale[0] : num === "5" ? question.scale[1] : num}
+                        label={num}
                         name={"group-" + id.toString()}
                         id={num}
                         value={num}
@@ -34,6 +34,14 @@ export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProp
                     )
                     )}
                 </div>
+                
+                <Form.Text className="underneath">
+                    {question.scale[0]}
+                </Form.Text>
+                <Form.Text className="underneath">
+                    {question.scale[1]}
+                </Form.Text>
+                
             </Form>
         </div>
     );
