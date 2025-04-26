@@ -26,14 +26,27 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
             setResults(error)
         });
     }
-
+    // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
     if (results.length === 0 && questions.length > 0){
         setResults([{jobTitle:"Working on it", jobDescription:"...", reasonForReccomendation:"...", avgSalary:"$0", educationLevel:"..."}])
         getResults();
     }
+    let resultsBody = results.length > 1 ? results.map(
+        (job)=>(
+            <div>
+                <h1>{job.jobTitle}</h1>
+                <p>{job.jobDescription}</p>
+                <br></br>
+                <p>{job.reasonForReccomendation}</p>
+                <br></br>
+                <p>{job.avgSalary}</p>
+                <p>{job.educationLevel}</p>
+            </div>
+    )) 
+    : <p>Here, you'll see your results from previous quizzes</p>;
     return (
         <div id="results">
-            <p>Here, you'll see your results from previous quizzes</p>
+            {resultsBody}
         </div>
     )
 }
