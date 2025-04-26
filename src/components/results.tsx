@@ -26,7 +26,7 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
             setResults(error)
         });
     }
-    if (results===""){
+    if (results==="" && questions.length > 0){
         console.log("Getting results")
         getResults();
     }
