@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Question } from "../interfaces/question";
 import { Page } from '../custom-types';
+
 interface ResultsButtonsProps {
     enabled: boolean,
     questions: Question[]
