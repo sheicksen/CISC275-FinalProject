@@ -3,6 +3,7 @@
 import { generateResults } from "../gemini/ai-conversation-handler"
 import { Question } from "../interfaces/question"
 import { useState } from "react"
+import { Career } from "../interfaces/career"
 
 
 interface ResultsProps {
@@ -10,13 +11,13 @@ interface ResultsProps {
     questions: Question[]
 }
 export function Results({setLoading, questions}: ResultsProps): React.JSX.Element {
-    let [results, setResults] = useState<string>("");
+    let [results, setResults] = useState<Career[]>([]);
 
     function getResults(){
         setLoading("Loading Results");
         generateResults(questions).then(
             (value) => {
-                if(typeof value === 'string'){
+                if(value !== undefined){
                     setResults(value)
                     setLoading("")
                 }      
@@ -25,15 +26,14 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
             setResults(error)
         });
     }
-    
-    if (results==="" && questions.length > 0){
-        setResults("Working on it...")
+
+    if (results.length === 0 && questions.length > 0){
+        setResults([{jobTitle:"Working on it", jobDescription:"...", reasonForReccomendation:"...", avgSalary:"$0", educationLevel:"..."}])
         getResults();
     }
     return (
         <div id="results">
             <p>Here, you'll see your results from previous quizzes</p>
-            {results}
         </div>
     )
 }

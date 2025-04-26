@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import {Question} from "../interfaces/question"
+import { Career } from "../interfaces/career";
 
 const KEYNAME = "MYKEY";
 
@@ -46,10 +47,13 @@ export async function generateResults(data: Question[]){
     let quizAnswers:string = parseAnswers(data);
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
-        contents: "Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers,
-
-    })
-    return response.text;
+        contents: ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
+            "as a json with each job in the following format: " +
+                "{ jobTitle: string, jobDescription: string, reasonForReccomendation : string, avgSalary: string, educationLevel : string}"
+        )
+    });
+    console.log(response.text);
+    return parseResults(response.text);
 }
 
 /**
@@ -109,4 +113,20 @@ function parseAnswers(questions:Question[]): string{
         }
     }
     return answers;
+}
+
+function parseResults(resultString:string | undefined):Career[]{
+    let careers:Career[]=[];
+    if (resultString !== undefined){
+        try{
+            let object:Career[] = JSON.parse(resultString.substring(8,resultString.length-4), (key, value)=>{
+                return value;
+            });
+            console.log(object);
+            careers = object;
+        } catch (error){
+                    console.log("Could not parse results JSON ", error);
+        }
+    }
+    return careers;
 }
