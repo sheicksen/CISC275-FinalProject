@@ -107,7 +107,7 @@ function parseAnswers(questions:Question[]): string{
     for (let i =0; i < questions.length; i++){
         answers += "Question: " + questions[i].question;
         if (questions[i].type === "scaled"){
-            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5 from " + questions[i].scale[0] + " to " + questions[i].scale[1];
+            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5, where 1 is " + questions[i].scale[0] + " to 5 which is " + questions[i].scale[1] + " and 3 expressed indifference";
         } else {
             answers += "I answered " + questions[i].answer;
         }
