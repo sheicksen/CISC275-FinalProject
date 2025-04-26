@@ -13,7 +13,6 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
     let [results, setResults] = useState<string>("");
 
     function getResults(){
-        setResults("Working on it...")
         setLoading("Loading Results");
         generateResults(questions).then(
             (value) => {
@@ -26,8 +25,9 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
             setResults(error)
         });
     }
+    
     if (results==="" && questions.length > 0){
-        console.log("Getting results")
+        setResults("Working on it...")
         getResults();
     }
     return (
