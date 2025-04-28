@@ -39,7 +39,7 @@ jobs:
             - run: npm run build --if-present
 
             - name: Update footer date
-              run: date -u +"%F %T" > ./src/resources/date.json
+              run: echo \"`date -u +"%F %T"`\" > ./src/resources/date.json
 
             - name: Setup SSH
               run: |
