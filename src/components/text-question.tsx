@@ -12,6 +12,7 @@ interface TextQuestionProps {
 
 export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
     let [valid, setValid] = useState<boolean>(true);
+    let [focused, setFocused] = useState<boolean>(true);
     const changeAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
         if (validateText(e.target.value)){
             setValid(true);
@@ -20,15 +21,21 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
         }
         passAnswer(id, question, e.target.value);
     }
+    const handleFocus = () => {
+        setFocused(true)
+    }
+    const handleBlur = () => {
+        setFocused(false)
+    };
     return (
         <div className="tile">
             <Form className="wrapper">
                 <Form.Text className="text-color">
                     {(id+1).toString() + ". " + question.question}
                 </Form.Text>
-                <Form.Control required type="textarea" onChange={changeAnswer}></Form.Control>
+                <Form.Control required type="textarea" onChange={changeAnswer} onFocus={handleFocus} onBlur={handleBlur}></Form.Control>
             </Form>
-            {!valid &&
+            {(!valid && !focused) &&
                 <div className="align-to-button invalid">
                     {`For the best experience, ensure your response is valid.`}
                 </div>
