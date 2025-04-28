@@ -1,7 +1,7 @@
 import "./css/home.css"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Page } from '../custom-types';
-import Image  from './mainimage.png'
+import Image  from '../resources/mainimage.png'
 
 
 interface HomeProps {

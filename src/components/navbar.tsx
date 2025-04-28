@@ -2,7 +2,7 @@ import "./css/navbar.css";
 import {Button} from "react-bootstrap";
 import { Page } from '../custom-types';
 import { loggedIn, logOut } from "../functions/login";
-import Logo  from './navbarlogo.png'
+import Logo  from '../resources/navbarlogo.png'
 
 /*
     DESCRIPTION: Basic Navbar code
