@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (47 ms)
+  ✕ renders learn react link (49 ms)
 
   ● renders learn react link
 
@@ -122,6 +122,11 @@ FAIL src/App.test.tsx
               [36m<p>[39m
                 [0m Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap [0m
               [36m</p>[39m
+              [36m<p>[39m
+                [0m Date of most recent deploy: [0m
+                [0m2025-04-28 03:09:48[0m
+                [0m [0m
+              [36m</p>[39m
             [36m</div>[39m
           [36m</div>[39m
         [36m</div>[39m
@@ -151,7 +156,7 @@ File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovere
 -----------------------------|---------|----------|---------|---------|-------------------
 All files                    |   12.04 |    10.71 |     8.1 |   12.08 |                   
  src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
-  App.tsx                    |   58.33 |       50 |      20 |   58.33 | 32-45             
+  App.tsx                    |   58.33 |       50 |      20 |   58.33 | 33-46             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
