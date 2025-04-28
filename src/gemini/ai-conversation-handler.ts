@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import {Question} from "../interfaces/question"
+import { Career } from "../interfaces/career";
 
 const KEYNAME = "MYKEY";
 
@@ -41,13 +42,18 @@ export async function askQuestion(question: string){
     return response.text;
 }
 
-export async function generateResults(data: string){
+export async function generateResults(data: Question[]){
     const ai = getGoogleGenAI();
+    let quizAnswers:string = parseAnswers(data);
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
-        contents: "Could you recommend me a career based on the following questions and answers?"
-    })
-    return response.text;
+        contents: ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
+            "as a json with each job in the following format: " +
+                "{ jobTitle: string, jobDescription: string, reasonForReccomendation : string, avgSalary: string, educationLevel : string}"
+        )
+    });
+    console.log(response.text);
+    return parseResults(response.text);
 }
 
 /**
@@ -94,4 +100,33 @@ function parseQuestions(questionsString: string | undefined){
         }
     }
     return questions;
+}
+
+function parseAnswers(questions:Question[]): string{
+    let answers: string = ""
+    for (let i =0; i < questions.length; i++){
+        answers += "Question: " + questions[i].question;
+        if (questions[i].type === "scaled"){
+            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5, where 1 is " + questions[i].scale[0] + " to 5 which is " + questions[i].scale[1] + " and 3 expressed indifference";
+        } else {
+            answers += "I answered " + questions[i].answer;
+        }
+    }
+    return answers;
+}
+
+function parseResults(resultString:string | undefined):Career[]{
+    let careers:Career[]=[];
+    if (resultString !== undefined){
+        try{
+            let object:Career[] = JSON.parse(resultString.substring(8,resultString.length-4), (key, value)=>{
+                return value;
+            });
+            console.log(object);
+            careers = object;
+        } catch (error){
+                    console.log("Could not parse results JSON ", error);
+        }
+    }
+    return careers;
 }
