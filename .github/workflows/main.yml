@@ -38,6 +38,9 @@ jobs:
             - run: echo "<html><head><meta http-equiv='refresh' content='0; URL=${{github.server_url}}/${{github.repository}}' /></head><body>Redirecting to repository</body></html>" > ./public/github.html
             - run: npm run build --if-present
 
+            - name: Update footer date
+              run: date -u +"%F %T" > ./src/resources/date.json
+
             - name: Setup SSH
               run: |
                 mkdir -p ~/.ssh
