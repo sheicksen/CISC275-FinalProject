@@ -149,29 +149,29 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   13.75 |    13.63 |    8.95 |   13.81 |                   
- src                         |   28.57 |    16.66 |   16.66 |   28.57 |                   
-  App.tsx                    |      60 |       50 |      25 |      60 | 30-40             
+All files                    |   12.04 |    10.71 |     8.1 |   12.08 |                   
+ src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
+  App.tsx                    |   58.33 |       50 |      20 |   58.33 | 32-45             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |   12.62 |     9.37 |    6.97 |   12.37 |                   
-  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 27-45             
-  detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 16-85             
+ src/components              |    11.5 |      7.5 |    6.52 |   11.21 |                   
+  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 33-51             
+  detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 19-88             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
   progress-bar.tsx           |       0 |      100 |       0 |       0 | 9-10              
-  results-button.tsx         |       0 |        0 |       0 |       0 | 8-11              
-  results.tsx                |       0 |      100 |       0 |       0 | 10-15             
+  results-button.tsx         |       0 |        0 |       0 |       0 | 12-16             
+  results.tsx                |       0 |        0 |       0 |       0 | 14-47             
   scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
   text-question.tsx          |       0 |      100 |       0 |       0 | 11-14             
  src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
- src/gemini                  |       8 |       50 |    12.5 |       8 |                   
-  ai-conversation-handler.ts |       8 |       50 |    12.5 |       8 | 11,27-96          
+ src/gemini                  |    4.54 |       25 |    9.09 |    4.65 |                   
+  ai-conversation-handler.ts |    4.54 |       25 |    9.09 |    4.65 | 12,28-131         
  src/interfaces              |       0 |      100 |       0 |       0 |                   
   analysis.ts                |       0 |        0 |       0 |       0 |                   
   career.ts                  |       0 |        0 |       0 |       0 |                   
@@ -183,7 +183,7 @@ All files                    |   13.75 |    13.63 |    8.95 |   13.81 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.051 s
+Time:        3.021 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
