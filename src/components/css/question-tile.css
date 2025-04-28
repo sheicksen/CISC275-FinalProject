@@ -1,14 +1,31 @@
 .tile {
     max-width: 70vw;
-    background-color: rgb(100, 100, 255);
+    background-color: #5d1781;
     border-radius: 15px;
-    padding:50px;
-    margin-top:15px;
-    margin-bottom:15px;
+    padding:25px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 .text-color{
-    color: #181522;
+    color: white;
+    font-weight: bold;
+    text-decoration-line: underline;
 }
+
+.underneath{
+    color: white;
+    font-size: 65%;
+    margin: 8%;
+}
+
 .button-color{
     background-color: #132343;
+}
+
+.wrapper{
+    background-color: #6d0035;
+    border-radius: 15px;
+    margin-top:15px;
+    margin-bottom:15px;
+    text-align: center;
 }

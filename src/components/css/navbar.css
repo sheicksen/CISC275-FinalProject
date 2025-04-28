@@ -1,5 +1,5 @@
 .mynavbar {
-    background-color: rgb(100, 100, 255); 
+    background-color: #5d1781; 
     overflow: hidden; 
     height: 55px;
     align-items: left;
@@ -24,6 +24,7 @@
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    background-color: #0000;
 }
 
 .rightalign{
