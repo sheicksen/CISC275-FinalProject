@@ -1,14 +1,11 @@
-// import { ProgressBar } from "react-bootstrap"
-// import "./css/progressbar.css";
+import "./css/completion-alert.css";
 
-interface CompletionAlertProps {
-    totalQuestions: number
-    answeredQuestions: number
-}
-export function CompletionAlert({totalQuestions, answeredQuestions}: CompletionAlertProps) {
-    const done = answeredQuestions >= totalQuestions;
+// interface CompletionAlertProps {
+//     enabled: boolean
+// }
+export function CompletionAlert(/* {enabled}: CompletionAlertProps */) {
     return (
-        <div id="completion-alert" style={{visibility: done ? "visible" : "collapse"}}>
+        <div id="completion-alert">
             You've completed all of the questions.  Click below for results!
         </div> 
     );

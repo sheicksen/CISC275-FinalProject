@@ -52,9 +52,9 @@ export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps):
     return (
         <div className="App-header">
             <div id="basic-questions">
+                {isFinished() && <CompletionAlert></CompletionAlert>}
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
-                <CompletionAlert totalQuestions={quizLength} answeredQuestions={answeredQs.length}></CompletionAlert>
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
             </div>
