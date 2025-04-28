@@ -15,10 +15,10 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
     const changeAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
         if (validateText(e.target.value)){
             setValid(true);
-            passAnswer(id, question, e.target.value);
         } else {
             setValid(false);
         }
+        passAnswer(id, question, e.target.value);
     }
     return (
         <div className="tile">
