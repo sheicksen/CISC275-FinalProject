@@ -7,6 +7,7 @@ import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
 import { ResultsButton } from './results-button';
 import { Page } from '../custom-types';
+import { CompletionAlert } from './completion-alert';
 
 interface DetailedQuestionsProps {
     // apiKey:string
@@ -88,6 +89,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     return (
         <div className="detailed-questions">
             <h1>An AI Enhanced Quiz Experience</h1>
+            {isFinished() && <CompletionAlert></CompletionAlert>}
             <p>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
