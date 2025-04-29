@@ -163,14 +163,14 @@ All files                    |   11.97 |       10 |       8 |   12.02 |
  src/components              |    11.4 |     6.81 |    6.38 |   11.11 |                   
   basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 34-52             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 7                 
-  detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 20-89             
+  detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 21-90             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
   progress-bar.tsx           |       0 |      100 |       0 |       0 | 9-10              
-  results-button.tsx         |       0 |        0 |       0 |       0 | 12-16             
-  results.tsx                |       0 |        0 |       0 |       0 | 14-47             
+  results-button.tsx         |       0 |        0 |       0 |       0 | 13-17             
+  results.tsx                |       0 |        0 |       0 |       0 | 15-52             
   scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
   text-question.tsx          |       0 |      100 |       0 |       0 | 11-14             
  src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
@@ -189,7 +189,7 @@ All files                    |   11.97 |       10 |       8 |   12.02 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.128 s
+Time:        3.122 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
