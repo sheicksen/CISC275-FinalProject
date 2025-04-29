@@ -3,3 +3,7 @@
     bottom: 0;
     padding: 10px 0;
 }
+
+.sticky-bar .progress-bar{
+    background-color: purple;
+}
