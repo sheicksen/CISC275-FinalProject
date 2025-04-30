@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (50 ms)
+  ✕ renders learn react link (47 ms)
 
   ● renders learn react link
 
@@ -151,31 +151,19 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
-[0;33mOne of your dependencies, babel-preset-react-app, is importing the
-"@babel/plugin-proposal-private-property-in-object" package without
-declaring it in its dependencies. This is currently working because
-"@babel/plugin-proposal-private-property-in-object" is already in your
-node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
-
-babel-preset-react-app is part of the create-react-app project, [1mwhich
-is not maintianed anymore[0;33m. It is thus unlikely that this bug will
-ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
-your devDependencies to work around this error. This will make this message
-go away.[0m
-  
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |   11.97 |     9.67 |       8 |   12.02 |                   
+All files                    |    10.9 |     7.59 |    7.59 |   10.94 |                   
  src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
   App.tsx                    |   58.33 |       50 |      20 |   58.33 | 33-46             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    11.4 |     6.52 |    6.38 |   11.11 |                   
+ src/components              |   10.15 |     4.91 |       6 |    9.91 |                   
   basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 34-52             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 7                 
-  detailed-questions.tsx     |    2.63 |        0 |       0 |    2.77 | 21-90             
+  detailed-questions.tsx     |    2.32 |        0 |       0 |     2.5 | 22-99             
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
@@ -184,10 +172,11 @@ All files                    |   11.97 |     9.67 |       8 |   12.02 |
   results-button.tsx         |       0 |        0 |       0 |       0 | 13-17             
   results.tsx                |       0 |        0 |       0 |       0 | 15-52             
   scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
-  text-question.tsx          |       0 |      100 |       0 |       0 | 11-14             
- src/functions               |   11.11 |        0 |    12.5 |   14.28 |                   
+  text-question.tsx          |       0 |        0 |       0 |       0 | 14-30             
+ src/functions               |    7.14 |        0 |   11.11 |    8.33 |                   
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
+  validation.ts              |       0 |        0 |       0 |       0 | 7-12              
  src/gemini                  |    4.54 |       25 |    9.09 |    4.65 |                   
   ai-conversation-handler.ts |    4.54 |       25 |    9.09 |    4.65 | 12,28-131         
  src/interfaces              |       0 |      100 |       0 |       0 |                   
@@ -201,5 +190,17 @@ All files                    |   11.97 |     9.67 |       8 |   12.02 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.313 s
+Time:        3.095 s
 Ran all test suites.
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
