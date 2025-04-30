@@ -10,6 +10,6 @@ export interface Career{
     jobTitle: string
     jobDescription: string
     reasonForReccomendation : string
-    avgSalary: number
+    avgSalary: string
     educationLevel : string
 }

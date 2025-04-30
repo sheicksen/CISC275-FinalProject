@@ -1,11 +1,12 @@
 .mynavbar {
-    background-color: rgb(32, 32, 77); 
+    background-color: #5d1781; 
     overflow: hidden; 
     height: 55px;
     align-items: left;
     position: fixed;
     width: 100vw;
     padding: 1ex;
+    
 }/*Style for the navbar, specifically the */
 
 .nav-button{

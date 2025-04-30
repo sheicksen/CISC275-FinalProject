@@ -14,7 +14,7 @@
 
 .footer {
     text-align: center;
-    background-color: rgb(32, 32, 77); 
+    background-color: #5d1781; 
     color: white;
     overflow: hidden;
     display: column;
@@ -46,9 +46,10 @@
 } /* Styles plain html buttons to look like links so we don't need hrefs */
 
 .button-style{
-    background-color: rgb(93, 23, 128) ;
-    color: rgb(255, 255, 255);
-    border-color: rgba(0, 0, 0, 0);
+    background-color: #6d0035 ;
+    color: white;
+    border-color: #00000055;
+    border-width: 0.35vh;
     margin: 2px;
     padding: 5px;
     &:disabled{

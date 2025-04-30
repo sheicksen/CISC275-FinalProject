@@ -6,13 +6,18 @@ import { TextQuestionTile } from './text-question';
 import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
 import { ResultsButton } from './results-button';
+import { Page } from '../custom-types';
+import { CompletionAlert } from './completion-alert';
+import "../components/css/detailed-questions.css"
 
 interface DetailedQuestionsProps {
     // apiKey:string
-    setLoading: React.Dispatch<React.SetStateAction<string>>
+    setLoading: React.Dispatch<React.SetStateAction<string>>,
+    selectPage: (page:Page)=>void
+    passQuestions: (questions:Question[])=>void
 }
 let quizLength = 7;
-export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQuestions}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -85,13 +90,14 @@ export function DetailedQuestions({/* apiKey,  */setLoading}: DetailedQuestionsP
     return (
         <div className="detailed-questions">
             <h1>An AI Enhanced Quiz Experience</h1>
-            <p>For individuals who want to explore more specific and nuanced career options.</p>
+            {isFinished() && <CompletionAlert></CompletionAlert>}
+            <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
-            <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
+            <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
             </div>
             }
 

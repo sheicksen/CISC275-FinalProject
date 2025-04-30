@@ -10,6 +10,8 @@ import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
+import { Question } from './interfaces/question';
+import deployDate from './resources/date.json';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -24,6 +26,7 @@ function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
     const [loading, setLoading] = useState<string>("");
+    const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
@@ -39,12 +42,14 @@ function App() {
     function changePage(value: Page) {
         setPage(value);
     }
-
+    function passQuestions(questions:Question[]) {
+        setAnsweredQs(questions);
+    }
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading}></Results>                      ],
-        ["Detailed Questions", <DetailedQuestions /* apiKey={key} */ setLoading={setLoading}></DetailedQuestions>  ],
-        ["Basic Questions",    <BasicQuestions></BasicQuestions>        ],
+        ["Results",            <Results setLoading={setLoading} questions={answeredQs}></Results>],
+        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passQuestions={passQuestions}></DetailedQuestions>  ],
+        ["Basic Questions",    <BasicQuestions selectPage={changePage} passQuestions={passQuestions}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ]
     ]);
 
@@ -63,6 +68,7 @@ function App() {
                         <Button className="button-style" onClick={handleSubmit}>Submit</Button>
                     </Form>
                     <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
+                    <p> Date of most recent deploy: {deployDate} </p>
                 </div>
             </div>
             {loading && <LoadingScreen text={loading}></LoadingScreen>}
