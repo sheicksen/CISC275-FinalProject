@@ -7,6 +7,7 @@ import { ScaledQuestionTile } from './scaled-question';
 import { ProgBar } from './progress-bar';
 import { ResultsButton } from './results-button';
 import { Page } from '../custom-types';
+import { validateText } from '../functions/validation';
 import { CompletionAlert } from './completion-alert';
 import "../components/css/detailed-questions.css"
 
@@ -63,11 +64,19 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
         if(search.length > 0){
-            let editedAnswers:Question[] = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
+            let qAnswer: string = typeof search[0].answer === 'string' ? search[0].answer : "";
+            let editedAnswers: Question[];
+            if(search[0].type === "text" && !validateText(qAnswer)){
+                editedAnswers = answeredQs.filter((question) => question.question !== q.question);
+            } else{
+                editedAnswers = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
+            }
             setAnsweredQs(editedAnswers);
         } else {
             let addedAnswer = [...answeredQs, {...q, answer:answer}];
-            setAnsweredQs(addedAnswer);
+            if (typeof answer === 'number' || validateText(answer)){
+                setAnsweredQs(addedAnswer);
+            }
         }
     }
     function isFinished():boolean{
