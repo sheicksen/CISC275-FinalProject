@@ -24,7 +24,7 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
                 }      
             }
         ).catch((error)=>{
-            setResults(error)
+            console.log(error)
         });
     }
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.

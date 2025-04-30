@@ -37,7 +37,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
             })
             .catch((error)=>{
                 console.log(error);
-                setResponse("Oops, something went wrong. Try again later.");
+                setResponse("Oops, Gemini is unavailable. Try again later.");
                 setLoading("");
             });
     }
@@ -71,7 +71,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
         }
     }
     function isFinished():boolean{
-        return questions.length === answeredQs.length;
+        return( questions.length === answeredQs.length && questions.length !== 0);
     }
     let quizBody = questions.map((question, index)=>(
         isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
