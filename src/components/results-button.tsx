@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Question } from "../interfaces/question";
 import { Page } from '../custom-types';
+import '../App.css'
 
 interface ResultsButtonsProps {
     enabled: boolean,
@@ -14,6 +15,6 @@ export function ResultsButton({ enabled, questions, selectPage, passQuestions }:
         selectPage("Results");
     }
     return (
-        <Button disabled={!enabled} onClick={handleSubmit}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
+        <Button className="button-style" disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto' }}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
     );
 }

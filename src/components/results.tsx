@@ -4,6 +4,7 @@ import { generateResults } from "../gemini/ai-conversation-handler"
 import { Question } from "../interfaces/question"
 import { useState } from "react"
 import { Career } from "../interfaces/career"
+import "../components/css/results.css"
 
 
 interface ResultsProps {
@@ -23,7 +24,7 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
                 }      
             }
         ).catch((error)=>{
-            setResults(error)
+            console.log(error)
         });
     }
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
@@ -34,18 +35,22 @@ export function Results({setLoading, questions}: ResultsProps): React.JSX.Elemen
     let resultsBody = results.length > 1 ? results.map(
         (job)=>(
             <div>
-                <h1>{job.jobTitle}</h1>
-                <p>{job.jobDescription}</p>
-                <br></br>
-                <p>{job.reasonForReccomendation}</p>
-                <br></br>
-                <p>{job.avgSalary}</p>
-                <p>{job.educationLevel}</p>
+                <h1 className="text-color">{job.jobTitle}</h1>
+                <div className="wrapper">
+                    <h1>Job Description</h1>
+                    <p>{job.jobDescription}</p>
+                    <h1>Reasoning</h1>
+                    <p>{job.reasonForReccomendation}</p>
+                    <h1>Average Salary</h1>
+                    <p>{job.avgSalary}</p>
+                    <h1>Minimum Education</h1>
+                    <p>{job.educationLevel}</p>
+                </div>
             </div>
     )) 
     : <p>Here, you'll see your results from previous quizzes</p>;
     return (
-        <div id="results">
+        <div className="results">
             {resultsBody}
         </div>
     )

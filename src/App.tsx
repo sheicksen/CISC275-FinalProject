@@ -11,6 +11,7 @@ import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
 import { Question } from './interfaces/question';
+import deployDate from './resources/date.json';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -67,6 +68,7 @@ function App() {
                         <Button className="button-style" onClick={handleSubmit}>Submit</Button>
                     </Form>
                     <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
+                    <p> Date of most recent deploy: {deployDate} </p>
                 </div>
             </div>
             {loading && <LoadingScreen text={loading}></LoadingScreen>}

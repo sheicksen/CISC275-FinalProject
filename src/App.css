@@ -54,18 +54,19 @@
     padding: 5px;
     &:disabled{
         color: black;
-        background-color: rgb(99, 50, 212) ;
+        background-color: rgb(93, 23, 128);
         opacity: 0.7;
     }
     &:focus {
-        background-color: #a4d;
-        color: black;
+        background-color: rgb(61, 15, 84);
+        color: rgb(255, 255, 255);
     }
     &:hover {
-        background-color: #44f;
+        background-color: rgb(61, 15, 84);
+        border-color: rgba(0, 0, 0, 0);
     }
     &:active {
-        background-color: #33b;
+        background-color: rgb(93, 23, 128);
     }
 }/*Style for all buttons*/
 
@@ -81,7 +82,7 @@
 } */
 
 .page {
-    background-color: #132343;
+    background-color: #1f242e;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

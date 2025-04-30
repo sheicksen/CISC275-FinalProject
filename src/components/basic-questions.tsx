@@ -5,6 +5,7 @@ import { ScaledQuestionTile } from "./scaled-question";
 import { ResultsButton } from "./results-button";
 import { ProgBar } from "./progress-bar";
 import { Page } from '../custom-types';
+import { CompletionAlert } from "./completion-alert";
 
 interface GenericQuestion {
     question: string,
@@ -51,6 +52,7 @@ export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps):
     return (
         <div className="App-header">
             <div id="basic-questions">
+                {isFinished() && <CompletionAlert></CompletionAlert>}
                 <p>Here, you'll be guided through a simple quiz</p>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>

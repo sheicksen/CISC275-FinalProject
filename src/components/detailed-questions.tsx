@@ -8,6 +8,8 @@ import { ProgBar } from './progress-bar';
 import { ResultsButton } from './results-button';
 import { Page } from '../custom-types';
 import { validateText } from '../functions/validation';
+import { CompletionAlert } from './completion-alert';
+import "../components/css/detailed-questions.css"
 
 interface DetailedQuestionsProps {
     // apiKey:string
@@ -36,7 +38,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
             })
             .catch((error)=>{
                 console.log(error);
-                setResponse("Oops, something went wrong. Try again later.");
+                setResponse("Oops, Gemini is unavailable. Try again later.");
                 setLoading("");
             });
     }
@@ -78,7 +80,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
         }
     }
     function isFinished():boolean{
-        return questions.length === answeredQs.length;
+        return( questions.length === answeredQs.length && questions.length !== 0);
     }
     let quizBody = questions.map((question, index)=>(
         isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
@@ -97,9 +99,10 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     return (
         <div className="detailed-questions">
             <h1>An AI Enhanced Quiz Experience</h1>
-            <p>For individuals who want to explore more specific and nuanced career options.</p>
+            {isFinished() && <CompletionAlert></CompletionAlert>}
+            <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
-            <div style={{maxWidth:"70vw", textAlign:"center"}}>{response}</div>
+            <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
