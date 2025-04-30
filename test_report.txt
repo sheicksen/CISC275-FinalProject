@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (47 ms)
+  ✕ renders learn react link (44 ms)
 
   ● renders learn react link
 
@@ -67,7 +67,9 @@ FAIL src/App.test.tsx
                     [36m<h1>[39m
                       [0m Seeking Answers?[0m
                     [36m</h1>[39m
-                    [36m<p>[39m
+                    [36m<p[39m
+                      [33mstyle[39m=[32m"font-size: 24px; display: inline;"[39m
+                    [36m>[39m
                       [0mKnowing what career you want to pursue is difficult. Narrowing down the thousands of possible ways to make money into a single profession, or even a field of study can take lots of research online, discussions with experienced workers, and introspection into your own preferences. While we can’t do all that work for you, our quiz can help you understand what you want from your career, as well as what some careers look like, should you choose to pursue them.[0m
                     [36m</p>[39m
                     [36m<button[39m
@@ -88,7 +90,7 @@ FAIL src/App.test.tsx
                         [36m>[39m
                           [0mDetailed Quiz[0m
                         [36m</button>[39m
-                        [0m to learn about the specifics of a career field.[0m
+                        [0m.[0m
                       [36m</p>[39m
                     [36m</div>[39m
                   [36m</div>[39m
@@ -190,7 +192,7 @@ All files                    |    10.9 |     7.59 |    7.59 |   10.94 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.095 s
+Time:        3.131 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
