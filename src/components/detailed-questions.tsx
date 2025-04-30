@@ -37,7 +37,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
             })
             .catch((error)=>{
                 console.log(error);
-                setResponse("Oops, something went wrong. Try again later.");
+                setResponse("Oops, Gemini is unavailable. Try again later.");
                 setLoading("");
             });
     }
