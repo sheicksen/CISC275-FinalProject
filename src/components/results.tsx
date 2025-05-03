@@ -13,23 +13,27 @@ interface ResultsProps {
 }
 export function Results({setLoading, questions}: ResultsProps): React.JSX.Element {
     let [results, setResults] = useState<Career[]>([]);
+    let [waiting, setWaiting] = useState<boolean>(false);
 
     function getResults(){
-        setLoading("Loading Results");
-        generateResults(questions).then(
-            (value) => {
-                if(value !== undefined){
-                    setResults(value)
-                    setLoading("")
-                }      
-            }
-        ).catch((error)=>{
-            console.log(error)
-        });
+        if(waiting){
+            setLoading("Loading Results");
+            generateResults(questions).then(
+                (value) => {
+                    if(value !== undefined){
+                        setResults(value)
+                        setLoading("")
+                    }      
+                }
+            ).catch((error)=>{
+                console.log(error)
+            });
+        }
     }
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
-    if (results.length === 0 && questions.length > 0){
-        setResults([{jobTitle:"Working on it", jobDescription:"...", reasonForReccomendation:"...", avgSalary:"$0", educationLevel:"..."}])
+    if (!waiting && questions.length > 0){
+        setWaiting(true);
+        console.log("Calling get results");
         getResults();
     }
     let resultsBody = results.length > 1 ? results.map(
