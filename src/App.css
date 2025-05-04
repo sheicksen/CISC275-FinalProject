@@ -91,6 +91,13 @@
     font-size: calc(10px + 2vmin);
     color: white;
     width: 100%;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,25%) 20px,
+        rgba(0,0,0,25%) 40px
+      );
 }
 
 /* .App-link {

@@ -11,7 +11,14 @@ div img{
 .basic-quiz-button{
     width: 100%;
 }
+.desc-container {
+    padding: 40px;
+    background-color:  #1f242e;
+    border-radius:10px;
+}
 
 #home {
     max-width: 90%;
+    padding: 60px;
+    background-color: transparent;
 }
