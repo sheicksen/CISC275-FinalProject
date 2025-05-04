@@ -1,7 +1,6 @@
 .image-container{
     width: min(600px, 45vw);
     height: min(600px, 45vw);
-    background-color: #181522;
 }
 
 div img{
