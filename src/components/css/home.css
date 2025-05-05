@@ -1,7 +1,7 @@
 .image-container{
     width: min(600px, 45vw);
     height: min(600px, 45vw);
-    background-color: #181522;
+    margin: 30px 0px 30px 0px;
 }
 
 div img{
@@ -12,7 +12,14 @@ div img{
 .basic-quiz-button{
     width: 100%;
 }
+.desc-container {
+    padding: 40px;
+    background-color:  #1f242e;
+    border-radius:10px;
+}
 
 #home {
-    max-width: calc(100% - 40px);
+    max-width: 90%;
+    padding: 60px;
+    background-color: transparent;
 }

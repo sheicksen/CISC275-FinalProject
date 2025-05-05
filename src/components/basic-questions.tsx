@@ -6,6 +6,7 @@ import { ResultsButton } from "./results-button";
 import { ProgBar } from "./progress-bar";
 import { Page } from '../custom-types';
 import { CompletionAlert } from "./completion-alert";
+import "./css/basic-quiz.css"
 
 interface GenericQuestion {
     question: string,
@@ -53,7 +54,8 @@ export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps):
         <div className="App-header">
             <div id="basic-questions">
                 {isFinished() && <CompletionAlert></CompletionAlert>}
-                <p>Here, you'll be guided through a simple quiz</p>
+                <h1 className="quiz-title">Basic Quiz</h1>
+                <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
