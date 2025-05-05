@@ -100,7 +100,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                 <Form.Control type="textarea" onChange={updateText}>
                 </Form.Control>
-                <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>Get your quiz</Button>
+                <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>{validPrompt ? "Get your quiz" : "Enter prompt"}</Button>
             </Form.Group>
         </Form>);
     return (
