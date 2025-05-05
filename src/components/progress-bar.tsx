@@ -8,7 +8,7 @@ interface ProgressBarProps {
 export function ProgBar({totalQuestions, answeredQuestions}:ProgressBarProps){
     let percent=Math.ceil((answeredQuestions/totalQuestions)*100);
     return (
-        <div className="sticky-bar">
+        <div className={percent >= 99 ? "sticky-bar complete-quiz" : "sticky-bar in-progress"}>
             <ProgressBar animated now={percent} label="Quiz Progress"></ProgressBar>
         </div> 
     );

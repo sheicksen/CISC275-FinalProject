@@ -5,5 +5,11 @@
 }
 
 .sticky-bar .progress-bar{
+    /* background-color: purple; */
+}
+.in-progress .progress-bar {
     background-color: purple;
+}
+.complete-quiz .progress-bar{
+    background-color: #30b1b8!important;
 }
