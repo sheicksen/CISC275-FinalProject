@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (44 ms)
+  ✕ renders learn react link (64 ms)
 
   ● renders learn react link
 
@@ -57,18 +57,18 @@ FAIL src/App.test.tsx
                     [36m>[39m
                       [36m<img[39m
                         [33malt[39m=[32m"A sillouette of a man with a white question mark on his chest"[39m
-                        [33msrc[39m=[32m"mainimage.png"[39m
+                        [33msrc[39m=[32m"CareerHPGraphic.png"[39m
                       [36m/>[39m
                     [36m</div>[39m
                   [36m</div>[39m
                   [36m<div[39m
-                    [33mclass[39m=[32m"col"[39m
+                    [33mclass[39m=[32m"desc-container col"[39m
                   [36m>[39m
                     [36m<h1>[39m
                       [0m Seeking Answers?[0m
                     [36m</h1>[39m
                     [36m<p[39m
-                      [33mstyle[39m=[32m"font-size: 24px; display: inline;"[39m
+                      [33mstyle[39m=[32m"font-size: 20px; display: inline;"[39m
                     [36m>[39m
                       [0mKnowing what career you want to pursue is difficult. Narrowing down the thousands of possible ways to make money into a single profession, or even a field of study can take lots of research online, discussions with experienced workers, and introspection into your own preferences. While we can’t do all that work for you, our quiz can help you understand what you want from your career, as well as what some careers look like, should you choose to pursue them.[0m
                     [36m</p>[39m
@@ -82,7 +82,7 @@ FAIL src/App.test.tsx
                     [36m<br />[39m
                     [36m<div>[39m
                       [36m<p[39m
-                        [33mstyle[39m=[32m"font-size: 24px; display: inline;"[39m
+                        [33mstyle[39m=[32m"font-size: 20px; display: inline;"[39m
                       [36m>[39m
                         [0mAlready know what area you want to work in? Looking for more than just a broad-strokes assessment? Talk to an AI in our ​[0m
                         [36m<button[39m
@@ -156,21 +156,21 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |    10.9 |     7.59 |    7.59 |   10.94 |                   
+All files                    |   10.69 |     6.89 |    7.59 |   10.73 |                   
  src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
   App.tsx                    |   58.33 |       50 |      20 |   58.33 | 33-46             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |   10.15 |     4.91 |       6 |    9.91 |                   
-  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 34-52             
+ src/components              |    9.84 |     4.34 |       6 |     9.6 |                   
+  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 35-53             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 7                 
-  detailed-questions.tsx     |    2.32 |        0 |       0 |     2.5 | 22-99             
+  detailed-questions.tsx     |    2.12 |        0 |       0 |    2.27 | 23-106            
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
-  progress-bar.tsx           |       0 |      100 |       0 |       0 | 9-10              
+  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-10              
   results-button.tsx         |       0 |        0 |       0 |       0 | 13-17             
   results.tsx                |       0 |        0 |       0 |       0 | 15-52             
   scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
@@ -192,7 +192,7 @@ All files                    |    10.9 |     7.59 |    7.59 |   10.94 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.131 s
+Time:        3.121 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
