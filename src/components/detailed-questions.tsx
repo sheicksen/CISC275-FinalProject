@@ -9,7 +9,8 @@ import { ResultsButton } from './results-button';
 import { Page } from '../custom-types';
 import { validateText } from '../functions/validation';
 import { CompletionAlert } from './completion-alert';
-import "../components/css/detailed-questions.css"
+import "../components/css/detailed-questions.css";
+import "../App.css";
 
 interface DetailedQuestionsProps {
     // apiKey:string
@@ -93,7 +94,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                 <Form.Control type="textarea" onChange={updateText}>
                 </Form.Control>
-                <Button onClick={getQuestions}>Get your quiz</Button>
+                <Button className="button-style" onClick={getQuestions}>Get your quiz</Button>
             </Form.Group>
         </Form>);
     return (
