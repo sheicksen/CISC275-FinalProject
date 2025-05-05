@@ -4,9 +4,6 @@
     padding: 10px 0;
 }
 
-.sticky-bar .progress-bar{
-    /* background-color: purple; */
-}
 .in-progress .progress-bar {
     background-color: purple;
 }
