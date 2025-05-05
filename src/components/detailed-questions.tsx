@@ -24,6 +24,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
+    const [validPrompt, setValidPrompt] = useState<boolean>(false);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -45,6 +46,11 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     }
     let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(event.target.value);
+        if (validateText(event.target.value)){
+            setValidPrompt(true);
+        } else {
+            setValidPrompt(false);
+        }
     };
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -94,7 +100,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                 <Form.Control type="textarea" onChange={updateText}>
                 </Form.Control>
-                <Button className="button-style" onClick={getQuestions}>Get your quiz</Button>
+                <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>Get your quiz</Button>
             </Form.Group>
         </Form>);
     return (
