@@ -1,7 +1,3 @@
-// import { Page } from '../custom-types';
-
-import { generateResults } from "../gemini/ai-conversation-handler"
-import { Question } from "../interfaces/question"
 import { useState } from "react"
 import { Career } from "../interfaces/career"
 import "../components/css/results.css"

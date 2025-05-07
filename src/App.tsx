@@ -10,7 +10,6 @@ import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
-import { Question } from './interfaces/question';
 import { Career } from './interfaces/career';
 import deployDate from './resources/date.json';
 
