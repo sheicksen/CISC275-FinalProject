@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (64 ms)
+  ✕ renders learn react link (46 ms)
 
   ● renders learn react link
 
@@ -153,47 +153,6 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
------------------------------|---------|----------|---------|---------|-------------------
-File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------------|---------|----------|---------|---------|-------------------
-All files                    |   10.69 |     6.89 |    7.59 |   10.73 |                   
- src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
-  App.tsx                    |   58.33 |       50 |      20 |   58.33 | 33-46             
-  custom-types.tsx           |       0 |        0 |       0 |       0 |                   
-  index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
-  reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    9.84 |     4.34 |       6 |     9.6 |                   
-  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 35-53             
-  completion-alert.tsx       |       0 |      100 |       0 |       0 | 7                 
-  detailed-questions.tsx     |    2.12 |        0 |       0 |    2.27 | 23-106            
-  home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
-  loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
-  login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
-  navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
-  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-10              
-  results-button.tsx         |       0 |        0 |       0 |       0 | 13-17             
-  results.tsx                |       0 |        0 |       0 |       0 | 15-52             
-  scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
-  text-question.tsx          |       0 |        0 |       0 |       0 | 14-30             
- src/functions               |    7.14 |        0 |   11.11 |    8.33 |                   
-  login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
-  storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
-  validation.ts              |       0 |        0 |       0 |       0 | 7-12              
- src/gemini                  |    4.54 |       25 |    9.09 |    4.65 |                   
-  ai-conversation-handler.ts |    4.54 |       25 |    9.09 |    4.65 | 12,28-131         
- src/interfaces              |       0 |      100 |       0 |       0 |                   
-  analysis.ts                |       0 |        0 |       0 |       0 |                   
-  career.ts                  |       0 |        0 |       0 |       0 |                   
-  question.ts                |       0 |      100 |       0 |       0 | 10-13             
-  report.ts                  |       0 |        0 |       0 |       0 |                   
-  responses.ts               |       0 |        0 |       0 |       0 |                   
-  user.ts                    |       0 |        0 |       0 |       0 |                   
------------------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
-Snapshots:   0 total
-Time:        3.121 s
-Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -206,3 +165,44 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |    10.5 |     6.45 |     7.5 |   10.52 |                   
+ src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
+  App.tsx                    |   58.33 |       50 |      20 |   58.33 | 32-46             
+  custom-types.tsx           |       0 |        0 |       0 |       0 |                   
+  index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
+ src/components              |     9.7 |     4.22 |    5.88 |    9.44 |                   
+  basic-questions.tsx        |   36.36 |        0 |   14.28 |   36.84 | 36-54             
+  completion-alert.tsx       |       0 |      100 |       0 |       0 | 7                 
+  detailed-questions.tsx     |    2.12 |        0 |       0 |    2.27 | 24-107            
+  home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
+  loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
+  login.tsx                  |       0 |        0 |       0 |       0 | 11-36             
+  navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
+  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-10              
+  results-button.tsx         |       0 |        0 |       0 |       0 | 15-29             
+  results.tsx                |       0 |        0 |       0 |       0 | 11-44             
+  scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
+  text-question.tsx          |       0 |        0 |       0 |       0 | 14-30             
+ src/functions               |    7.14 |        0 |   11.11 |    8.33 |                   
+  login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
+  storage.ts                 |       0 |        0 |       0 |       0 | 8-33              
+  validation.ts              |       0 |        0 |       0 |       0 | 7-12              
+ src/gemini                  |    4.34 |    16.66 |    9.09 |    4.44 |                   
+  ai-conversation-handler.ts |    4.34 |    16.66 |    9.09 |    4.44 | 12,28-134         
+ src/interfaces              |       0 |      100 |       0 |       0 |                   
+  analysis.ts                |       0 |        0 |       0 |       0 |                   
+  career.ts                  |       0 |        0 |       0 |       0 |                   
+  question.ts                |       0 |      100 |       0 |       0 | 10-13             
+  report.ts                  |       0 |        0 |       0 |       0 |                   
+  responses.ts               |       0 |        0 |       0 |       0 |                   
+  user.ts                    |       0 |        0 |       0 |       0 |                   
+-----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.516 s
+Ran all test suites.
