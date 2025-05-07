@@ -6,7 +6,7 @@
 export function validateText(text:string):boolean{
     let valid = true;
     let strippedText = text.replace(/\s/g, "").replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
-    if(strippedText.length < 6){
+    if(strippedText.length < 5){
         valid = false;
     }
     return valid;
