@@ -11,15 +11,16 @@ import { validateText } from '../functions/validation';
 import { CompletionAlert } from './completion-alert';
 import "../components/css/detailed-questions.css";
 import "../App.css";
+import { Career } from '../interfaces/career';
 
 interface DetailedQuestionsProps {
     // apiKey:string
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     selectPage: (page:Page)=>void
-    passQuestions: (questions:Question[])=>void
+    passResults: (questions:Promise<void | Career[] | undefined>)=>void
 }
 let quizLength = 7;
-export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQuestions}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passResults}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -113,7 +114,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
             </div>
             }
 
