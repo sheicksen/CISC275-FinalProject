@@ -1,17 +1,29 @@
 import { Button } from "react-bootstrap";
 import { Question } from "../interfaces/question";
 import { Page } from '../custom-types';
+import { generateResults } from "../gemini/ai-conversation-handler";
+import { Career } from "../interfaces/career";
 import '../App.css'
 
 interface ResultsButtonsProps {
     enabled: boolean,
     questions: Question[]
     selectPage: (page:Page)=>void
-    passQuestions: (questions:Question[])=>void
+    passResults: (questions:Promise<void | Career[] | undefined>)=>void
 }
-export function ResultsButton({ enabled, questions, selectPage, passQuestions }: ResultsButtonsProps){
+export function ResultsButton({ enabled, questions, selectPage, passResults }: ResultsButtonsProps){
     const handleSubmit = () => {
-        passQuestions(questions)
+        passResults(generateResults(questions).then(
+                    (value) => {
+                        if(value !== undefined){
+                            return value;
+                        }else {
+                            handleSubmit();
+                        }
+                    }
+                ).catch((error)=>{
+                    console.log(error)
+                }));
         selectPage("Results");
     }
     return (

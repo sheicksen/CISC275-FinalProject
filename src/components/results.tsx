@@ -9,30 +9,25 @@ import "../components/css/results.css"
 
 interface ResultsProps {
     setLoading: React.Dispatch<React.SetStateAction<string>>,
-    questions: Question[]
+    promisedResults: Promise<void | Career[] | undefined> | undefined
 }
-export function Results({setLoading, questions}: ResultsProps): React.JSX.Element {
+export function Results({setLoading, promisedResults}: ResultsProps): React.JSX.Element {
     let [results, setResults] = useState<Career[]>([]);
-
-    function getResults(){
-        setLoading("Loading Results");
-        generateResults(questions).then(
-            (value) => {
-                if(value !== undefined){
-                    setResults(value)
-                    setLoading("")
-                }      
-            }
-        ).catch((error)=>{
-            console.log(error)
-        });
-    }
+        if (results.length === 0 && promisedResults !== undefined){
+            setLoading("Loading Results");
+            promisedResults.then(
+                (value) => {
+                    if(value !== undefined){
+                        setResults(value)
+                        setLoading("")
+                    }      
+                }
+            ).catch((error)=>{
+                console.log(error)
+            });
+        }
+        
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
-    if (results.length === 0 && questions.length > 0){
-        setResults([{jobTitle:"Working on it", jobDescription:"...", reasonForReccomendation:"...", avgSalary:"$0", educationLevel:"..."}]);
-        console.log("Calling get results, results length: ", results.length, "Questions:", questions.length);
-        getResults();
-    }
     let resultsBody = results.length > 1 ? results.map(
         (job)=>(
             <div>
