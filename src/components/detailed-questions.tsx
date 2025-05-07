@@ -9,7 +9,8 @@ import { ResultsButton } from './results-button';
 import { Page } from '../custom-types';
 import { validateText } from '../functions/validation';
 import { CompletionAlert } from './completion-alert';
-import "../components/css/detailed-questions.css"
+import "../components/css/detailed-questions.css";
+import "../App.css";
 
 interface DetailedQuestionsProps {
     // apiKey:string
@@ -23,6 +24,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
+    const [validPrompt, setValidPrompt] = useState<boolean>(false);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -44,6 +46,11 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     }
     let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(event.target.value);
+        if (validateText(event.target.value)){
+            setValidPrompt(true);
+        } else {
+            setValidPrompt(false);
+        }
     };
 
     let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -93,7 +100,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                 <Form.Control type="textarea" onChange={updateText}>
                 </Form.Control>
-                <Button onClick={getQuestions}>Get your quiz</Button>
+                <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>{validPrompt ? "Get your quiz" : "Enter prompt"}</Button>
             </Form.Group>
         </Form>);
     return (

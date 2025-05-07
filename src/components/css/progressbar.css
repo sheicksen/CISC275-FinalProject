@@ -4,6 +4,9 @@
     padding: 10px 0;
 }
 
-.sticky-bar .progress-bar{
+.in-progress .progress-bar {
     background-color: purple;
+}
+.complete-quiz .progress-bar{
+    background-color: #30b1b8!important;
 }

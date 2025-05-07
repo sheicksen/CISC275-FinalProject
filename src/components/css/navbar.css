@@ -1,5 +1,6 @@
 .mynavbar {
     background-color: #5d1781; 
+    background:linear-gradient(90deg,rgba(93, 23, 129, 1) 17%, rgba(46, 81, 109, 1) 57%, rgba(64, 115, 135, 1) 74%, rgba(99, 181, 184, 1) 100%);
     overflow: hidden; 
     height: 55px;
     align-items: left;
