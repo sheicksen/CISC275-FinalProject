@@ -11,6 +11,7 @@ import { validateText } from '../functions/validation';
 import { CompletionAlert } from './completion-alert';
 import "../components/css/detailed-questions.css";
 import "../App.css";
+import { preventFormSubmitReload } from '../functions/form-submit';
 
 interface DetailedQuestionsProps {
     // apiKey:string
@@ -53,7 +54,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
         }
     };
 
-    let getQuestions = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let getQuestions = () => {
         setLoading("Loading Questions");
         askGemini(("Give me an intro of at most 3 sentences to a career quiz exploring options with " + textInput));
         let questions: Promise<Question[]> = generateQuestions(textInput);
@@ -95,7 +96,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passQue
     )
     );
     let careerPrompt = (
-        <Form>
+        <Form onSubmit={(e) => {preventFormSubmitReload(e); getQuestions()}}>
             <Form.Group>
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
                 <Form.Control type="textarea" onChange={updateText}>
