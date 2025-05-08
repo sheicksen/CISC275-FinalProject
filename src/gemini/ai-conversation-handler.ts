@@ -64,7 +64,7 @@ export async function generateResults(data: Question[]){
  */
 export async function generateQuestions(careerField: string){
     const ai = getGoogleGenAI();
-    const prompt = `Could you generate 7 questions that would help me find a career in ` + careerField + 
+    const prompt = `Could you generate 10 questions, 6 scaled and 4 text, that would help me find a career in ` + careerField + 
     ` using this object format for Likert scale questions:
         Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
     and this JSON scheme for text answered questions:
@@ -90,7 +90,8 @@ function parseQuestions(questionsString: string | undefined){
     let questions:Question[] = [];
     if (questionsString !== undefined){
         try{
-            let object:Question[] = JSON.parse(questionsString.substring(8,questionsString.length-4), (key, value)=>{
+            let startIndex = questionsString.indexOf('`');
+            let object:Question[] = JSON.parse(questionsString.substring(typeof startIndex === 'number' ? startIndex + 8: 8,questionsString.length-4), (key, value)=>{
                 return value;
             });
             console.log(object);
@@ -119,7 +120,9 @@ function parseResults(resultString:string | undefined):Career[]{
     let careers:Career[]=[];
     if (resultString !== undefined){
         try{
-            let object:Career[] = JSON.parse(resultString.substring(8,resultString.length-4), (key, value)=>{
+            //Filters out any text which comes before the json, if any
+            let startIndex = resultString.indexOf('`');
+            let object:Career[] = JSON.parse(resultString.substring(typeof startIndex === "number" ? startIndex + 8: 8,resultString.length-4), (key, value)=>{
                 return value;
             });
             console.log(object);

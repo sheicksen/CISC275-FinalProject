@@ -6,6 +6,7 @@ import { ResultsButton } from "./results-button";
 import { ProgBar } from "./progress-bar";
 import { Page } from '../custom-types';
 import { CompletionAlert } from "./completion-alert";
+import { Career } from "../interfaces/career";
 import "./css/basic-quiz.css"
 
 interface GenericQuestion {
@@ -29,9 +30,9 @@ let questions: Question[] = parseQuestions(genericQuestions[0]);
 
 interface BasicQuestionsProps {
     selectPage: (page:Page)=> void
-    passQuestions: (questions:Question[])=>void
+    passResults: (questions:Promise<void | Career[] | undefined>)=>void
 }
-export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps): React.JSX.Element {
+export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
@@ -58,7 +59,7 @@ export function BasicQuestions({selectPage, passQuestions}:BasicQuestionsProps):
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 {quizBody}
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passQuestions={passQuestions}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
             </div>
         </div>
 
