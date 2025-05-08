@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import {Question} from "../interfaces/question"
 import { Career } from "../interfaces/career";
 
@@ -64,7 +64,7 @@ export async function generateResults(data: Question[]){
  */
 export async function generateQuestions(careerField: string){
     const ai = getGoogleGenAI();
-    const prompt = `Could you generate 10 questions, 6 scaled and 4 text, that would help me find a career in ` + careerField + 
+    const prompt = `Could you generate 10 questions, 6 scaled and 4 text, dispersed randomly, that would help me find a career in ` + careerField + 
     ` using this object format for Likert scale questions:
         Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
     and this JSON scheme for text answered questions:
@@ -73,11 +73,38 @@ export async function generateQuestions(careerField: string){
     `;
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
-        contents: prompt
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        question: { type: Type.STRING },
+                        type: {
+                            type: Type.STRING,
+                            pattern: "(scaled)|(text)",
+                        },
+                        // answer: { type: Type.TYPE_UNSPECIFIED, description: "always undefined" },
+                        scale: {
+                            type: Type.ARRAY,
+                            description: "empty if text question, that is, if \"type\" is \"text\"",
+                            items: {
+                                type: Type.STRING
+                            },
+                            maxItems: "2"
+                        }
+                    },
+                    propertyOrdering: ["question", "type", /* "answer", */ "scale"]
+                }
+            }
+        }
     });
     console.log(response.text);
-    let questions = parseQuestions(response.text);
-    return questions;
+    // let questions = parseQuestions(response.text);
+    // return questions;
+    return JSON.parse(response.text || "");
 }
 
 /**
