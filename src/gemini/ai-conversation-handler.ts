@@ -47,8 +47,8 @@ export async function generateResults(data: Question[]){
     let quizAnswers:string = parseAnswers(data);
     const prompt:string = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
         "as a json with each job in the following format: " +
-            "{ jobTitle: string, jobDescription: string, reasonForRecomendation : string, avgSalary: string, educationLevel : string}"
-    );
+            "{ jobTitle: string, jobDescription: string, reasonForRecommendation : string, avgSalary: string, educationLevel : string}" +
+            "where reasonForRecommendation is why the job is suited for me based on my quiz answers.");
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt,
@@ -62,8 +62,7 @@ export async function generateResults(data: Question[]){
                         jobTitle: {type: Type.STRING},
                         jobDescription: {type: Type.STRING},
                         reasonForRecommendation: {
-                            type: Type.STRING, 
-                            description:"based on my quiz answers, why did you recommend me this?"
+                            type: Type.STRING 
                         },
                         avgSalary: {type: Type.STRING},
                         educationLevel: {type: Type.STRING}

@@ -32,7 +32,7 @@ export function Results({setLoading, promisedResults}: ResultsProps): React.JSX.
                     <h1>Job Description</h1>
                     <p>{job.jobDescription}</p>
                     <h1>Reasoning</h1>
-                    <p>{job.reasonForReccomendation}</p>
+                    <p>{job.reasonForRecommendation}</p>
                     <h1>Average Salary</h1>
                     <p>{job.avgSalary}</p>
                     <h1>Minimum Education</h1>
