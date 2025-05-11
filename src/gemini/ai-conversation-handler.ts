@@ -45,12 +45,33 @@ export async function askQuestion(question: string){
 export async function generateResults(data: Question[]){
     const ai = getGoogleGenAI();
     let quizAnswers:string = parseAnswers(data);
+    const prompt:string = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
+        "as a json with each job in the following format: " +
+            "{ jobTitle: string, jobDescription: string, reasonForReccomendation : string, avgSalary: string, educationLevel : string}"
+    );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
-        contents: ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
-            "as a json with each job in the following format: " +
-                "{ jobTitle: string, jobDescription: string, reasonForReccomendation : string, avgSalary: string, educationLevel : string}"
-        )
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+                type: Type.ARRAY,
+                items: {
+                    type: Type.OBJECT,
+                    properties: {
+                        jobTitle: {type: Type.STRING},
+                        jobDescription: {type: Type.STRING},
+                        reasonForReccomendayion: {
+                            type: Type.STRING, 
+                            description:"based on my quiz answers, why did you recommend me this?"
+                        },
+                        avgSalary: {type: Type.STRING},
+                        educationLevel: {type: Type.STRING}
+                    },
+                    propertyOrdering: ["jobTitle", "jobDescription", "reasonForRecommendation", "avgSalary","educationLevel"]
+                }
+            }
+        }
     });
     console.log(response.text);
     return parseResults(response.text);
