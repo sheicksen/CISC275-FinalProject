@@ -47,7 +47,7 @@ export async function generateResults(data: Question[]){
     let quizAnswers:string = parseAnswers(data);
     const prompt:string = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
         "as a json with each job in the following format: " +
-            "{ jobTitle: string, jobDescription: string, reasonForReccomendation : string, avgSalary: string, educationLevel : string}"
+            "{ jobTitle: string, jobDescription: string, reasonForRecomendation : string, avgSalary: string, educationLevel : string}"
     );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
@@ -61,7 +61,7 @@ export async function generateResults(data: Question[]){
                     properties: {
                         jobTitle: {type: Type.STRING},
                         jobDescription: {type: Type.STRING},
-                        reasonForReccomendayion: {
+                        reasonForRecommendation: {
                             type: Type.STRING, 
                             description:"based on my quiz answers, why did you recommend me this?"
                         },
@@ -136,19 +136,8 @@ export async function generateQuestions(careerField: string){
 function parseQuestions(questionsString: string | undefined): Question[] {
     let questions: Question[] = [];
     if (questionsString === undefined) return questions;
-
-    // let startIndex = questionsString.indexOf('`');
-    // const thingToParse = questionsString.substring(
-    //     typeof startIndex === 'number' ? startIndex + 8 : 8,questionsString.length-4
-    // );
     const thingToParse = questionsString;
-
     try{
-        // let object:Question[] = JSON.parse(
-        //     thingToParse, (key, value)=>{
-        //         return value;
-        //     }
-        // );
         const object: Question[] = JSON.parse(thingToParse);
         console.log(object);
         questions = [...object];
@@ -175,15 +164,12 @@ function parseResults(resultString:string | undefined):Career[]{
     let careers:Career[]=[];
     if (resultString !== undefined){
         try{
-            //Filters out any text which comes before the json, if any
-            let startIndex = resultString.indexOf('`');
-            let object:Career[] = JSON.parse(resultString.substring(typeof startIndex === "number" ? startIndex + 8: 8,resultString.length-4), (key, value)=>{
-                return value;
-            });
+  
+            let object:Career[] = JSON.parse(resultString);
             console.log(object);
-            careers = object;
+            careers = [...object];
         } catch (error){
-                    console.log("Could not parse results JSON ", error);
+                    console.log("Could not parse results JSON ", error, resultString);
         }
     }
     return careers;
