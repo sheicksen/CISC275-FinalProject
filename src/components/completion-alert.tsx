@@ -15,11 +15,13 @@ interface CompletionAlertProps {
 export function CompletionAlert({selectPage,passResults,questions}: CompletionAlertProps) {
     return (
         <div id="completion-alert">
+            <div id="completion-alert-card">
             <p>
                 You've completed the quiz!
             </p>
             <Button>Review Quiz</Button>
             <ResultsButton passResults={passResults} questions={questions} enabled={true} selectPage={selectPage}></ResultsButton>
+            </div>
         </div> 
     );
 }
