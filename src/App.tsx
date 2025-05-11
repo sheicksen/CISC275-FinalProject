@@ -61,7 +61,7 @@ function App() {
                     { pages.get(page) }
                 </div>
                 <div className="footer">
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Label>API Key:</Form.Label>
                         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
                         <br></br>

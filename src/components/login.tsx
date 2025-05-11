@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { loadUser, saveUser } from "../functions/storage";
 import { Page } from "../custom-types";
+import { preventFormSubmitReload } from "../functions/form-submit";
 
 interface LoginProps {
     selectPage: (value: Page) => void
@@ -17,7 +18,7 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
 
     return (
         <div id="login" style={{width: "min(250px, 100vw)"}}>
-            <Form>
+            <Form onSubmit={(e) => {preventFormSubmitReload(e); alert("Choose Login or Create User")}}>
                 <Form.Label>Login:</Form.Label>
                 <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
                 <Button className="button-style login-button" onClick={() => {
