@@ -7,19 +7,23 @@ import "./css/completion-alert.css";
 
 
 interface CompletionAlertProps {
+    setEnabled: (enable:boolean)=>void
     selectPage: (page:Page)=>void
     passResults: (questions:Promise<void | Career[] | undefined>)=>void
     questions: Question[]
        
 }
-export function CompletionAlert({selectPage,passResults,questions}: CompletionAlertProps) {
+export function CompletionAlert({setEnabled, selectPage,passResults,questions}: CompletionAlertProps) {
+    const reviewQuiz = ()=>{
+        setEnabled(false);
+    }
     return (
         <div id="completion-alert">
             <div id="completion-alert-card">
             <p>
                 You've completed the quiz!
             </p>
-            <Button>Review Quiz</Button>
+            <Button onClick={reviewQuiz}>Review Quiz</Button>
             <ResultsButton passResults={passResults} questions={questions} enabled={true} selectPage={selectPage}></ResultsButton>
             </div>
         </div> 

@@ -27,6 +27,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [validPrompt, setValidPrompt] = useState<boolean>(false);
+    const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
@@ -108,7 +109,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
     return (
         <div className="detailed-questions">
             <h1>An AI Enhanced Quiz Experience</h1>
-            {isFinished() && <CompletionAlert questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
+            {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
             <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
             {response === "" && careerPrompt}
             <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
