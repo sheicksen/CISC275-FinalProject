@@ -4,6 +4,7 @@ import { Career } from "../interfaces/career";
 import { Page } from "../custom-types";
 import { ResultsButton } from "./results-button";
 import "./css/completion-alert.css";
+import '../App.css'
 
 
 interface CompletionAlertProps {
@@ -23,7 +24,7 @@ export function CompletionAlert({setEnabled, selectPage,passResults,questions}: 
             <p>
                 You've completed the quiz!
             </p>
-            <Button onClick={reviewQuiz}>Review Quiz</Button>
+            <Button className="button-style review-quiz-btn" onClick={reviewQuiz}> Review Quiz </Button>
             <ResultsButton passResults={passResults} questions={questions} enabled={true} selectPage={selectPage}></ResultsButton>
             </div>
         </div> 
