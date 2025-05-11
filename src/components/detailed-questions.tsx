@@ -20,7 +20,6 @@ interface DetailedQuestionsProps {
     selectPage: (page:Page)=>void
     passResults: (questions:Promise<void | Career[] | undefined>)=>void
 }
-let quizLength = 7;
 export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passResults}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
@@ -114,7 +113,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
             <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
             {questions.length > 0 && <div>
                 {quizBody}
-                <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
+                <ProgBar totalQuestions={questions.length} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
             </div>
             }
