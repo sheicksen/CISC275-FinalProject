@@ -34,6 +34,7 @@ interface BasicQuestionsProps {
 }
 export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
+    const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
         if(search.length > 0){
@@ -54,7 +55,7 @@ export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): R
     return (
         <div className="App-header">
             <div id="basic-questions">
-                {isFinished() && <CompletionAlert></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 {quizBody}

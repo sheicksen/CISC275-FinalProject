@@ -1,5 +1,28 @@
 #completion-alert {
-    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000a;
+}
+
+#completion-alert-card {
+    border-radius: 10px;
+    margin: auto;
     text-align: center;
+    font-size: 18px;
+    background-color: #5d1781; 
+    background:linear-gradient(135deg,rgba(93, 23, 129, 1) 17%, rgba(46, 81, 109, 1) 57%, rgba(64, 115, 135, 1) 74%, rgba(99, 181, 184, 1) 100%);
+    color: white;
+    font-style: bold;
+    padding: 15px;
+    max-width: 40%;
+}
+
+.review-quiz-btn {
+    padding: 4px 20px;
 }

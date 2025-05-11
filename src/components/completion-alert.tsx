@@ -1,14 +1,32 @@
+import { Button } from "react-bootstrap";
+import { Question } from "../interfaces/question";
+import { Career } from "../interfaces/career";
+import { Page } from "../custom-types";
+import { ResultsButton } from "./results-button";
 import "./css/completion-alert.css";
+import '../App.css'
 
-// interface CompletionAlertProps {
-//     enabled: boolean
-// }
-export function CompletionAlert(/* {enabled}: CompletionAlertProps */) {
+
+interface CompletionAlertProps {
+    setEnabled: (enable:boolean)=>void
+    selectPage: (page:Page)=>void
+    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    questions: Question[]
+       
+}
+export function CompletionAlert({setEnabled, selectPage,passResults,questions}: CompletionAlertProps) {
+    const reviewQuiz = ()=>{
+        setEnabled(false);
+    }
     return (
         <div id="completion-alert">
-            You've completed all of the questions.
-            <br></br>
-            Click below for results!
+            <div id="completion-alert-card">
+            <p>
+                You've completed the quiz!
+            </p>
+            <Button className="button-style review-quiz-btn" onClick={reviewQuiz}> Review Quiz </Button>
+            <ResultsButton passResults={passResults} questions={questions} enabled={true} selectPage={selectPage}></ResultsButton>
+            </div>
         </div> 
     );
 }
