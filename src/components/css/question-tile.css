@@ -1,6 +1,7 @@
 .tile {
     max-width: 70vw;
-    background-color: #5d1781;
+    background-color: rgba(46, 81, 109, 1);
+    background:linear-gradient(0deg,rgba(93, 23, 129, 1) 5%, rgba(46, 81, 109, 1) 100%);
     border-radius: 15px;
     padding:25px;
     margin: 20px auto;
@@ -24,8 +25,12 @@
 .wrapper{
     background-color: #6d0035;
     border-radius: 15px;
-    margin-top:15px;
-    margin-bottom:15px;
+    margin-top:5px;
+    border-style: line;
+    border-width: 2px;
+    border-color: #00000055;
+    margin-bottom:5px;
+    padding: 10px;
     text-align: center;
 }
 
