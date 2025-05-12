@@ -24,8 +24,8 @@ export function NavBar({ selectPage }:NavBarProps) : React.JSX.Element{
                 }}>Home</Button>
                 { loggedIn() && 
                     <Button className="nav-button button-style" onClick={()=>{
-                        selectPage("Results Menu");
-                    }}>Results</Button> // Results button is only accessible to logged in users
+                    selectPage("Results Menu");
+                }}>Results</Button> // Results button is only accessible to logged in users
                 }
                 { loggedIn() && <div id="welcome">Welcome, {loggedIn()}</div> }
                 <Button className="nav-button button-style rightalign" onClick={() => {

@@ -5,8 +5,8 @@
 }
 
 .in-progress .progress-bar {
-    background-color: purple;
+    background-color: rgb(128, 0, 128);
 }
 .complete-quiz .progress-bar{
-    background-color: #30b1b8!important;
+    background-color: rgb(48, 177, 184)!important;
 }

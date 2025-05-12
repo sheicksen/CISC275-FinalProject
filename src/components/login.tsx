@@ -10,7 +10,7 @@ interface LoginProps {
 }
 export function Login({selectPage}: LoginProps): React.JSX.Element {
     const [usrnm, setUsrnm] = useState<string>("");
-    const [failed, setFailed] = useState<"login" | "newusr" | undefined>(undefined);
+    const [failed, setFailed] = useState<"login" | "newusr" | "nousr" | undefined>(undefined);
 
     function changeUsrnm(event: React.ChangeEvent<HTMLInputElement>) {
         setUsrnm(event.target.value);
@@ -22,26 +22,37 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
                 <Form.Label>Login:</Form.Label>
                 <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
                 <Button className="button-style login-button" onClick={() => {
-                    if (loadUser(usrnm)) {
+                    if (loadUser(usrnm) && usrnm !== "") {
                         localStorage.setItem("usrnm", usrnm);
                         selectPage("Home");
+                    } else {
+                        if(usrnm === ""){
+                            setFailed("nousr")
+                        } else {
+                            setFailed("login");
+                        }
                     }
-                    else setFailed("login");
                 }}>Login</Button>
                 <Button className="button-style login-button" onClick={() => {
                     if (!loadUser(usrnm)) {
                         saveUser({name: usrnm, quizzes: []});
-                        localStorage.setItem("usrnm", usrnm);
-                        selectPage("Home");
+                            localStorage.setItem("usrnm", usrnm);
+                            selectPage("Home");
+                    } else {
+                        if(usrnm === ""){
+                            setFailed("nousr")
+                        } else {
+                            setFailed("newusr");
+                        }
                     }
-                    else setFailed("newusr");
                 }}>Create User</Button>
             </Form>
             {failed &&
                 <div id="login-failure" className="align-to-button">
                     {failed === "login" ?
                         `User "${usrnm}" does not exist.`
-                    :   `User "${usrnm}" already exists.`
+                    :   failed === "newusr" ? `User "${usrnm}" already exists.`
+                    : 'Please enter a username'
                     }
                 </div>
             }

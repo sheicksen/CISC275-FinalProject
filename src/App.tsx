@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Page } from './custom-types';
 import { Button, Form } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
-import { Home } from './components/home'
+import { Home } from './components/home';
 import { Results } from './components/results';
 import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';
@@ -77,10 +77,9 @@ function App() {
                         <Form.Label>API Key:</Form.Label>
                         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
                         <br></br>
-                        <Button className="button-style" onClick={handleSubmit}>Submit</Button>
+                        <Button className="button-style" style={{backgroundColor: "#1d426d"}} onClick={handleSubmit}>Submit</Button>
                     </Form>
-                    <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap </p>
-                    <p> Date of most recent deploy: {deployDate} </p>
+                    <p> Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap | Date of most recent deploy: {deployDate} </p>
                 </div>
             </div>
             {loading && <LoadingScreen text={loading}></LoadingScreen>}

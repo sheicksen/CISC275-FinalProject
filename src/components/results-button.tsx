@@ -27,6 +27,6 @@ export function ResultsButton({ enabled, questions, selectPage, passResults }: R
         selectPage("Results");
     }
     return (
-        <Button className="button-style" disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto' }}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
+        <Button className="button-style" disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto'}}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
     );
 }
