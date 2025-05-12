@@ -12,6 +12,9 @@ import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
 import { Career } from './interfaces/career';
 import deployDate from './resources/date.json';
+import { ResultsMenu } from './components/results-menu';
+import { QuizRun } from './interfaces/user';
+import { AnalysesMenu } from './components/analyses-menu';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -27,6 +30,8 @@ function App() {
     const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
     const [loading, setLoading] = useState<string>("");
     const [results, setResults] = useState<Promise<void | Career[] | undefined>>();
+    const [run, setRun] = useState<QuizRun | undefined>()
+
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
         setAPIKey(key);
@@ -45,12 +50,19 @@ function App() {
     function passResults(results:Promise<void | Career[] | undefined>):void{
         setResults(results);
     }
+
+    function passQuizRun(run: QuizRun) {
+        setRun(run);
+    }
+
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
         ["Results",            <Results setLoading={setLoading} promisedResults={results}></Results>],
         ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passResults={passResults}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions selectPage={changePage} passResults={passResults}></BasicQuestions> ],
-        ["Login",              <Login selectPage={changePage}></Login>  ]
+        ["Login",              <Login selectPage={changePage}></Login>  ],
+        ["Results Menu",       <ResultsMenu selectPage={changePage} passQuizRun={passQuizRun}></ResultsMenu>],
+        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passResults={passResults}></AnalysesMenu>]
     ]);
 
     return (
