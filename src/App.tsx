@@ -44,6 +44,12 @@ function App() {
     }
     //instead of urls, changes which 'page' will be visible to the user.
     function changePage(value: Page) {
+        async function undefinedPromise() { return undefined; }
+        if (value !== "Results Menu" && value !== "Analyses Menu")
+            setRun(undefined);
+        if (value !== "Analyses Menu" && value !== "Results")
+            setAnalysis(undefinedPromise());
+
         setPage(value);
     }
 
