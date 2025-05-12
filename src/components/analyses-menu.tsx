@@ -8,10 +8,16 @@ import { QuizRun } from '../interfaces/user';
 
 interface AnalysesMenuProps {
     selectPage: (page: Page) => void
-    quizrun: QuizRun
+    quizrun: QuizRun | undefined
     passResults: (questions:Promise<void | Career[] | undefined>)=>void
 }
 export function AnalysesMenu({selectPage, quizrun, passResults}: AnalysesMenuProps): React.JSX.Element {
+    if (quizrun === undefined) {
+        alert(`No previous quiz selected.`);
+        selectPage("Home");
+        return <div></div>
+    }
+
     const analysesButtons = quizrun.analyses.map((analysis) => (
         <AnalysesMenuButton analysis={{...analysis}} passResults={passResults} selectPage={selectPage}></AnalysesMenuButton>
     ));
