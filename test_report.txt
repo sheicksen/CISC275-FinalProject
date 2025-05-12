@@ -50,7 +50,8 @@ FAIL src/App.test.tsx
                   [33mclass[39m=[32m"row"[39m
                 [36m>[39m
                   [36m<div[39m
-                    [33mclass[39m=[32m"col"[39m
+                    [33mclass[39m=[32m"col-md-6"[39m
+                    [33ms[39m=[32m"12"[39m
                   [36m>[39m
                     [36m<div[39m
                       [33mclass[39m=[32m"image-container"[39m
@@ -62,7 +63,8 @@ FAIL src/App.test.tsx
                     [36m</div>[39m
                   [36m</div>[39m
                   [36m<div[39m
-                    [33mclass[39m=[32m"desc-container col"[39m
+                    [33mclass[39m=[32m"desc-container col-md-6"[39m
+                    [33ms[39m=[32m"12"[39m
                   [36m>[39m
                     [36m<h1>[39m
                       [0m Seeking Answers?[0m
@@ -116,16 +118,14 @@ FAIL src/App.test.tsx
                 [36m<br />[39m
                 [36m<button[39m
                   [33mclass[39m=[32m"button-style btn btn-primary"[39m
+                  [33mstyle[39m=[32m"background-color: rgb(29, 66, 109);"[39m
                   [33mtype[39m=[32m"button"[39m
                 [36m>[39m
                   [0mSubmit[0m
                 [36m</button>[39m
               [36m</form>[39m
               [36m<p>[39m
-                [0m Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap [0m
-              [36m</p>[39m
-              [36m<p>[39m
-                [0m Date of most recent deploy: [0m
+                [0m Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap | Date of most recent deploy: [0m
                 [0m2025-04-28 03:09:48[0m
                 [0m [0m
               [36m</p>[39m
@@ -156,13 +156,13 @@ FAIL src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |    9.73 |     6.59 |    7.31 |     9.9 |                   
+All files                    |    9.48 |     6.45 |    7.22 |    9.67 |                   
  src                         |   30.43 |    16.66 |   14.28 |   30.43 |                   
   App.tsx                    |   58.33 |       50 |      20 |   58.33 | 32-46             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    8.51 |      4.1 |    5.55 |    8.39 |                   
+ src/components              |    8.16 |        4 |    5.45 |    8.08 |                   
   basic-questions.tsx        |   34.78 |        0 |   14.28 |      35 | 36-55             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 18-21             
   detailed-questions.tsx     |       0 |        0 |       0 |       0 | 24-108            
@@ -170,7 +170,7 @@ All files                    |    9.73 |     6.59 |    7.31 |     9.9 |
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 12-37             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 23-32             
-  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-10              
+  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-18              
   results-button.tsx         |       0 |        0 |       0 |       0 | 15-29             
   results.tsx                |       0 |        0 |       0 |       0 | 11-44             
   scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
@@ -193,7 +193,7 @@ All files                    |    9.73 |     6.59 |    7.31 |     9.9 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.118 s
+Time:        3.15 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
