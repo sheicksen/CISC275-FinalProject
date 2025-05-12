@@ -1,6 +1,6 @@
 .results {
     max-width: 70vw;
-    background-color: #5d1781;
+    background-color: #2e516d;
     border-radius: 15px;
     padding:25px;
     margin: 20px auto;
@@ -23,7 +23,7 @@
 }
 
 .wrapper{
-    background-color: #6d0035;
+    background-color: #5d1781!important;
     border-radius: 15px;
     margin-top:15px;
     margin-bottom:75px;
