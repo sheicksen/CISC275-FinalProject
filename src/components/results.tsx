@@ -24,7 +24,7 @@ export function Results({setLoading, promisedAnalysis}: ResultsProps): React.JSX
         }
         
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
-    let resultsBody = analysis.careers.length > 1 ? analysis.careers.map((job) => (
+    const resultsBody = analysis.careers.length > 1 ? analysis.careers.map((job) => (
         <div>
             <h1 className="text-color">{job.jobTitle}</h1>
             <div className="wrapper">
@@ -40,9 +40,19 @@ export function Results({setLoading, promisedAnalysis}: ResultsProps): React.JSX
         </div>
     )) 
     : <p>Here, you'll see your results from previous quizzes</p>;
+
+    const nameResponseSet = analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}".</p> : (
+        <div>placeholder</div>
+    );
+    const nameThisAnalysis = analysis.name ? <p>This analysis is called "{analysis.name}"</p> : (
+        <div>placeholder</div>
+    );
+
     return (
         <div className="results">
             {resultsBody}
+            {nameResponseSet}
+            {nameThisAnalysis}
         </div>
     )
 }
