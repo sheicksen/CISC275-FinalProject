@@ -33,6 +33,7 @@
 .rightalign{
     position: absolute;
     right: 1ex;
+    background-color: #1d426d;
 }
 
 .test-image{
