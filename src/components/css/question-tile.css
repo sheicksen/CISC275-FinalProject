@@ -1,7 +1,6 @@
 .tile {
     max-width: 70vw;
-    background-color: rgba(46, 81, 109, 1);
-    background:linear-gradient(0deg,rgba(93, 23, 129, 1) 5%, rgba(46, 81, 109, 1) 100%);
+    background-color: #2e516d;
     border-radius: 15px;
     padding:25px;
     margin: 20px auto;
@@ -23,7 +22,7 @@
 }
 
 .wrapper{
-    background-color: #6d0035;
+    background-color: rgba(93, 23, 129, 1);
     border-radius: 15px;
     margin-top:5px;
     border-style: line;

@@ -55,10 +55,13 @@ export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): R
     return (
         <div className="App-header">
             <div id="basic-questions">
+            <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
                 {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
+                </div>
                 {quizBody}
+                
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
             </div>
