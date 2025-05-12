@@ -3,6 +3,14 @@
     position: absolute;
 } */
 
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('../public/fonts/OpenDyslexic-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 #app-body {
     top: 55px;
     height: calc(100vh - 55px);
@@ -16,7 +24,6 @@ h1 {
     text-align: center;
     font-weight: bold;
     text-decoration-line: none;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .footer {
     text-align: center;

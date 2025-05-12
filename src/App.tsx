@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Page } from './custom-types';
 import { Button, Form } from 'react-bootstrap';
 import { NavBar } from './components/navbar';
-import { Home } from './components/home'
+import { Home } from './components/home';
 import { Results } from './components/results';
 import { DetailedQuestions } from './components/detailed-questions';
 import { BasicQuestions } from './components/basic-questions';

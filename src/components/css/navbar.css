@@ -1,14 +1,25 @@
 .mynavbar {
     background-color: #5d1781; 
     background:linear-gradient(90deg,#5d1781 17%,#191e66 57%,#3da0c8);
-    overflow: hidden; 
+    overflow: visible!important; 
     height: 55px;
     align-items: left;
-    position: fixed;
+    position: relative;
     width: 100vw;
     padding: 1ex;
-    
 }/*Style for the navbar, specifically the */
+
+.mynavbar::after{
+    content: "";
+    position: absolute;
+    top:100%;
+    left: 0;
+    width: 100%;
+    height: 23px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    pointer-events: none;
+    z-index: 2;
+}
 
 .nav-button{
     white-space: nowrap;
