@@ -12,6 +12,12 @@
     overscroll-behavior-y: none;
 }
 
+h1 {
+    text-align: center;
+    font-weight: bold;
+    text-decoration-line: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .footer {
     text-align: center;
     background-color: #5d1781; 
@@ -19,6 +25,7 @@
     overflow: hidden;
     display: column;
     align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .footer Form{
     display: flex;
@@ -52,6 +59,7 @@
     border-width: 0.35vh;
     margin: 2px;
     padding: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     &:disabled{
         color: black;
         background-color: rgb(93, 23, 128);
@@ -89,6 +97,7 @@
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     width: 100%;
     background-image: repeating-linear-gradient(

@@ -9,7 +9,7 @@
 .text-color{
     color: white;
     font-weight: bold;
-    text-decoration-line: underline;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .underneath{

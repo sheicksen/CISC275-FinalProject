@@ -9,7 +9,6 @@
 .text-color{
     color: white;
     font-weight: bold;
-    text-decoration-line: underline;
     text-align: left;
 }
 
@@ -34,7 +33,6 @@
 .wrapper h1{
     font-size: 25px;
     font-weight: bold;
-    text-decoration-line: underline;
 }
 
 .wrapper p{
