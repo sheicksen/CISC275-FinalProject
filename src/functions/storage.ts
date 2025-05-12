@@ -1,4 +1,5 @@
 import { User } from "../interfaces/user";
+import { loggedIn } from "./login";
 
 /**
  * @function loadUsers Loads all of the users from localStorage
@@ -31,4 +32,12 @@ export function loadUser(name: string): User | undefined {
  */
 export function saveUser(user: User) {
     saveUsers([user, ...loadUsers().filter((v) => (v.name !== user.name))]);
+}
+
+/**
+ * @function loadCurrentUser Loads the currently logged in user, undefined if not found or not logged in
+ * @returns {User | undefined} The user if found, undefined otherwise
+ */
+export function loadCurrentUser(): User | undefined {
+    return loadUser(loggedIn() ?? "");
 }
