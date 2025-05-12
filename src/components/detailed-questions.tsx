@@ -107,11 +107,13 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
         </Form>);
     return (
         <div className="detailed-questions">
-            <h1>An AI Enhanced Quiz Experience</h1>
-            {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
-            <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
-            {response === "" && careerPrompt}
-            <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
+            <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
+                <h1>An AI Enhanced Quiz Experience</h1>
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
+                <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
+                {response === "" && careerPrompt}
+                <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
+            </div>
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={questions.length} answeredQuestions={answeredQs.length}></ProgBar>
