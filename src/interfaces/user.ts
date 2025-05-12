@@ -8,7 +8,7 @@ import { Responses } from "./responses"
  */
 export interface QuizRun {
     responses: Responses
-    anayses: Analysis[]
+    analyses: Analysis[]
 }
 
 /**
