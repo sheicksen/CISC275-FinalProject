@@ -10,11 +10,11 @@ import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
-import { Career } from './interfaces/career';
 import deployDate from './resources/date.json';
 import { ResultsMenu } from './components/results-menu';
 import { QuizRun } from './interfaces/user';
 import { AnalysesMenu } from './components/analyses-menu';
+import { Analysis } from './interfaces/analysis';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -29,7 +29,7 @@ function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
     const [loading, setLoading] = useState<string>("");
-    const [results, setResults] = useState<Promise<void | Career[] | undefined>>();
+    const [analysis, setAnalysis] = useState<Promise<void | Analysis | undefined>>();
     const [run, setRun] = useState<QuizRun | undefined>()
 
     //sets the local storage item to the api key the user inputed
@@ -47,8 +47,8 @@ function App() {
         setPage(value);
     }
 
-    function passResults(results:Promise<void | Career[] | undefined>):void{
-        setResults(results);
+    function passAnalysis(analysis: Promise<void | Analysis | undefined>):void{
+        setAnalysis(analysis);
     }
 
     function passQuizRun(run: QuizRun) {
@@ -57,12 +57,12 @@ function App() {
 
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedResults={results}></Results>],
-        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passResults={passResults}></DetailedQuestions>  ],
-        ["Basic Questions",    <BasicQuestions selectPage={changePage} passResults={passResults}></BasicQuestions> ],
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis}></Results>],
+        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis}></DetailedQuestions>  ],
+        ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],
         ["Results Menu",       <ResultsMenu selectPage={changePage} passQuizRun={passQuizRun}></ResultsMenu>],
-        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passResults={passResults}></AnalysesMenu>]
+        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passAnalysis={passAnalysis}></AnalysesMenu>]
     ]);
 
     return (

@@ -3,15 +3,14 @@ import { Page } from '../custom-types';
 import React from 'react';
 import { ResultsButton } from './results-button';
 import { Analysis } from '../interfaces/analysis';
-import { Career } from '../interfaces/career';
 import { QuizRun } from '../interfaces/user';
 
 interface AnalysesMenuProps {
     selectPage: (page: Page) => void
     quizrun: QuizRun | undefined
-    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
 }
-export function AnalysesMenu({selectPage, quizrun, passResults}: AnalysesMenuProps): React.JSX.Element {
+export function AnalysesMenu({selectPage, quizrun, passAnalysis}: AnalysesMenuProps): React.JSX.Element {
     if (quizrun === undefined) {
         alert(`No previous quiz selected.`);
         selectPage("Home");
@@ -19,9 +18,9 @@ export function AnalysesMenu({selectPage, quizrun, passResults}: AnalysesMenuPro
     }
 
     const analysesButtons = quizrun.analyses.map((analysis) => (
-        <AnalysesMenuButton analysis={{...analysis}} passResults={passResults} selectPage={selectPage}></AnalysesMenuButton>
+        <AnalysesMenuButton analysis={{...analysis}} passAnalysis={passAnalysis} selectPage={selectPage}></AnalysesMenuButton>
     ));
-    const newAnalysisButton = <ResultsButton enabled={true} questions={quizrun.responses.questions} selectPage={selectPage} passResults={passResults}></ResultsButton>;
+    const newAnalysisButton = <ResultsButton enabled={true} questions={quizrun.responses.questions} selectPage={selectPage} passAnalysis={passAnalysis}></ResultsButton>;
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
     return (
         <div id="analyses-menu">
@@ -34,12 +33,12 @@ export function AnalysesMenu({selectPage, quizrun, passResults}: AnalysesMenuPro
 
 interface AnalysesMenuButtonProps {
     analysis: Analysis
-    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
     selectPage: (page: Page) => void
 }
-function AnalysesMenuButton({analysis, passResults}: AnalysesMenuButtonProps): React.JSX.Element {
-    async function createPromise(careers: Career[]) {
-        return careers;
+function AnalysesMenuButton({analysis, passAnalysis}: AnalysesMenuButtonProps): React.JSX.Element {
+    async function createPromise(analysis: Analysis) {
+        return analysis;
     }
-    return <Button className="button-style" onClick={() => {passResults(createPromise(analysis.careers))}}>{analysis.name}</Button>
+    return <Button className="button-style" onClick={() => {passAnalysis(createPromise(analysis))}}>{analysis.name}</Button>
 }

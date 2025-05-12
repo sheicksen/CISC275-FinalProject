@@ -6,8 +6,8 @@ import { ResultsButton } from "./results-button";
 import { ProgBar } from "./progress-bar";
 import { Page } from '../custom-types';
 import { CompletionAlert } from "./completion-alert";
-import { Career } from "../interfaces/career";
 import "./css/basic-quiz.css"
+import { Analysis } from "../interfaces/analysis";
 
 interface GenericQuestion {
     question: string,
@@ -17,7 +17,7 @@ interface GenericQuestion {
 const genericQuestions = QuestionData as GenericQuestion[][];
 const quizLength = genericQuestions[0].length;
 
-function parseQuestions(questions:GenericQuestion[]):Question[]{
+function parseQuestions(questions: GenericQuestion[]): Question[]{
     let parsedQuestions: Question[] = [];
 
     for (let i = 0; i < questions.length; i++){
@@ -30,9 +30,9 @@ let questions: Question[] = parseQuestions(genericQuestions[0]);
 
 interface BasicQuestionsProps {
     selectPage: (page:Page)=> void
-    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
 }
-export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): React.JSX.Element {
+export function BasicQuestions({selectPage, passAnalysis}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
@@ -56,14 +56,14 @@ export function BasicQuestions({selectPage, passResults}:BasicQuestionsProps): R
         <div className="App-header">
             <div id="basic-questions">
             <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 </div>
                 {quizBody}
                 
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></ResultsButton>
             </div>
         </div>
 
