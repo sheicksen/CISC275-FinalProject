@@ -3,13 +3,6 @@
     position: absolute;
 } */
 
-@font-face {
-    font-family: 'OpenDyslexic';
-    src: url('../public/fonts/OpenDyslexic-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 #app-body {
     top: 55px;
