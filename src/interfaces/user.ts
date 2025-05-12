@@ -6,9 +6,9 @@ import { Responses } from "./responses"
  * @member {Responses} responses The response set
  * @member {Analysis[]} analyses The analyses that have been run on the responses
  */
-interface QuizRun {
+export interface QuizRun {
     responses: Responses
-    anayses: Analysis[]
+    analyses: Analysis[]
 }
 
 /**
