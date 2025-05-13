@@ -9,10 +9,12 @@ interface ResultsProps {
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     promisedAnalysis: Promise<void | Analysis | undefined> | undefined
     setQuizRunName: (name: string) => Promise<void>
+    setAppAnalysisName: (name: string) => Promise<void>
 }
-export function Results({setLoading, promisedAnalysis, setQuizRunName}: ResultsProps): React.JSX.Element {
+export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName}: ResultsProps): React.JSX.Element {
     let [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
     const [resSetName, setResSetName] = useState<string>("");
+    const [analysisName, setAnalysisName] = useState<string>("");
     // console.log("updated results", analysis)
 
     if (!analysis && promisedAnalysis !== undefined) {
@@ -61,8 +63,19 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName}: ResultsP
             <Button className="button-style" onClick={submitResSetName}>Set Name</Button>
         </Form>
     );
-    const nameThisAnalysis = analysis && analysis.name ? <p>This analysis is called "{analysis.name}"</p> : (
-        <div>placeholder</div>
+
+    function updateAnalysisName(event: React.ChangeEvent<HTMLInputElement>) {
+        setAnalysisName(event.target.value);
+    }
+    function submitAnalysisName() {
+        setAppAnalysisName(analysisName).then(() => setAnalysis(undefined));
+    }
+    const nameThisAnalysis = analysis && analysis.name ? <p>This analysis is called "{analysis.name}".</p> : (
+        <Form>
+            <Form.Label>Analysis Name:</Form.Label>
+            <Form.Control onChange={updateAnalysisName}></Form.Control>
+            <Button className="button-style" onClick={submitAnalysisName}>Set Name</Button>
+        </Form>
     );
 
     return (

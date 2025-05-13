@@ -63,7 +63,7 @@ function App() {
     }
 
     async function setQuizRunName(name: string) {
-        console.log(name);
+        // console.log(name);
         if (run) setRun({...run, responses: {...run.responses, name}});
         async function analysisPromise(analysis: Analysis) {
             return analysis;
@@ -72,9 +72,17 @@ function App() {
         if (ansys) setAnalysis(analysisPromise({...ansys, responseSet: name}))
     }
 
+    async function setAppAnalysisName(name: string) {
+        async function analysisPromise(analysis: Analysis) {
+            return analysis;
+        }
+        const ansys = await analysis;
+        if (ansys) setAnalysis(analysisPromise({...ansys, name}))
+    }
+
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName}></Results>],
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName}></Results>],
         ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],
