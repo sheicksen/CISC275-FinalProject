@@ -48,3 +48,8 @@
     width: auto;
     margin: 0 10px;
 }
+
+.results #login {
+    background-color: #5d1781;
+    margin: auto;
+}
