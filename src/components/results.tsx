@@ -3,6 +3,7 @@ import "../components/css/results.css"
 import { Analysis } from "../interfaces/analysis";
 import { loggedIn } from "../functions/login";
 import { Button, Form } from "react-bootstrap";
+import { Login } from "./login";
 
 
 interface ResultsProps {
@@ -10,8 +11,9 @@ interface ResultsProps {
     promisedAnalysis: Promise<void | Analysis | undefined> | undefined
     setQuizRunName: (name: string) => Promise<void>
     setAppAnalysisName: (name: string) => Promise<void>
+    refreshApp: () => void
 }
-export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName}: ResultsProps): React.JSX.Element {
+export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName, refreshApp}: ResultsProps): React.JSX.Element {
     let [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
     const [resSetName, setResSetName] = useState<string>("");
     const [analysisName, setAnalysisName] = useState<string>("");
@@ -87,7 +89,12 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     return (
         <div className="results">
             {resultsBody}
-            {loggedIn() ? [nameResponseSet, nameThisAnalysis] : <div>placeholder</div>}
+            {loggedIn() ? [nameResponseSet, nameThisAnalysis] : (
+                <div>
+                    <h2>Login or Sign Up to save your quiz and results.</h2>
+                    <Login selectPage={() => {refreshApp()}}></Login>
+                </div>
+            )}
         </div>
     )
 }

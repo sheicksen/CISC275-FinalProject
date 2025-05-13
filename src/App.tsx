@@ -31,6 +31,7 @@ function App() {
     const [loading, setLoading] = useState<string>("");
     const [analysis, setAnalysis] = useState<Promise<void | Analysis | undefined>>();
     const [run, setRun] = useState<QuizRun | undefined>()
+    const [refresher, setRefresher] = useState<boolean>(false);
     // console.log("updated app", analysis)
 
     //sets the local storage item to the api key the user inputed
@@ -80,9 +81,13 @@ function App() {
         if (ansys) setAnalysis(analysisPromise({...ansys, name}))
     }
 
+    function refreshApp() {
+        setRefresher(!refresher);
+    }
+
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName}></Results>],
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName} refreshApp={refreshApp}></Results>],
         ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],
