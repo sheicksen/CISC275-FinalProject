@@ -1,5 +1,7 @@
 .login-button {
     width: calc(50% - 4px);
+    margin-top: 10px;
+    height: 70px;
 }
 
 #login-failure {
@@ -18,4 +20,5 @@
 #login{
     background-color: #12161e;
     border-radius: 10px;
+    padding:30px;
 }

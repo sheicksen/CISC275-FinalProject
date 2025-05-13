@@ -1,6 +1,6 @@
 .mynavbar {
     background-color: #5d1781; 
-    background:linear-gradient(90deg,#5d1781 17%,#191e66 57%,#3da0c8);
+    background:linear-gradient(90deg,#5d1781 17%,#194a66 57%,#3da0c8);
     overflow: visible!important; 
     height: 55px;
     align-items: left;
@@ -15,8 +15,8 @@
     top:100%;
     left: 0;
     width: 100%;
-    height: 23px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    height: 13px;
+    background: linear-gradient(to bottom, rgba(10, 13, 17, 0.7), transparent);
     pointer-events: none;
     z-index: 2;
 }
@@ -40,7 +40,12 @@
     pointer-events: none;
     background-color: #0000;
 }
-
+#app-name{
+    font-size:20px;
+    color:white;
+    font-weight:bold;
+    margin: 0px 15px;
+}
 .rightalign{
     position: absolute;
     right: 1ex;

@@ -5,3 +5,8 @@
 .quiz-text{
     text-align: center;
 }
+#basic-questions{
+    background-color: #12161e;
+    border-radius: 15px;
+    padding: 30px;
+}

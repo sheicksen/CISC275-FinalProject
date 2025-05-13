@@ -23,12 +23,11 @@ export function Results({setLoading, promisedResults}: ResultsProps): React.JSX.
             });
         }
         
-    // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
     let resultsBody = results.length > 1 ? results.map(
         (job)=>(
             <div>
                 <h1 className="text-color">{job.jobTitle}</h1>
-                <div className="wrapper">
+                <div className="rep-wrapper">
                     <h1>Job Description</h1>
                     <p>{job.jobDescription}</p>
                     <h1>Reasoning</h1>
