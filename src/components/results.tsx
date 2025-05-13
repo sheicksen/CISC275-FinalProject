@@ -57,7 +57,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
         setQuizRunName(resSetName).then(() => setAnalysis(undefined));
     }
     const nameResponseSet = analysis && analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}".</p> : (
-        <Form>
+        <Form onSubmit={submitResSetName}>
             <Form.Label>Quiz Run Name:</Form.Label>
             <Form.Control onChange={updateResSetName}></Form.Control>
             <Button className="button-style" onClick={submitResSetName}>Set Name</Button>
@@ -71,7 +71,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
         setAppAnalysisName(analysisName).then(() => setAnalysis(undefined));
     }
     const nameThisAnalysis = analysis && analysis.name ? <p>This analysis is called "{analysis.name}".</p> : (
-        <Form>
+        <Form onSubmit={submitAnalysisName}>
             <Form.Label>Analysis Name:</Form.Label>
             <Form.Control onChange={updateAnalysisName}></Form.Control>
             <Button className="button-style" onClick={submitAnalysisName}>Set Name</Button>
