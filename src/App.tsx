@@ -88,11 +88,11 @@ function App() {
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
         ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName} refreshApp={refreshApp}></Results>],
-        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis}></DetailedQuestions>  ],
-        ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis}></BasicQuestions> ],
+        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></DetailedQuestions>  ],
+        ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],
         ["Results Menu",       <ResultsMenu selectPage={changePage} passQuizRun={passQuizRun}></ResultsMenu>],
-        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passAnalysis={passAnalysis}></AnalysesMenu>]
+        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></AnalysesMenu>]
     ]);
 
     return (

@@ -8,6 +8,7 @@ import { Page } from '../custom-types';
 import { CompletionAlert } from "./completion-alert";
 import "./css/basic-quiz.css"
 import { Analysis } from "../interfaces/analysis";
+import { QuizRun } from "../interfaces/user";
 
 interface GenericQuestion {
     question: string,
@@ -31,8 +32,9 @@ let questions: Question[] = parseQuestions(genericQuestions[0]);
 interface BasicQuestionsProps {
     selectPage: (page:Page)=> void
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    passQuizRun: (run: QuizRun) => void
 }
-export function BasicQuestions({selectPage, passAnalysis}:BasicQuestionsProps): React.JSX.Element {
+export function BasicQuestions({selectPage, passAnalysis, passQuizRun}:BasicQuestionsProps): React.JSX.Element {
     let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
     let updateAnswers = (id:number, q:Question, answer:string | number) =>{
@@ -56,14 +58,14 @@ export function BasicQuestions({selectPage, passAnalysis}:BasicQuestionsProps): 
         <div className="App-header">
             <div id="basic-questions">
             <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 </div>
                 {quizBody}
                 
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>
         </div>
 

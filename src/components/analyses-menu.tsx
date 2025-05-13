@@ -9,8 +9,9 @@ interface AnalysesMenuProps {
     selectPage: (page: Page) => void
     quizrun: QuizRun | undefined
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    passQuizRun: (run: QuizRun) => void
 }
-export function AnalysesMenu({selectPage, quizrun, passAnalysis}: AnalysesMenuProps): React.JSX.Element {
+export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: AnalysesMenuProps): React.JSX.Element {
     if (quizrun === undefined) {
         alert(`No previous quiz selected.`);
         selectPage("Home");
@@ -20,7 +21,7 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis}: AnalysesMenuPr
     const analysesButtons = quizrun.analyses.map((analysis) => (
         <AnalysesMenuButton analysis={{...analysis}} passAnalysis={passAnalysis} selectPage={selectPage}></AnalysesMenuButton>
     ));
-    const newAnalysisButton = <ResultsButton enabled={true} questions={quizrun.responses.questions} selectPage={selectPage} passAnalysis={passAnalysis}></ResultsButton>;
+    const newAnalysisButton = <ResultsButton enabled={true} questions={quizrun.responses.questions} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>;
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
     return (
         <div id="analyses-menu">

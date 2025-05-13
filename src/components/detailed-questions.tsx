@@ -13,14 +13,16 @@ import "../components/css/detailed-questions.css";
 import "../App.css";
 import { preventFormSubmitReload } from '../functions/form-submit';
 import { Analysis } from '../interfaces/analysis';
+import { QuizRun } from '../interfaces/user';
 
 interface DetailedQuestionsProps {
     // apiKey:string
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     selectPage: (page:Page)=>void
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    passQuizRun: (run: QuizRun) => void
 }
-export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAnalysis}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAnalysis, passQuizRun}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -109,7 +111,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
         <div className="detailed-questions">
             <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
                 <h1>An AI Enhanced Quiz Experience</h1>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
                 {response === "" && careerPrompt}
                 <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
@@ -117,7 +119,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={questions.length} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis}></ResultsButton>
+                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>
             }
 
