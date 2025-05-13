@@ -1,8 +1,7 @@
 import { Analysis } from "../interfaces/analysis";
 import { QuizRun, User } from "../interfaces/user";
 import { loggedIn } from "./login";
-
-const _ = require("lodash");
+import _ from "lodash";
 
 /**
  * @function loadUsers Loads all of the users from localStorage
