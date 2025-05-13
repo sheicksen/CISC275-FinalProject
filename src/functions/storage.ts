@@ -1,5 +1,5 @@
 import { Analysis } from "../interfaces/analysis";
-import { User } from "../interfaces/user";
+import { QuizRun, User } from "../interfaces/user";
 import { loggedIn } from "./login";
 
 const _ = require("lodash");
@@ -54,4 +54,24 @@ export function loadCurrentUser(): User | undefined {
 export function removeAnalysis(analysis: Analysis, analyses: Analysis[]): Analysis[] {
     const out = analyses.filter((val) => (!_.isEqual(analysis.careers, val.careers)));
     return out;
+}
+
+/**
+ * @function updateCurrentUserRuns Updates the runs for the current user
+ * @param {QuizRun} run The quiz run to add/update
+ */
+export function updateCurrentUserRuns(run: QuizRun) {
+    const user = loadCurrentUser();
+    if (!user) {
+        alert("How are you trying to update the user without being logged in???");
+        return;
+    }
+
+    const sameName = user.quizzes.filter((val) => (val.responses.name === run.responses.name));
+    const diffName = user.quizzes.filter((val) => (val.responses.name !== run.responses.name));
+    const sameNameDiffQs = sameName.filter((val) => !_.isEqual(val.responses.questions, run.responses.questions));
+    const all = [...diffName, ...sameNameDiffQs, run];
+    const updatedUser: User = { ...user, quizzes: all };
+
+    saveUser(updatedUser);
 }
