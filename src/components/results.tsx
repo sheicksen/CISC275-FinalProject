@@ -50,6 +50,11 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     )) 
     : <p>Here, you'll see your results from previous quizzes</p>;
 
+    /* ToDo:
+        - Make them actually save
+        - Make it not look horrid
+    */
+
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
         setResSetName(event.target.value);
     }
