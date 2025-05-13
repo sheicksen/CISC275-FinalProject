@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "../components/css/results.css"
+import "./css/results.css"
 import { Analysis } from "../interfaces/analysis";
 import { loggedIn } from "../functions/login";
 import { Button, Form } from "react-bootstrap";
@@ -54,7 +54,6 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
 
     /* ToDo:
         - Make them actually save
-        - Make name set forms not look horrid
         - Make login not look horrid
     */
 

@@ -42,3 +42,9 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.results .form-control {
+    display: inline-block;
+    width: auto;
+    margin: 0 10px;
+}
