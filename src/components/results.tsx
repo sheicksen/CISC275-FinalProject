@@ -1,30 +1,37 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import "../components/css/results.css"
 import { Analysis } from "../interfaces/analysis";
+import { loggedIn } from "../functions/login";
+import { Button, Form } from "react-bootstrap";
 
 
 interface ResultsProps {
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     promisedAnalysis: Promise<void | Analysis | undefined> | undefined
+    setQuizRunName: (name: string) => Promise<void>
 }
-export function Results({setLoading, promisedAnalysis}: ResultsProps): React.JSX.Element {
-    let [analysis, setResults] = useState<Analysis>({name: "", responseSet: "", careers: []});
-        if (analysis.careers.length === 0 && promisedAnalysis !== undefined){
-            setLoading("Loading Results");
-            promisedAnalysis.then(
-                (value) => {
-                    if(value !== undefined){
-                        setResults(value)
-                        setLoading("")
-                    }      
-                }
-            ).catch((error)=>{
-                console.log(error)
-            });
-        }
+export function Results({setLoading, promisedAnalysis, setQuizRunName}: ResultsProps): React.JSX.Element {
+    let [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
+    const [resSetName, setResSetName] = useState<string>("");
+    // console.log("updated results", analysis)
+
+    if (!analysis && promisedAnalysis !== undefined) {
+        setLoading("Loading Results");
+        promisedAnalysis.then(
+            (value) => {
+                if(value !== undefined){
+                    // console.log(value)
+                    setAnalysis(value)
+                    setLoading("")
+                }      
+            }
+        ).catch((error)=>{
+            console.log(error)
+        });
+    }
         
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
-    const resultsBody = analysis.careers.length > 1 ? analysis.careers.map((job) => (
+    const resultsBody = analysis ? analysis.careers.map((job) => (
         <div>
             <h1 className="text-color">{job.jobTitle}</h1>
             <div className="wrapper">
@@ -41,18 +48,27 @@ export function Results({setLoading, promisedAnalysis}: ResultsProps): React.JSX
     )) 
     : <p>Here, you'll see your results from previous quizzes</p>;
 
-    const nameResponseSet = analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}".</p> : (
-        <div>placeholder</div>
+    function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
+        setResSetName(event.target.value);
+    }
+    function submitResSetName() {
+        setQuizRunName(resSetName).then(() => setAnalysis(undefined));
+    }
+    const nameResponseSet = analysis && analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}".</p> : (
+        <Form>
+            <Form.Label>Quiz Run Name:</Form.Label>
+            <Form.Control onChange={updateResSetName}></Form.Control>
+            <Button className="button-style" onClick={submitResSetName}>Set Name</Button>
+        </Form>
     );
-    const nameThisAnalysis = analysis.name ? <p>This analysis is called "{analysis.name}"</p> : (
+    const nameThisAnalysis = analysis && analysis.name ? <p>This analysis is called "{analysis.name}"</p> : (
         <div>placeholder</div>
     );
 
     return (
         <div className="results">
             {resultsBody}
-            {nameResponseSet}
-            {nameThisAnalysis}
+            {loggedIn() ? [nameResponseSet, nameThisAnalysis] : <div>placeholder</div>}
         </div>
     )
 }

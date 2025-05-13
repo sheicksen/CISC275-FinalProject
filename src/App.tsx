@@ -31,6 +31,7 @@ function App() {
     const [loading, setLoading] = useState<string>("");
     const [analysis, setAnalysis] = useState<Promise<void | Analysis | undefined>>();
     const [run, setRun] = useState<QuizRun | undefined>()
+    // console.log("updated app", analysis)
 
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
@@ -45,7 +46,7 @@ function App() {
     //instead of urls, changes which 'page' will be visible to the user.
     function changePage(value: Page) {
         async function undefinedPromise() { return undefined; }
-        if (value !== "Results Menu" && value !== "Analyses Menu")
+        if (value !== "Results Menu" && value !== "Analyses Menu" && value !== "Results")
             setRun(undefined);
         if (value !== "Analyses Menu" && value !== "Results")
             setAnalysis(undefinedPromise());
@@ -61,9 +62,19 @@ function App() {
         setRun(run);
     }
 
+    async function setQuizRunName(name: string) {
+        console.log(name);
+        if (run) setRun({...run, responses: {...run.responses, name}});
+        async function analysisPromise(analysis: Analysis) {
+            return analysis;
+        }
+        const ansys = await analysis;
+        if (ansys) setAnalysis(analysisPromise({...ansys, responseSet: name}))
+    }
+
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis}></Results>],
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName}></Results>],
         ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],
