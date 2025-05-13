@@ -1,5 +1,8 @@
+import { Analysis } from "../interfaces/analysis";
 import { User } from "../interfaces/user";
 import { loggedIn } from "./login";
+
+const _ = require("lodash");
 
 /**
  * @function loadUsers Loads all of the users from localStorage
@@ -40,4 +43,15 @@ export function saveUser(user: User) {
  */
 export function loadCurrentUser(): User | undefined {
     return loadUser(loggedIn() ?? "");
+}
+
+/**
+ * @function removeAnalysis Removes an Analysis from an array if all careers are the same
+ * @param {Analysis} analysis The Analysis to be removed
+ * @param {Analysis[]} analyses The array to look in
+ * @returns {Analysis[]} The array with the given analysis removed (identical if not found)
+ */
+export function removeAnalysis(analysis: Analysis, analyses: Analysis[]): Analysis[] {
+    const out = analyses.filter((val) => (!_.isEqual(analysis.careers, val.careers)));
+    return out;
 }

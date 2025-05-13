@@ -15,6 +15,7 @@ import { ResultsMenu } from './components/results-menu';
 import { QuizRun } from './interfaces/user';
 import { AnalysesMenu } from './components/analyses-menu';
 import { Analysis } from './interfaces/analysis';
+import { removeAnalysis } from './functions/storage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -81,7 +82,10 @@ function App() {
         const ansys = await analysis;
         if (ansys) setAnalysis(analysisPromise({...ansys, name}));
 
-        if (run && ansys) setRun({...run, analyses: [...run.analyses, ansys]});
+        if (run && ansys) {
+            const newAnalyses = [...removeAnalysis(ansys, run.analyses), ansys];
+            setRun({...run, analyses: newAnalyses});
+        }
     }
 
     function refreshApp() {
