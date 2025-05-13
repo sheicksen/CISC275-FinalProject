@@ -54,18 +54,23 @@ export function BasicQuestions({selectPage, passAnalysis, passQuizRun}:BasicQues
         <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
+
+    const quizRun: QuizRun = {
+        responses: {name: "", type: "basic", questions: answeredQs},
+        analyses: []
+    }
     return (
         <div className="App-header">
             <div id="basic-questions">
             <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
                 </div>
                 {quizBody}
                 
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
+                <ResultsButton enabled={isFinished()} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>
         </div>
 

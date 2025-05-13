@@ -1,5 +1,4 @@
 import { Button } from "react-bootstrap";
-import { Question } from "../interfaces/question";
 import { Page } from '../custom-types';
 import { generateResults } from "../gemini/ai-conversation-handler";
 import '../App.css'
@@ -8,14 +7,15 @@ import { QuizRun } from "../interfaces/user";
 
 interface ResultsButtonsProps {
     enabled: boolean,
-    questions: Question[]
+    quizRun: QuizRun
     selectPage: (page:Page)=>void
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
     passQuizRun: (run: QuizRun) => void
 }
-export function ResultsButton({ enabled, questions, selectPage, passAnalysis, passQuizRun }: ResultsButtonsProps){
+export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, passQuizRun }: ResultsButtonsProps) {
     const handleSubmit = () => {
-        passAnalysis(generateResults(questions).then(
+        passQuizRun({...quizRun});
+        passAnalysis(generateResults(quizRun.responses.questions).then(
                     (value) => {
                         if(value !== undefined){
                             return {name: "", responseSet: "", careers: value};

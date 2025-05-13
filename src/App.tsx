@@ -66,11 +66,12 @@ function App() {
     async function setQuizRunName(name: string) {
         // console.log(name);
         if (run) setRun({...run, responses: {...run.responses, name}});
+
         async function analysisPromise(analysis: Analysis) {
             return analysis;
         }
         const ansys = await analysis;
-        if (ansys) setAnalysis(analysisPromise({...ansys, responseSet: name}))
+        if (ansys) setAnalysis(analysisPromise({...ansys, responseSet: name}));
     }
 
     async function setAppAnalysisName(name: string) {
@@ -78,7 +79,9 @@ function App() {
             return analysis;
         }
         const ansys = await analysis;
-        if (ansys) setAnalysis(analysisPromise({...ansys, name}))
+        if (ansys) setAnalysis(analysisPromise({...ansys, name}));
+
+        if (run && ansys) setRun({...run, analyses: [...run.analyses, ansys]});
     }
 
     function refreshApp() {

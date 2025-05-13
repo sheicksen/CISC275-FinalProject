@@ -1,5 +1,4 @@
 import { Button } from "react-bootstrap";
-import { Question } from "../interfaces/question";
 import { Page } from "../custom-types";
 import { ResultsButton } from "./results-button";
 import "./css/completion-alert.css";
@@ -12,10 +11,10 @@ interface CompletionAlertProps {
     setEnabled: (enable:boolean)=>void
     selectPage: (page:Page)=>void
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
-    questions: Question[]
+    quizRun: QuizRun
     passQuizRun: (run: QuizRun) => void
 }
-export function CompletionAlert({setEnabled, selectPage, passAnalysis, questions, passQuizRun}: CompletionAlertProps) {
+export function CompletionAlert({setEnabled, selectPage, passAnalysis, quizRun, passQuizRun}: CompletionAlertProps) {
     const reviewQuiz = ()=>{
         setEnabled(false);
     }
@@ -25,7 +24,7 @@ export function CompletionAlert({setEnabled, selectPage, passAnalysis, questions
             <p>
                 You've completed the quiz!
             </p>
-            <ResultsButton passAnalysis={passAnalysis} questions={questions} enabled={true} selectPage={selectPage} passQuizRun={passQuizRun}></ResultsButton>
+            <ResultsButton passAnalysis={passAnalysis} quizRun={quizRun} enabled={true} selectPage={selectPage} passQuizRun={passQuizRun}></ResultsButton>
             <Button className="button-style review-quiz-btn" onClick={reviewQuiz}> Review Quiz </Button>
             </div>
         </div> 

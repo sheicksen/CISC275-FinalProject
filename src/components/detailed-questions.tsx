@@ -107,11 +107,16 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
                 <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>{validPrompt ? "Get your quiz" : "Enter prompt"}</Button>
             </Form.Group>
         </Form>);
+
+    const quizRun: QuizRun = {
+        responses: {name: "", type: "detailed", questions: answeredQs},
+        analyses: []
+    }
     return (
         <div className="detailed-questions">
             <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
                 <h1>An AI Enhanced Quiz Experience</h1>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
                 {response === "" && careerPrompt}
                 <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
@@ -119,7 +124,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={questions.length} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
+                <ResultsButton enabled={isFinished()} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>
             }
 
