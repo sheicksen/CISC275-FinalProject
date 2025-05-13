@@ -54,8 +54,8 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
 
     /* ToDo:
         - Make them actually save
-        - Make it not look horrid
-        - Make login minipage if not logged in
+        - Make name set forms not look horrid
+        - Make login not look horrid
     */
 
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
