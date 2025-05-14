@@ -23,3 +23,13 @@ div img{
     padding: 60px;
     background-color: transparent;
 }
+
+@media (max-width:1000px){
+    #home{
+        text-align: center;
+    }
+    .image-container{
+        align-self: center;
+        width: 100%
+    }
+}
