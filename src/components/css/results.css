@@ -47,8 +47,10 @@
     padding:10px;
 }
 
-.results .form-control {
+.results #save-menu .form-control {
     display: inline-block;
+    width: auto;
+    margin: 0 10px;
 }
 
 .results #login {
@@ -58,5 +60,9 @@
 }
 
 .results .login-header {
+    text-align: center;
+}
+
+.results #save-menu {
     text-align: center;
 }
