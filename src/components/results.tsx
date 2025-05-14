@@ -54,7 +54,6 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
 
     /* ToDo:
         - Button to go back to analyses menu
-        - Show name of quiz run in analyses menu
     */
 
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {

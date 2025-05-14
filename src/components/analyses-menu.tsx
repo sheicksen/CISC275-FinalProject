@@ -37,6 +37,7 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: A
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
     return (
         <div id="analyses-menu">
+            <h2 id="analysis-menu-run-name">Quiz Run "{quizrun.responses.name}":</h2>
             <h2 id="analyses-menu-text">Choose a previous analysis to view.</h2>
             {analysesButtonsWithNew}
         </div>

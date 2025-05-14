@@ -4,3 +4,7 @@
     margin: 10px auto;
     padding: 10px;
 }
+
+#results-menu h2, #analyses-menu h2 {
+    text-align: center;
+}
