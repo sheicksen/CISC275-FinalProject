@@ -11,8 +11,10 @@ interface ResultsButtonsProps {
     selectPage: (page:Page)=>void
     passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
     passQuizRun: (run: QuizRun) => void
+    children?: string | undefined
+    className?: string | undefined
 }
-export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, passQuizRun }: ResultsButtonsProps) {
+export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, passQuizRun, children, className }: ResultsButtonsProps) {
     const handleSubmit = () => {
         passQuizRun({...quizRun});
         passAnalysis(generateResults(quizRun.responses.questions).then(
@@ -29,6 +31,6 @@ export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, pass
         selectPage("Results");
     }
     return (
-        <Button className="button-style" disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto'}}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
+        <Button className={`button-style ${className}`} disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto'}}>{children ?? (enabled ? "Get your results!" : "Complete the Quiz")}</Button>
     );
 }

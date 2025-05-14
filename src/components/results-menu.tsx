@@ -4,6 +4,7 @@ import { loggedIn } from '../functions/login';
 import { loadCurrentUser } from '../functions/storage';
 import { QuizRun } from '../interfaces/user';
 import React from 'react';
+import './css/menu.css';
 
 interface ResultsMenuProps {
     selectPage: (page:Page)=> void
@@ -29,7 +30,7 @@ export function ResultsMenu({selectPage, passQuizRun}: ResultsMenuProps): React.
     ));
     return (
         <div id="results-menu">
-            <p id="results-menu-text">Choose a previous quiz run to view the results from.</p>
+            <h2 id="results-menu-text">Choose a previous quiz run to view the results from.</h2>
             {quizRunButtons.length ? quizRunButtons : <p>Please return to Home and take a quiz!</p>}
         </div>
     )
@@ -41,5 +42,5 @@ interface ResultsMenuButtonProps {
     genOnClick: (run: QuizRun) => () => void
 }
 function ResultsMenuButton({run, genOnClick}: ResultsMenuButtonProps): React.JSX.Element {
-    return <Button className="button-style" onClick={genOnClick(run)}>{run.responses.name}</Button>
+    return <Button className="button-style menu-button" onClick={genOnClick(run)}>{run.responses.name}</Button>
 }

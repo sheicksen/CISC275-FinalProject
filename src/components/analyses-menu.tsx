@@ -4,6 +4,7 @@ import React from 'react';
 import { ResultsButton } from './results-button';
 import { Analysis } from '../interfaces/analysis';
 import { QuizRun } from '../interfaces/user';
+import './css/menu.css';
 
 interface AnalysesMenuProps {
     selectPage: (page: Page) => void
@@ -32,11 +33,11 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: A
     const analysesButtons = quizrun.analyses.map((analysis) => (
         <AnalysesMenuButton analysis={{...analysis}} genOnClick={genOnClick}></AnalysesMenuButton>
     ));
-    const newAnalysisButton = <ResultsButton enabled={true} quizRun={quizrun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>;
+    const newAnalysisButton = <ResultsButton className="menu-button" enabled={true} quizRun={quizrun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}>Generate Results Again</ResultsButton>;
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
     return (
         <div id="analyses-menu">
-            <p id="analyses-menu-text">Choose a previous analysis to view.</p>
+            <h2 id="analyses-menu-text">Choose a previous analysis to view.</h2>
             {analysesButtonsWithNew}
         </div>
     );
@@ -48,5 +49,5 @@ interface AnalysesMenuButtonProps {
     genOnClick: (analysis: Analysis) => () => void
 }
 function AnalysesMenuButton({analysis, genOnClick}: AnalysesMenuButtonProps): React.JSX.Element {
-    return <Button className="button-style" onClick={genOnClick(analysis)}>{analysis.name}</Button>
+    return <Button className="button-style menu-button" onClick={genOnClick(analysis)}>{analysis.name}</Button>
 }

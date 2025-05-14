@@ -53,8 +53,8 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     : <p>Here, you'll see your results from previous quizzes</p>;
 
     /* ToDo:
-        - Make Results and Analyses menus look good
-        - Make new result generation button text better
+        - Button to go back to analyses menu
+        - Show name of quiz run in analyses menu
     */
 
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
