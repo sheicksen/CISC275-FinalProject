@@ -55,17 +55,13 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     )) 
     : <p>Here, you'll see your results from previous quizzes</p>;
 
-    /* ToDo:
-        - Mention saving where it happens
-    */
-
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
         setResSetName(event.target.value);
     }
     function submitResSetName() {
         setQuizRunName(resSetName).then(() => setAnalysis(undefined));
     }
-    const nameResponseSet = analysis && analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}".</p> : (
+    const nameResponseSet = analysis && analysis.responseSet ? <p>This quiz run is called "{analysis.responseSet}"{runIsSaved ? "" : " (unsaved)"}.</p> : (
         <Form onSubmit={submitResSetName}>
             <Form.Label>Quiz Run Name:</Form.Label>
             <Form.Control onChange={updateResSetName}></Form.Control>
@@ -83,9 +79,9 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
         <Form onSubmit={submitAnalysisName}>
             <Form.Label>Analysis Name:</Form.Label>
             <Form.Control onChange={updateAnalysisName}></Form.Control>
-            <Button className="button-style" onClick={submitAnalysisName}>Set Name</Button>
+            <Button className="button-style" onClick={submitAnalysisName}>Set Name and Save</Button>
         </Form>
-    ) : <p>Name the quiz run before naming the analysis.</p>;
+    ) : <p>Name the quiz run before naming the analysis to save.</p>;
 
     const goToAnalysesMenu = runIsSaved ? <Button className="button-style" onClick={() => {selectPage("Analyses Menu")}}>Go To Analyses Menu</Button> : "";
 
