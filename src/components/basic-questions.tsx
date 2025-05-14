@@ -62,13 +62,12 @@ export function BasicQuestions({selectPage, passAnalysis, passQuizRun}:BasicQues
     return (
         <div className="App-header">
             <div id="basic-questions">
-            <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
+            <div className="title-card">
                 {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <h1 className="quiz-title">Basic Quiz</h1>
                 <p className="quiz-text">Here, you'll be guided through a simple quiz to gauge your interests.</p>
-                </div>
                 {quizBody}
-                
+            </div>
                 <ProgBar totalQuestions={quizLength} answeredQuestions={answeredQs.length}></ProgBar>
                 <ResultsButton enabled={isFinished()} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>

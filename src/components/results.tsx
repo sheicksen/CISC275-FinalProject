@@ -41,7 +41,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     const resultsBody = analysis ? analysis.careers.map((job) => (
         <div>
             <h1 className="text-color">{job.jobTitle}</h1>
-            <div className="wrapper">
+            <div className="rep-wrapper">
                 <h1>Job Description</h1>
                 <p>{job.jobDescription}</p>
                 <h1>Reasoning</h1>

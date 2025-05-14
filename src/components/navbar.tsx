@@ -19,13 +19,15 @@ export function NavBar({ selectPage }:NavBarProps) : React.JSX.Element{
         <div className="mynavbar">
             {/*MAIN NAVBAR CODE*/}
                 <img src={Logo} alt="pingas" className="test-image"/>
+                <span id="app-name">AiDvisor</span>
                 <Button className="nav-button button-style" onClick={()=>{
                     selectPage("Home");
                 }}>Home</Button>
+
                 { loggedIn() && 
                     <Button className="nav-button button-style" onClick={()=>{
-                    selectPage("Results Menu");
-                }}>Results</Button> // Results button is only accessible to logged in users
+                        selectPage("Results Menu");
+                    }}>Results</Button> // Results button is only accessible to logged in users
                 }
                 { loggedIn() && <div id="welcome">Welcome, {loggedIn()}</div> }
                 <Button className="nav-button button-style rightalign" onClick={() => {

@@ -6,3 +6,11 @@ p {
     font-size: 16px;
     margin: 0px auto;
 }
+.prompt-card{
+    background-color: #12161e;
+    border-radius: 15px;
+    padding: 30px;
+}
+.detailed-questions{
+    background-color: #12161e;
+}

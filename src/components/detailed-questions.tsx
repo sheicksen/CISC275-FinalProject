@@ -114,7 +114,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
     }
     return (
         <div className="detailed-questions">
-            <div style={{backgroundColor: "#12161e", borderRadius: "15px"}}>
+            <div className="prompt-card">
                 <h1>An AI Enhanced Quiz Experience</h1>
                 {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
