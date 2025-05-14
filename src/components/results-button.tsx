@@ -18,7 +18,7 @@ export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, pass
         passAnalysis(generateResults(quizRun.responses.questions).then(
                     (value) => {
                         if(value !== undefined){
-                            return {name: "", responseSet: "", careers: value};
+                            return {name: "", responseSet: quizRun.responses.name, careers: value};
                         }else {
                             handleSubmit();
                         }

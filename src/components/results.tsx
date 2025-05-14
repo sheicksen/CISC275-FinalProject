@@ -55,7 +55,6 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     /* ToDo:
         - Make Results and Analyses menus look good
         - Make new result generation button text better
-        - Make new result generation retain run name
     */
 
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
