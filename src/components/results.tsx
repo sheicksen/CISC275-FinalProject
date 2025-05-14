@@ -90,7 +90,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
             {resultsBody}
             {loggedIn() ? [nameResponseSet, nameThisAnalysis] : (
                 <div>
-                    <h2>Login or Sign Up to save your quiz and results.</h2>
+                    <h2 className="login-header">Login or Sign Up to save your quiz&nbsp;and&nbsp;results.</h2>
                     <Login selectPage={() => {refreshApp()}}></Login>
                 </div>
             )}
