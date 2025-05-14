@@ -8,3 +8,9 @@
 #results-menu h2, #analyses-menu h2 {
     text-align: center;
 }
+
+#results-menu {
+    background-color: #12161e;
+    border-radius: 10px;
+    padding: 30px;
+}
