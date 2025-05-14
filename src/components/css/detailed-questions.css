@@ -2,15 +2,15 @@ p {
     font-size: 16px;
 }
 
-.description {
+#description {
     font-size: 16px;
     margin: 0px auto;
 }
-.prompt-card{
+#prompt-card{
     background-color: #12161e;
     border-radius: 15px;
     padding: 30px;
 }
-.detailed-questions{
+#detailed-questions{
     background-color: #12161e;
 }

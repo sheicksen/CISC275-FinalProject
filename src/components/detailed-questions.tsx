@@ -94,8 +94,8 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
         return( questions.length === answeredQs.length && questions.length !== 0);
     }
     let quizBody = questions.map((question, index)=>(
-        isText(question) ? <TextQuestionTile id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
-        <ScaledQuestionTile id = {index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
+        isText(question) ? <TextQuestionTile key={index} id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
+        <ScaledQuestionTile key={index} id={index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     )
     );
     let careerPrompt = (
@@ -113,13 +113,13 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
         analyses: []
     }
     return (
-        <div className="detailed-questions">
-            <div className="prompt-card">
+        <div id="detailed-questions">
+            <div id="prompt-card">
                 <h1>An AI Enhanced Quiz Experience</h1>
                 {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
                 {response === "" && careerPrompt}
-                <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
+                <div style={{maxWidth:"70vw", textAlign:"center"}} id="description">{response}</div>
             </div>
             {questions.length > 0 && <div>
                 {quizBody}
