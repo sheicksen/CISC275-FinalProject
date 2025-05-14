@@ -12,15 +12,17 @@ import { CompletionAlert } from './completion-alert';
 import "../components/css/detailed-questions.css";
 import "../App.css";
 import { preventFormSubmitReload } from '../functions/form-submit';
-import { Career } from '../interfaces/career';
+import { Analysis } from '../interfaces/analysis';
+import { QuizRun } from '../interfaces/user';
 
 interface DetailedQuestionsProps {
     // apiKey:string
     setLoading: React.Dispatch<React.SetStateAction<string>>,
     selectPage: (page:Page)=>void
-    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    passQuizRun: (run: QuizRun) => void
 }
-export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passResults}: DetailedQuestionsProps): React.JSX.Element {
+export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAnalysis, passQuizRun}: DetailedQuestionsProps): React.JSX.Element {
     const [response, setResponse] = useState("");
     const [textInput, setTextInput] = useState("")
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -105,11 +107,16 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
                 <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>{validPrompt ? "Get your quiz" : "Enter prompt"}</Button>
             </Form.Group>
         </Form>);
+
+    const quizRun: QuizRun = {
+        responses: {name: "", type: "detailed", questions: answeredQs},
+        analyses: []
+    }
     return (
         <div className="detailed-questions">
             <div className="prompt-card">
                 <h1>An AI Enhanced Quiz Experience</h1>
-                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} questions={answeredQs} selectPage={selectPage} passResults={passResults}></CompletionAlert>}
+                {isFinished() && popupEnabled && <CompletionAlert setEnabled={setPopupEnabled} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></CompletionAlert>}
                 <p style={{margin: "15px auto", textAlign:"center"}}>For individuals who want to explore more specific and nuanced career options.</p>
                 {response === "" && careerPrompt}
                 <div style={{maxWidth:"70vw", textAlign:"center"}} className="description">{response}</div>
@@ -117,7 +124,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passRes
             {questions.length > 0 && <div>
                 {quizBody}
                 <ProgBar totalQuestions={questions.length} answeredQuestions={answeredQs.length}></ProgBar>
-                <ResultsButton enabled={isFinished()} questions={answeredQs} selectPage={selectPage} passResults={passResults}></ResultsButton>
+                <ResultsButton enabled={isFinished()} quizRun={quizRun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>
             </div>
             }
 

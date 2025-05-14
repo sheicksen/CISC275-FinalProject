@@ -16,26 +16,26 @@ interface NavBarProps {
 }
 export function NavBar({ selectPage }:NavBarProps) : React.JSX.Element{
     return (
-            <div className="mynavbar">
-                {/*MAIN NAVBAR CODE*/}
-                    <img src={Logo} alt="pingas" className="test-image"/>
-                    <span id="app-name">AiDvisor</span>
-                    <Button className="nav-button button-style" onClick={()=>{
-                        selectPage("Home");
-                    }}>Home</Button>
+        <div className="mynavbar">
+            {/*MAIN NAVBAR CODE*/}
+                <img src={Logo} alt="pingas" className="test-image"/>
+                <span id="app-name">AiDvisor</span>
+                <Button className="nav-button button-style" onClick={()=>{
+                    selectPage("Home");
+                }}>Home</Button>
 
-                    { loggedIn() && 
-                        <Button className="nav-button button-style" onClick={()=>{
-                            selectPage("Results");
-                        }}>Results</Button> // Results button is only accessible to logged in users
-                    }
-                    { loggedIn() && <div id="welcome">Welcome, {loggedIn()}</div> }
-                    <Button className="nav-button button-style rightalign" onClick={() => {
-                        loggedIn() ? logOut() : selectPage("Login");
-                    }}>{
-                        loggedIn() ? "Log Out" : "Log In / Sign Up"
-                    }</Button>
-                {/*^ Buttons ^*/}
-            </div>
+                { loggedIn() && 
+                    <Button className="nav-button button-style" onClick={()=>{
+                        selectPage("Results Menu");
+                    }}>Results</Button> // Results button is only accessible to logged in users
+                }
+                { loggedIn() && <div id="welcome">Welcome, {loggedIn()}</div> }
+                <Button className="nav-button button-style rightalign" onClick={() => {
+                    loggedIn() ? logOut() : selectPage("Login");
+                }}>{
+                    loggedIn() ? "Log Out" : "Log In / Sign Up"
+                }</Button>
+            {/*^ Buttons ^*/}
+        </div>
     )
 }

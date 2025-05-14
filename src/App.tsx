@@ -10,8 +10,12 @@ import { BasicQuestions } from './components/basic-questions';
 import { Login } from './components/login';
 import { LoadingScreen } from './components/loading-screen';
 import { getAPIKey, setAPIKey } from './gemini/ai-conversation-handler';
-import { Career } from './interfaces/career';
 import deployDate from './resources/date.json';
+import { ResultsMenu } from './components/results-menu';
+import { QuizRun } from './interfaces/user';
+import { AnalysesMenu } from './components/analyses-menu';
+import { Analysis } from './interfaces/analysis';
+import { isSaved, removeAnalysis, updateCurrentUserRuns } from './functions/storage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -26,7 +30,11 @@ function App() {
     const [key, setKey] = useState<string>(keyData); //for api key input
     const [page, setPage] = useState<Page>("Home"); // determines what page the app displays
     const [loading, setLoading] = useState<string>("");
-    const [results, setResults] = useState<Promise<void | Career[] | undefined>>();
+    const [analysis, setAnalysis] = useState<Promise<void | Analysis | undefined>>();
+    const [run, setRun] = useState<QuizRun | undefined>()
+    const [refresher, setRefresher] = useState<boolean>(false);
+    // console.log("updated app", analysis)
+
     //sets the local storage item to the api key the user inputed
     function handleSubmit() {
         setAPIKey(key);
@@ -39,18 +47,62 @@ function App() {
     }
     //instead of urls, changes which 'page' will be visible to the user.
     function changePage(value: Page) {
+        async function undefinedPromise() { return undefined; }
+        if (value !== "Results Menu" && value !== "Analyses Menu" && value !== "Results")
+            setRun(undefined);
+        if (value !== "Analyses Menu" && value !== "Results")
+            setAnalysis(undefinedPromise());
+
         setPage(value);
     }
 
-    function passResults(results:Promise<void | Career[] | undefined>):void{
-        setResults(results);
+    function passAnalysis(analysis: Promise<void | Analysis | undefined>):void{
+        setAnalysis(analysis);
     }
+
+    function passQuizRun(run: QuizRun) {
+        setRun(run);
+    }
+
+    async function setQuizRunName(name: string) {
+        // console.log(name);
+        if (run) setRun({...run, responses: {...run.responses, name}});
+
+        async function analysisPromise(analysis: Analysis) {
+            return analysis;
+        }
+        const ansys = await analysis;
+        if (ansys) setAnalysis(analysisPromise({...ansys, responseSet: name}));
+    }
+
+    async function setAppAnalysisName(name: string) {
+        async function analysisPromise(analysis: Analysis) {
+            return analysis;
+        }
+        const ansys = await analysis;
+        const newAnsys = ansys ? {...ansys, name} : undefined;
+        if (newAnsys) setAnalysis(analysisPromise(newAnsys));
+
+        if (run && newAnsys) {
+            const newAnalyses = [...removeAnalysis(newAnsys, run.analyses), newAnsys];
+            const newRun = {...run, analyses: newAnalyses};
+            updateCurrentUserRuns(newRun);
+            setRun(newRun);
+        }
+    }
+
+    function refreshApp() {
+        setRefresher(!refresher);
+    }
+
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedResults={results}></Results>],
-        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passResults={passResults}></DetailedQuestions>  ],
-        ["Basic Questions",    <BasicQuestions selectPage={changePage} passResults={passResults}></BasicQuestions> ],
-        ["Login",              <Login selectPage={changePage}></Login>  ]
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName} refreshApp={refreshApp} runIsSaved={run ? isSaved(run) : false} selectPage={changePage}></Results>],
+        ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></DetailedQuestions>  ],
+        ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></BasicQuestions> ],
+        ["Login",              <Login selectPage={changePage}></Login>  ],
+        ["Results Menu",       <ResultsMenu selectPage={changePage} passQuizRun={passQuizRun}></ResultsMenu>],
+        ["Analyses Menu",      <AnalysesMenu selectPage={changePage} quizrun={run} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></AnalysesMenu>]
     ]);
 
     return (

@@ -1,22 +1,26 @@
 import { Button } from "react-bootstrap";
-import { Question } from "../interfaces/question";
 import { Page } from '../custom-types';
 import { generateResults } from "../gemini/ai-conversation-handler";
-import { Career } from "../interfaces/career";
 import '../App.css'
+import { Analysis } from "../interfaces/analysis";
+import { QuizRun } from "../interfaces/user";
 
 interface ResultsButtonsProps {
     enabled: boolean,
-    questions: Question[]
+    quizRun: QuizRun
     selectPage: (page:Page)=>void
-    passResults: (questions:Promise<void | Career[] | undefined>)=>void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    passQuizRun: (run: QuizRun) => void
+    children?: string | undefined
+    className?: string | undefined
 }
-export function ResultsButton({ enabled, questions, selectPage, passResults }: ResultsButtonsProps){
+export function ResultsButton({ enabled, quizRun, selectPage, passAnalysis, passQuizRun, children, className }: ResultsButtonsProps) {
     const handleSubmit = () => {
-        passResults(generateResults(questions).then(
+        passQuizRun({...quizRun});
+        passAnalysis(generateResults(quizRun.responses.questions).then(
                     (value) => {
                         if(value !== undefined){
-                            return value;
+                            return {name: "", responseSet: quizRun.responses.name, careers: value};
                         }else {
                             handleSubmit();
                         }
@@ -27,6 +31,6 @@ export function ResultsButton({ enabled, questions, selectPage, passResults }: R
         selectPage("Results");
     }
     return (
-        <Button className="button-style" disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto'}}>{enabled ? "Get your results!" : "Complete the Quiz"}</Button>
+        <Button className={`button-style ${className}`} disabled={!enabled} onClick={handleSubmit} style={{ display: 'block', margin: '20px auto'}}>{children ?? (enabled ? "Get your results!" : "Complete the Quiz")}</Button>
     );
 }
