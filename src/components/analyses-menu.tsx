@@ -18,8 +18,19 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: A
         return <div></div>
     }
 
+    function genOnClick(analysis: Analysis) {
+        async function createPromise(analysis: Analysis) {
+            return analysis;
+        }
+
+        return () => {
+            passAnalysis(createPromise(analysis));
+            selectPage("Results");
+        }
+    }
+
     const analysesButtons = quizrun.analyses.map((analysis) => (
-        <AnalysesMenuButton analysis={{...analysis}} passAnalysis={passAnalysis} selectPage={selectPage}></AnalysesMenuButton>
+        <AnalysesMenuButton analysis={{...analysis}} genOnClick={genOnClick}></AnalysesMenuButton>
     ));
     const newAnalysisButton = <ResultsButton enabled={true} quizRun={quizrun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></ResultsButton>;
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
@@ -34,12 +45,8 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: A
 
 interface AnalysesMenuButtonProps {
     analysis: Analysis
-    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
-    selectPage: (page: Page) => void
+    genOnClick: (analysis: Analysis) => () => void
 }
-function AnalysesMenuButton({analysis, passAnalysis}: AnalysesMenuButtonProps): React.JSX.Element {
-    async function createPromise(analysis: Analysis) {
-        return analysis;
-    }
-    return <Button className="button-style" onClick={() => {passAnalysis(createPromise(analysis))}}>{analysis.name}</Button>
+function AnalysesMenuButton({analysis, genOnClick}: AnalysesMenuButtonProps): React.JSX.Element {
+    return <Button className="button-style" onClick={genOnClick(analysis)}>{analysis.name}</Button>
 }
