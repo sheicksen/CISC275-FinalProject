@@ -17,8 +17,15 @@ export function ResultsMenu({selectPage, passQuizRun}: ResultsMenuProps): React.
         return <div></div>
     }
 
+    function genOnClick(run: QuizRun) {
+        return () => {
+            passQuizRun(run);
+            selectPage("Analyses Menu");
+        }
+    }
+
     const quizRunButtons = user.quizzes.map((quizrun) => (
-        <ResultsMenuButton run={{...quizrun}} passQuizRun={passQuizRun}></ResultsMenuButton>
+        <ResultsMenuButton run={{...quizrun}} genOnClick={genOnClick}></ResultsMenuButton>
     ));
     return (
         <div id="results-menu">
@@ -31,8 +38,8 @@ export function ResultsMenu({selectPage, passQuizRun}: ResultsMenuProps): React.
 
 interface ResultsMenuButtonProps {
     run: QuizRun
-    passQuizRun: (run: QuizRun) => void
+    genOnClick: (run: QuizRun) => () => void
 }
-function ResultsMenuButton({run, passQuizRun}: ResultsMenuButtonProps): React.JSX.Element {
-    return <Button className="button-style" onClick={() => {passQuizRun(run)}}>{run.responses.name}</Button>
+function ResultsMenuButton({run, genOnClick}: ResultsMenuButtonProps): React.JSX.Element {
+    return <Button className="button-style" onClick={genOnClick(run)}>{run.responses.name}</Button>
 }
