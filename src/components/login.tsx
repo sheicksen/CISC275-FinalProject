@@ -17,7 +17,7 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
     }
 
     return (
-        <div id="login" style={{width: "min(250px, 100vw)"}}>
+        <div id="login">
             <Form onSubmit={(e) => {preventFormSubmitReload(e); alert("Choose Login or Create User")}}>
                 <Form.Label>Login:</Form.Label>
                 <Form.Control className="align-to-button" placeholder="Username" onChange={changeUsrnm}></Form.Control>
