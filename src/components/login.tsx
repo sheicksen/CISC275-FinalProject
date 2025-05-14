@@ -14,6 +14,7 @@ export function Login({selectPage}: LoginProps): React.JSX.Element {
 
     function changeUsrnm(event: React.ChangeEvent<HTMLInputElement>) {
         setUsrnm(event.target.value);
+        setFailed(undefined);
     }
 
     return (
