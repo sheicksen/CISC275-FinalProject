@@ -21,11 +21,9 @@ export function CompletionAlert({setEnabled, selectPage, passAnalysis, quizRun, 
     return (
         <div id="completion-alert">
             <div id="completion-alert-card">
-            <p>
-                You've completed the quiz!
-            </p>
-            <ResultsButton passAnalysis={passAnalysis} quizRun={quizRun} enabled={true} selectPage={selectPage} passQuizRun={passQuizRun}></ResultsButton>
-            <Button className="button-style review-quiz-btn" onClick={reviewQuiz}> Review Quiz </Button>
+                <p>You've completed the quiz!</p>
+                <ResultsButton passAnalysis={passAnalysis} quizRun={quizRun} enabled={true} selectPage={selectPage} passQuizRun={passQuizRun}></ResultsButton>
+                <Button className="button-style review-quiz-btn" onClick={reviewQuiz}> Review Quiz </Button>
             </div>
         </div> 
     );
