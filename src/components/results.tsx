@@ -4,6 +4,7 @@ import { Analysis } from "../interfaces/analysis";
 import { loggedIn } from "../functions/login";
 import { Button, Form } from "react-bootstrap";
 import { Login } from "./login";
+import { Page } from "../custom-types";
 
 
 interface ResultsProps {
@@ -12,8 +13,10 @@ interface ResultsProps {
     setQuizRunName: (name: string) => Promise<void>
     setAppAnalysisName: (name: string) => Promise<void>
     refreshApp: () => void
+    runIsSaved: boolean
+    selectPage: (page: Page)=> void
 }
-export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName, refreshApp}: ResultsProps): React.JSX.Element {
+export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName, refreshApp, runIsSaved, selectPage}: ResultsProps): React.JSX.Element {
     let [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
     const [resSetName, setResSetName] = useState<string>("");
     const [analysisName, setAnalysisName] = useState<string>("");
@@ -53,7 +56,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     : <p>Here, you'll see your results from previous quizzes</p>;
 
     /* ToDo:
-        - Button to go back to analyses menu
+        - Mention saving where it happens
     */
 
     function updateResSetName(event: React.ChangeEvent<HTMLInputElement>) {
@@ -84,6 +87,8 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
         </Form>
     ) : <p>Name the quiz run before naming the analysis.</p>;
 
+    const goToAnalysesMenu = runIsSaved ? <Button className="button-style" onClick={() => {selectPage("Analyses Menu")}}>Go To Analyses Menu</Button> : "";
+
     return (
         <div className="results">
             {resultsBody}
@@ -93,6 +98,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
                     <Login selectPage={() => {refreshApp()}}></Login>
                 </div>
             )}
+            {goToAnalysesMenu}
         </div>
     )
 }

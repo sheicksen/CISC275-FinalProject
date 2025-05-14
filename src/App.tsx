@@ -15,7 +15,7 @@ import { ResultsMenu } from './components/results-menu';
 import { QuizRun } from './interfaces/user';
 import { AnalysesMenu } from './components/analyses-menu';
 import { Analysis } from './interfaces/analysis';
-import { removeAnalysis, updateCurrentUserRuns } from './functions/storage';
+import { isSaved, removeAnalysis, updateCurrentUserRuns } from './functions/storage';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = getAPIKey();
@@ -97,7 +97,7 @@ function App() {
 
     const pages = new Map<Page, React.JSX.Element>([
         ["Home",               <Home selectPage={changePage}></Home>    ],
-        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName} refreshApp={refreshApp}></Results>],
+        ["Results",            <Results setLoading={setLoading} promisedAnalysis={analysis} setQuizRunName={setQuizRunName} setAppAnalysisName={setAppAnalysisName} refreshApp={refreshApp} runIsSaved={run ? isSaved(run) : false} selectPage={changePage}></Results>],
         ["Detailed Questions", <DetailedQuestions selectPage={changePage} setLoading={setLoading} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></DetailedQuestions>  ],
         ["Basic Questions",    <BasicQuestions selectPage={changePage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}></BasicQuestions> ],
         ["Login",              <Login selectPage={changePage}></Login>  ],

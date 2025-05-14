@@ -74,3 +74,17 @@ export function updateCurrentUserRuns(run: QuizRun) {
 
     saveUser(updatedUser);
 }
+
+/**
+ * @function isSaved Checks if a quiz run has been saved to the current user
+ * @param {QuizRun} run The quiz run to check for
+ * @returns {boolean} true if found, false if not found or not logged in
+ */
+export function isSaved(run: QuizRun): boolean {
+    const user = loadCurrentUser();
+    if (!user) return false;
+
+    const sameName = user.quizzes.filter((val) => (val.responses.name === run.responses.name));
+    const sameNameAndQs = sameName.filter((val) => _.isEqual(val.responses.questions, run.responses.questions));
+    return sameNameAndQs.length > 0;
+}
