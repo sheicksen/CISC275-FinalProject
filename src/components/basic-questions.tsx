@@ -35,14 +35,11 @@ export function BasicQuestions({selectPage, passAnalysis, passQuizRun}: BasicQue
 
     function updateAnswers(q: Question, answer: string | number) {
         const sameQuestion = answeredQs.filter((question) => (question.question === q.question));
-        if (sameQuestion.length > 0) {
-            const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
-            const editedAnswers = [...differentQuestion, {...sameQuestion[0], answer}];
-            setAnsweredQs(editedAnswers);
-        } else {
-            const amendedAnswers = [...answeredQs, {...q, answer}];
-            setAnsweredQs(amendedAnswers);
-        }
+        const q2answer = sameQuestion.at(0) ?? q;
+        const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
+        const answeredQuestion = {...q2answer, answer};
+        const amendedAnswers = [...differentQuestion, answeredQuestion];
+        setAnsweredQs(amendedAnswers);
     }
 
     function isFinished(): boolean {

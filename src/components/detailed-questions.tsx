@@ -52,11 +52,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
 
     function updateText(event: React.ChangeEvent<HTMLInputElement>) {
         setTextInput(event.target.value);
-        if (validateText(event.target.value)){
-            setValidPrompt(true);
-        } else {
-            setValidPrompt(false);
-        }
+        setValidPrompt(validateText(event.target.value));
     };
 
     function getQuestions() {
@@ -77,20 +73,12 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
 
     function updateAnswers(q: Question, answer: string | number) {
         const sameQuestion = answeredQs.filter((question) => (question.question === q.question));
-        if (sameQuestion.length > 0) {
-            const qAnswer = typeof sameQuestion[0].answer === 'string' ? sameQuestion[0].answer : "";
-            const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
-            const editedAnswers = (
-                sameQuestion[0].type === "text" && !validateText(qAnswer) ?
-                    differentQuestion : [...differentQuestion, {...sameQuestion[0], answer}]
-            );
-            setAnsweredQs(editedAnswers);
-        } else {
-            const amendedAnswers = [...answeredQs, {...q, answer:answer}];
-            if (typeof answer === 'number' || validateText(answer)){
-                setAnsweredQs(amendedAnswers);
-            }
-        }
+        const q2answer = sameQuestion.at(0) ?? q;
+        const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
+        const answeredQuestion = {...q2answer, answer};
+        const isValid = typeof answeredQuestion.answer === 'number' || (answeredQuestion.type === "text" && validateText(answeredQuestion.answer));
+        const amendedAnswers = isValid ? [...differentQuestion, answeredQuestion] : differentQuestion;
+        setAnsweredQs(amendedAnswers);
     }
 
     function isFinished(): boolean {
