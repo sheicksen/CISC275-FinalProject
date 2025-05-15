@@ -3,8 +3,9 @@
     background:linear-gradient(90deg,#5d1781 17%,#194a66 57%,#3da0c8);
     overflow: visible!important; 
     height: 55px;
-    align-items: left;
+    align-items: center;
     position: relative;
+    display: flex;
     width: 100vw;
     padding: 1ex;
 }/*Style for the navbar, specifically the */
@@ -26,19 +27,16 @@
 }/*Style for the navigation buttons*/
 
 #welcome {
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    left: 50%;
+    width: 0;
+    position: relative;
     display: flex;
     color: white;
     font-size: 1.5em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     justify-content: center;
-    align-items: center;
-    pointer-events: none;
     background-color: #0000;
+    white-space: nowrap;
 }
 #app-name{
     font-size:20px;
@@ -47,12 +45,14 @@
     margin: 0px 15px;
 }
 .rightalign{
-    position: absolute;
-    right: 1ex;
+    /* position: absolute; */
+    /* right: 1ex; */
     background-color: #1d426d;
+    /* float: right; */
+    margin-left: auto;
 }
 
-.test-image{
+.logo {
     width: 40px;
     height: 40px;
 }
