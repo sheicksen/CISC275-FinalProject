@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import {Question} from "../interfaces/question"
+import {Question, scaleBounds} from "../interfaces/question"
 import { Career } from "../interfaces/career";
 
 const KEYNAME = "MYKEY";
@@ -143,12 +143,19 @@ function parseQuestions(questionsString: string | undefined): Question[] {
     return [];
 }
 
+
+const [low, high] = [scaleBounds.min, scaleBounds.max];
+const mid = (low + high) / 2;
+function parseScaledAnswer(question: Question & {type: "scaled"}): string {
+    return `I answered ${question.answer} on a scale of ${low} to ${high}, where ${low} is ${question.scale[0]} and ${high} is ${question.scale[1]} and ${mid} would express indifference`
+}
+
 function parseAnswers(questions: Question[]): string{
     let answers: string = "";
     for (let i =0; i < questions.length; i++){
         answers += "Question: " + questions[i].question;
         if (questions[i].type === "scaled"){
-            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5, where 1 is " + questions[i].scale[0] + " to 5 which is " + questions[i].scale[1] + " and 3 expressed indifference";
+            answers += parseScaledAnswer(questions[i] as Question & {type: "scaled"});
         } else {
             answers += "I answered " + questions[i].answer;
         }
