@@ -30,9 +30,7 @@ export function TextQuestionTile({id, question, passAnswer}: TextQuestionProps){
     return (
         <div className="tile">
             <Form className="wrapper" onSubmit={preventFormSubmitReload}>
-                <Form.Text className="text-color">
-                    {(id+1).toString() + ". " + question.question}
-                </Form.Text>
+                <Form.Text className="text-color">{id+1}. {question.question}</Form.Text>
                 <Form.Control required type="textarea" onChange={changeAnswer} onFocus={handleFocus} onBlur={handleBlur}></Form.Control>
             </Form>
             {!valid && !focused && <div className="align-to-button invalid">For the best experience, ensure your response is valid.</div>}
