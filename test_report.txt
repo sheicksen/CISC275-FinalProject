@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (45 ms)
+  ✕ renders learn react link (48 ms)
 
   ● renders learn react link
 
@@ -171,13 +171,13 @@ go away.[0m
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |    7.84 |     4.96 |    6.66 |     7.8 |                   
+All files                    |    8.55 |     4.96 |    6.55 |    8.54 |                   
  src                         |   18.75 |     6.89 |    7.14 |      20 |                   
   App.tsx                    |   24.32 |        8 |    8.33 |   26.47 | 40-95             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    6.74 |     3.12 |    6.66 |    5.98 |                   
+ src/components              |    5.14 |     3.12 |     5.4 |    4.84 |                   
   analyses-menu.tsx          |       0 |        0 |       0 |       0 | 16-53             
   basic-questions.tsx        |      25 |        0 |      25 |   23.52 | 33-56             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 18-21             
@@ -190,19 +190,19 @@ All files                    |    7.84 |     4.96 |    6.66 |     7.8 |
   results-button.tsx         |       0 |        0 |       0 |       0 | 18-33             
   results-menu.tsx           |       0 |        0 |       0 |       0 | 14-45             
   results.tsx                |       0 |        0 |       0 |       0 | 20-100            
-  scaled-question.tsx        |      50 |      100 |      25 |      40 | 19-29             
+  scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-22             
   text-question.tsx          |       0 |        0 |       0 |       0 | 15-30             
  src/functions               |     2.7 |        0 |       5 |    3.57 |                   
   form-submit.ts             |       0 |      100 |       0 |       0 | 4                 
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 11-89             
   validation.ts              |       0 |      100 |       0 |       0 | 7-8               
- src/gemini                  |    4.87 |       25 |   11.11 |       5 |                   
-  ai-conversation-handler.ts |    4.87 |       25 |   11.11 |       5 | 12,28-169         
- src/interfaces              |       0 |      100 |       0 |       0 |                   
+ src/gemini                  |   10.25 |       25 |    9.09 |   10.25 |                   
+  ai-conversation-handler.ts |   10.25 |       25 |    9.09 |   10.25 | 12,28-167,174-198 
+ src/interfaces              |      60 |      100 |   33.33 |      50 |                   
   analysis.ts                |       0 |        0 |       0 |       0 |                   
   career.ts                  |       0 |        0 |       0 |       0 |                   
-  question.ts                |       0 |      100 |       0 |       0 | 10-13             
+  question.ts                |      60 |      100 |   33.33 |      50 | 12-15             
   report.ts                  |       0 |        0 |       0 |       0 |                   
   responses.ts               |       0 |        0 |       0 |       0 |                   
   user.ts                    |       0 |        0 |       0 |       0 |                   
@@ -210,5 +210,5 @@ All files                    |    7.84 |     4.96 |    6.66 |     7.8 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.401 s
+Time:        3.294 s
 Ran all test suites.
