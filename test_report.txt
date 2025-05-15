@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (48 ms)
+  ✕ renders learn react link (45 ms)
 
   ● renders learn react link
 
@@ -19,8 +19,8 @@ FAIL src/App.test.tsx
             [33mclass[39m=[32m"mynavbar"[39m
           [36m>[39m
             [36m<img[39m
-              [33malt[39m=[32m"pingas"[39m
-              [33mclass[39m=[32m"test-image"[39m
+              [33malt[39m=[32m"AiDvisor logo, a brain"[39m
+              [33mclass[39m=[32m"logo"[39m
               [33msrc[39m=[32m"navbarlogo.png"[39m
             [36m/>[39m
             [36m<span[39m
@@ -179,13 +179,13 @@ All files                    |    7.29 |     4.54 |    5.04 |    7.64 |
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
  src/components              |    6.18 |      2.8 |    4.05 |    6.11 |                   
   analyses-menu.tsx          |       0 |        0 |       0 |       0 | 16-53             
-  basic-questions.tsx        |   33.33 |        0 |   14.28 |   33.33 | 38-62             
+  basic-questions.tsx        |   33.33 |        0 |   14.28 |   33.33 | 38-61             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 18-21             
   detailed-questions.tsx     |       0 |        0 |       0 |       0 | 26-115            
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 12-46             
-  navbar.tsx                 |      25 |     37.5 |      25 |      25 | 24-34             
+  navbar.tsx                 |      25 |     37.5 |      25 |      25 | 27-37             
   progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-18              
   results-button.tsx         |       0 |        0 |       0 |       0 | 18-33             
   results-menu.tsx           |       0 |        0 |       0 |       0 | 14-45             
@@ -210,5 +210,5 @@ All files                    |    7.29 |     4.54 |    5.04 |    7.64 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.393 s
+Time:        3.34 s
 Ran all test suites.
