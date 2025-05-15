@@ -12,9 +12,10 @@ interface TextQuestionProps {
 }
 
 export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
-    let [valid, setValid] = useState<boolean>(true);
-    let [focused, setFocused] = useState<boolean>(true);
-    const changeAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    const [valid, setValid] = useState<boolean>(true);
+    const [focused, setFocused] = useState<boolean>(true);
+
+    function changeAnswer(e: React.ChangeEvent<HTMLInputElement>) {
         if (validateText(e.target.value)){
             setValid(true);
         } else {
@@ -22,12 +23,14 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
         }
         passAnswer(question, e.target.value);
     }
-    const handleFocus = () => {
-        setFocused(true)
+
+    function handleFocus() {
+        setFocused(true);
     }
-    const handleBlur = () => {
-        setFocused(false)
-    };
+    function handleBlur() {
+        setFocused(false);
+    }
+
     return (
         <div className="tile">
             <Form className="wrapper" onSubmit={preventFormSubmitReload}>
