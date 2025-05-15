@@ -29,11 +29,11 @@ function getGoogleGenAI(): GoogleGenAI {
 }
 
 /**
- * @function askQuestion Gets an answer from Gemini given a user-asked question.
- * @param {string}question The question asked by the user
- * @returns {string} The answer Gemini generated based on the given question
+ * @function askQuestion Gets an answer from Gemini given a user-asked question (small a answer, small q question).
+ * @param {string} question The question asked by the user
+ * @returns {Promise<string | undefined>} The promise to the answer Gemini generated based on the given question
  */
-export async function askQuestion(question: string){
+export async function askQuestion(question: string): Promise<string | undefined> {
     const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
