@@ -1,4 +1,4 @@
-.results {
+#results {
     max-width: 70vw;
     background-color: #2e516d;
     border-radius: 15px;
@@ -47,22 +47,22 @@
     padding:10px;
 }
 
-.results #save-menu .form-control {
+#results #save-menu .form-control {
     display: inline-block;
     width: auto;
     margin: 0 10px;
 }
 
-.results #login {
+#results #login {
     width: min(350px, 100%);
     background-color: #5d1781;
     margin: auto;
 }
 
-.results .login-header {
+#results #login-header {
     text-align: center;
 }
 
-.results #save-menu {
+#results #save-menu {
     text-align: center;
 }

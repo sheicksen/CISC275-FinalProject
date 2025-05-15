@@ -86,7 +86,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     const goToAnalysesMenu = runIsSaved ? <Button className="button-style" onClick={() => {selectPage("Analyses Menu")}}>Go To Analyses Menu</Button> : "";
 
     return (
-        <div className="results">
+        <div id="results">
             {resultsBody}
             {loggedIn() ? (
                 <div id="save-menu">
@@ -96,7 +96,7 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
                 </div>
             ) : (
                 <div>
-                    <h2 className="login-header">Login or Sign Up to save your quiz&nbsp;and&nbsp;results.</h2>
+                    <h2 id="login-header">Login or Sign Up to save your quiz&nbsp;and&nbsp;results.</h2>
                     <Login selectPage={() => {refreshApp()}}></Login>
                 </div>
             )}
