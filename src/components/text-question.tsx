@@ -11,16 +11,12 @@ interface TextQuestionProps {
     passAnswer: (question: Question, answer: string) => void
 }
 
-export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
+export function TextQuestionTile({id, question, passAnswer}: TextQuestionProps){
     const [valid, setValid] = useState<boolean>(true);
     const [focused, setFocused] = useState<boolean>(true);
 
     function changeAnswer(e: React.ChangeEvent<HTMLInputElement>) {
-        if (validateText(e.target.value)){
-            setValid(true);
-        } else {
-            setValid(false);
-        }
+        setValid(validateText(e.target.value));
         passAnswer(question, e.target.value);
     }
 
@@ -39,11 +35,7 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
                 </Form.Text>
                 <Form.Control required type="textarea" onChange={changeAnswer} onFocus={handleFocus} onBlur={handleBlur}></Form.Control>
             </Form>
-            {(!valid && !focused) &&
-                <div className="align-to-button invalid">
-                    {`For the best experience, ensure your response is valid.`}
-                </div>
-            }
+            {!valid && !focused && <div className="align-to-button invalid">For the best experience, ensure your response is valid.</div>}
         </div>
     );
 }
