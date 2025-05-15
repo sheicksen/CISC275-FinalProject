@@ -156,10 +156,11 @@ function stringifyQuestion(question: Question, index: number): string {
     return `To question ${index}, "${question.question}", ${stringifyAnswer(question)}.`;
 }
 
-function parseAnswers(questions: Question[]): string{
+function parseAnswers(questions: Question[]): string {
+    const stringifiedQuestions = questions.map(stringifyQuestion);
     let answers: string = "";
-    for (let i =0; i < questions.length; i++){
-        answers += stringifyQuestion(questions[i], i);
+    for (let stringifiedQuestion of stringifiedQuestions) {
+        answers += stringifiedQuestion;
     }
     console.log(answers);
     return answers;
