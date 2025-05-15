@@ -153,13 +153,12 @@ function stringifyAnswer(question: Question): string {
 }
 
 function stringifyQuestion(question: Question, index: number): string {
-    return `To question ${index+1}, "${question.question}", ${stringifyAnswer(question)}.`;
+    return `To question ${index+1}, "${question.question}":\n\t${stringifyAnswer(question)}.`;
 }
 
 function parseAnswers(questions: Question[]): string {
     const stringifiedQuestions = questions.map(stringifyQuestion);
-    const answers = stringifiedQuestions.join("\n");
-    console.log(answers);
+    const answers = stringifiedQuestions.join("\n\n");
     return answers;
 }
 
