@@ -17,7 +17,7 @@ interface ResultsProps {
     selectPage: (page: Page)=> void
 }
 export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAnalysisName, refreshApp, runIsSaved, selectPage}: ResultsProps): React.JSX.Element {
-    let [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
+    const [analysis, setAnalysis] = useState<Analysis | undefined>(undefined);
     const [resSetName, setResSetName] = useState<string>("");
     const [analysisName, setAnalysisName] = useState<string>("");
     // console.log("updated results", analysis)
