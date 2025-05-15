@@ -1,7 +1,13 @@
 import { Form } from "react-bootstrap";
 import { Question } from "../interfaces/question";
 import "./css/question-tile.css";
+import _ from "lodash";
 
+const scaleBounds = {
+    min: 1,
+    max: 5
+};
+const scale = _.range(scaleBounds.min, scaleBounds.max + 1).map((val) => `${val}`);
 
 interface ScaledQuestionProps {
     id: number,
@@ -9,10 +15,10 @@ interface ScaledQuestionProps {
     passAnswer: (question: Question, answer: string | number) => void
 }
 export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProps){
-    let scale = ["1", "2", "3", "4", "5"]
-    let changeAnswer = (e:React.ChangeEvent<HTMLInputElement>) => {
+    function changeAnswer(e: React.ChangeEvent<HTMLInputElement>) {
         passAnswer(question, parseInt(e.target.value));
     }
+
     return (
         <div className="tile">
             <Form className="wrapper">
@@ -20,17 +26,16 @@ export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProp
                     {(id+1).toString() + ". " + question.question}
                 </Form.Text>
                 <div>
-                    {scale.map((num:string)=>(
+                    {scale.map((num) => (
                         <Form.Check
-                        inline
-                        key={num}
-                        type="radio"
-                        onChange={changeAnswer}
-                        label={num}
-                        name={"group-" + id.toString()}
-                        id={num}
-                        value={num}
-                        ></Form.Check>
+                            inline
+                            key={num}
+                            type="radio"
+                            onChange={changeAnswer}
+                            label={num}
+                            name={"group-" + id.toString()}
+                            value={num}
+                        />
                     )
                     )}
                 </div>
