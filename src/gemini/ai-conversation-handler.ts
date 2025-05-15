@@ -158,10 +158,7 @@ function stringifyQuestion(question: Question, index: number): string {
 
 function parseAnswers(questions: Question[]): string {
     const stringifiedQuestions = questions.map(stringifyQuestion);
-    let answers: string = "";
-    for (let stringifiedQuestion of stringifiedQuestions) {
-        answers += stringifiedQuestion;
-    }
+    const answers = stringifiedQuestions.join("\n");
     console.log(answers);
     return answers;
 }
