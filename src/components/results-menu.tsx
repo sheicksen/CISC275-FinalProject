@@ -25,8 +25,8 @@ export function ResultsMenu({selectPage, passQuizRun}: ResultsMenuProps): React.
         }
     }
 
-    const quizRunButtons = user.quizzes.map((quizrun) => (
-        <ResultsMenuButton run={{...quizrun}} genOnClick={genOnClick}></ResultsMenuButton>
+    const quizRunButtons = user.quizzes.map((quizrun, index) => (
+        <ResultsMenuButton key={index} run={{...quizrun}} genOnClick={genOnClick}></ResultsMenuButton>
     ));
     return (
         <div id="results-menu">

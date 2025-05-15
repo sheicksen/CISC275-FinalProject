@@ -30,10 +30,10 @@ export function AnalysesMenu({selectPage, quizrun, passAnalysis, passQuizRun}: A
         }
     }
 
-    const analysesButtons = quizrun.analyses.map((analysis) => (
-        <AnalysesMenuButton analysis={{...analysis}} genOnClick={genOnClick}></AnalysesMenuButton>
+    const analysesButtons = quizrun.analyses.map((analysis, index) => (
+        <AnalysesMenuButton key={index} analysis={{...analysis}} genOnClick={genOnClick}></AnalysesMenuButton>
     ));
-    const newAnalysisButton = <ResultsButton className="menu-button" enabled={true} quizRun={quizrun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}>Generate Results Again</ResultsButton>;
+    const newAnalysisButton = <ResultsButton key={-1} className="menu-button" enabled={true} quizRun={quizrun} selectPage={selectPage} passAnalysis={passAnalysis} passQuizRun={passQuizRun}>Generate Results Again</ResultsButton>;
     const analysesButtonsWithNew = [...analysesButtons, newAnalysisButton];
     return (
         <div id="analyses-menu">

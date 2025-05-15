@@ -38,8 +38,8 @@ export function Results({setLoading, promisedAnalysis, setQuizRunName, setAppAna
     }
         
     // Checks if the user has submitted a quiz before requesting response from Gemini. Ensures the request only happens once.
-    const resultsBody = analysis ? analysis.careers.map((job) => (
-        <div>
+    const resultsBody = analysis ? analysis.careers.map((job, index) => (
+        <div key={index}>
             <h1 className="text-color">{job.jobTitle}</h1>
             <div className="rep-wrapper">
                 <h1>Job Description</h1>
