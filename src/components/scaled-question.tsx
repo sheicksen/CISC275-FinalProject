@@ -1,13 +1,6 @@
 import { Form } from "react-bootstrap";
-import { Question } from "../interfaces/question";
+import { Question, scale } from "../interfaces/question";
 import "./css/question-tile.css";
-import _ from "lodash";
-
-const scaleBounds = {
-    min: 1,
-    max: 5
-};
-const scale = _.range(scaleBounds.min, scaleBounds.max + 1).map((val) => `${val}`);
 
 interface ScaledQuestionProps {
     id: number,

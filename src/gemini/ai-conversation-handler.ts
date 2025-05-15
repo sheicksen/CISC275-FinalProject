@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import {Question} from "../interfaces/question"
+import {Question, scaleBounds} from "../interfaces/question"
 import { Career } from "../interfaces/career";
 
 const KEYNAME = "MYKEY";
@@ -29,11 +29,11 @@ function getGoogleGenAI(): GoogleGenAI {
 }
 
 /**
- * @function askQuestion Gets an answer from Gemini given a user-asked question.
- * @param {string}question The question asked by the user
- * @returns {string} The answer Gemini generated based on the given question
+ * @function askQuestion Gets an answer from Gemini given a user-asked question (small a answer, small q question).
+ * @param {string} question The question asked by the user
+ * @returns {Promise<string | undefined>} The promise to the answer Gemini generated based on the given question
  */
-export async function askQuestion(question: string){
+export async function askQuestion(question: string): Promise<string | undefined> {
     const ai = getGoogleGenAI();
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
@@ -42,13 +42,29 @@ export async function askQuestion(question: string){
     return response.text;
 }
 
-export async function generateResults(data: Question[]){
+/**
+ * @function generateResults Gets a list of careers from Gemini, based on user responses
+ * @param {Question[]} data The answered questions from the user
+ * @returns {Promise<Career[]>} The promise to the careers
+ */
+export async function generateResults(data: Question[]): Promise<Career[]> {
     const ai = getGoogleGenAI();
     const quizAnswers = parseAnswers(data);
-    const prompt = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
-        "as a json with each job in the following format: " +
-            "{ jobTitle: string, jobDescription: string, reasonForRecommendation : string, avgSalary: string, educationLevel : string}" +
-            "where reasonForRecommendation is why the job is suited for me based on my quiz answers.");
+    const prompt = (
+`Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:
+
+${quizAnswers}
+
+as a json with each job in the following format:
+{
+    jobTitle: string,
+    jobDescription: string,
+    reasonForRecommendation: string,
+    avgSalary: string,
+    educationLevel: string
+}
+where reasonForRecommendation is why the job is suited for me based on my quiz answers`
+    );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt,
@@ -77,20 +93,30 @@ export async function generateResults(data: Question[]){
 }
 
 /**
- * @function generateQuestions takes a career field and returns a list of 7 Question objects based on that field.
- * @param {string} careerField the career field to base the questions off of.
- * @returns {Question<T>[]} an array of Question objects.
- *
+ * @function generateQuestions Takes a career field and returns a list of Question objects based on that field
+ * @param {string} careerField The career field to base the questions off of
+ * @returns {Promise<Question[]>} The promise to the array of Question objects
  */
-export async function generateQuestions(careerField: string){
+export async function generateQuestions(careerField: string): Promise<Question[]> {
     const ai = getGoogleGenAI();
-    const prompt = `Could you generate 10 questions, 6 scaled and 4 text, dispersed randomly, that would help me find a career in ` + careerField + 
-    ` using this object format for Likert scale questions:
-        Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
-    and this JSON scheme for text answered questions:
-        Question = {'question':string, 'type':"text", answer:undefined, scale:[] }
-        Return: Array<Question>
-    `;
+    const prompt = (
+`Could you generate 10 questions, 6 scaled and 4 text, dispersed randomly, that would help me find a career in ${careerField},
+using this object format for Likert scale questions:
+{
+    question: string,
+    type: "scaled",
+    answer: undefined,
+    scale: [string, string]
+}
+and this JSON scheme for text answered questions:
+{
+    question: string,
+    type: "text",
+    answer: undefined,
+    scale:[]
+}
+returning an array of these questions.`
+    );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt,
@@ -106,7 +132,6 @@ export async function generateQuestions(careerField: string){
                             type: Type.STRING,
                             pattern: "(scaled)|(text)",
                         },
-                        // answer: { type: Type.TYPE_UNSPECIFIED, description: "always undefined" },
                         scale: {
                             type: Type.ARRAY,
                             description: "empty if text question, that is, if \"type\" is \"text\"",
@@ -116,14 +141,13 @@ export async function generateQuestions(careerField: string){
                             maxItems: "2"
                         }
                     },
-                    propertyOrdering: ["question", "type", /* "answer", */ "scale"]
+                    propertyOrdering: ["question", "type", "scale"]
                 }
             }
         }
     });
     console.log(response.text);
     return parseQuestions(response.text);
-    // return JSON.parse(response.text || "");
 }
 
 /**
@@ -143,17 +167,22 @@ function parseQuestions(questionsString: string | undefined): Question[] {
     return [];
 }
 
-function parseAnswers(questions: Question[]): string{
-    let answers: string = "";
-    for (let i =0; i < questions.length; i++){
-        answers += "Question: " + questions[i].question;
-        if (questions[i].type === "scaled"){
-            answers += "I answered " + questions[i].answer?.toString + " on a scale of 5, where 1 is " + questions[i].scale[0] + " to 5 which is " + questions[i].scale[1] + " and 3 expressed indifference";
-        } else {
-            answers += "I answered " + questions[i].answer;
-        }
-    }
-    console.log(answers);
+
+const [low, high] = [scaleBounds.min, scaleBounds.max];
+const mid = (low + high) / 2;
+function stringifyAnswer(question: Question): string {
+    return question.type === "scaled" ? 
+        `I answered "${question.answer}" on a scale of ${low} to ${high}, where ${low} is "${question.scale[0]}", ${high} is "${question.scale[1]}" and ${mid} would express indifference`
+    :   `I answered "${question.answer}"`;
+}
+
+function stringifyQuestion(question: Question, index: number): string {
+    return `To question ${index+1}, "${question.question}":\n\t${stringifyAnswer(question)}.`;
+}
+
+function parseAnswers(questions: Question[]): string {
+    const stringifiedQuestions = questions.map(stringifyQuestion);
+    const answers = stringifiedQuestions.join("\n\n");
     return answers;
 }
 
