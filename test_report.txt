@@ -171,34 +171,34 @@ go away.[0m
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |    7.29 |     4.54 |    5.04 |    7.64 |                   
+All files                    |    7.84 |     4.96 |    6.66 |     7.8 |                   
  src                         |   18.75 |     6.89 |    7.14 |      20 |                   
   App.tsx                    |   24.32 |        8 |    8.33 |   26.47 | 40-95             
   custom-types.tsx           |       0 |        0 |       0 |       0 |                   
   index.tsx                  |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts         |       0 |        0 |       0 |       0 | 3-10              
- src/components              |    6.18 |      2.8 |    4.05 |    6.11 |                   
+ src/components              |    6.74 |     3.12 |    6.66 |    5.98 |                   
   analyses-menu.tsx          |       0 |        0 |       0 |       0 | 16-53             
-  basic-questions.tsx        |   33.33 |        0 |   14.28 |   33.33 | 38-61             
+  basic-questions.tsx        |      25 |        0 |      25 |   23.52 | 33-56             
   completion-alert.tsx       |       0 |      100 |       0 |       0 | 18-21             
-  detailed-questions.tsx     |       0 |        0 |       0 |       0 | 26-115            
+  detailed-questions.tsx     |       0 |        0 |       0 |       0 | 26-109            
   home.tsx                   |   33.33 |      100 |   33.33 |   33.33 | 23-28             
   loading-screen.tsx         |   33.33 |        0 |       0 |      40 | 13-17             
   login.tsx                  |       0 |        0 |       0 |       0 | 12-46             
   navbar.tsx                 |      25 |     37.5 |      25 |      25 | 27-37             
-  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-18              
+  progress-bar.tsx           |       0 |        0 |       0 |       0 | 9-24              
   results-button.tsx         |       0 |        0 |       0 |       0 | 18-33             
   results-menu.tsx           |       0 |        0 |       0 |       0 | 14-45             
   results.tsx                |       0 |        0 |       0 |       0 | 20-100            
-  scaled-question.tsx        |       0 |      100 |       0 |       0 | 12-24             
-  text-question.tsx          |       0 |        0 |       0 |       0 | 15-31             
- src/functions               |     2.5 |        0 |       5 |    3.22 |                   
+  scaled-question.tsx        |      50 |      100 |      25 |      40 | 19-29             
+  text-question.tsx          |       0 |        0 |       0 |       0 | 15-30             
+ src/functions               |     2.7 |        0 |       5 |    3.57 |                   
   form-submit.ts             |       0 |      100 |       0 |       0 | 4                 
   login.ts                   |   33.33 |      100 |      50 |   33.33 | 5-6               
   storage.ts                 |       0 |        0 |       0 |       0 | 11-89             
-  validation.ts              |       0 |        0 |       0 |       0 | 7-12              
- src/gemini                  |    4.44 |       25 |   11.11 |    4.65 |                   
-  ai-conversation-handler.ts |    4.44 |       25 |   11.11 |    4.65 | 12,28-174         
+  validation.ts              |       0 |      100 |       0 |       0 | 7-8               
+ src/gemini                  |    4.87 |       25 |   11.11 |       5 |                   
+  ai-conversation-handler.ts |    4.87 |       25 |   11.11 |       5 | 12,28-169         
  src/interfaces              |       0 |      100 |       0 |       0 |                   
   analysis.ts                |       0 |        0 |       0 |       0 |                   
   career.ts                  |       0 |        0 |       0 |       0 |                   
@@ -210,5 +210,5 @@ All files                    |    7.29 |     4.54 |    5.04 |    7.64 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.363 s
+Time:        3.401 s
 Ran all test suites.
