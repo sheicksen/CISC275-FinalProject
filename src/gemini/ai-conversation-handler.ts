@@ -42,13 +42,29 @@ export async function askQuestion(question: string): Promise<string | undefined>
     return response.text;
 }
 
-export async function generateResults(data: Question[]){
+/**
+ * @function generateResults Gets a list of careers from Gemini, based on user responses
+ * @param {Question[]} data The answered questions from the user
+ * @returns {Promise<Career[]>} The promise to the careers
+ */
+export async function generateResults(data: Question[]): Promise<Career[]> {
     const ai = getGoogleGenAI();
     const quizAnswers = parseAnswers(data);
-    const prompt = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
-        "as a json with each job in the following format: " +
-            "{ jobTitle: string, jobDescription: string, reasonForRecommendation : string, avgSalary: string, educationLevel : string}" +
-            "where reasonForRecommendation is why the job is suited for me based on my quiz answers.");
+    const prompt = (
+`Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:
+
+${quizAnswers}
+
+as a json with each job in the following format:
+{
+    jobTitle: string,
+    jobDescription: string,
+    reasonForRecommendation: string,
+    avgSalary: string,
+    educationLevel: string
+}
+where reasonForRecommendation is why the job is suited for me based on my quiz answers`
+    );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt,
