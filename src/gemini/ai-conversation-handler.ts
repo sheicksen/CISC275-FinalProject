@@ -44,8 +44,8 @@ export async function askQuestion(question: string){
 
 export async function generateResults(data: Question[]){
     const ai = getGoogleGenAI();
-    let quizAnswers:string = parseAnswers(data);
-    const prompt:string = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
+    const quizAnswers = parseAnswers(data);
+    const prompt = ("Could you recommend me 3 jobs I might like based on the following carrer quiz questions and answers:" + quizAnswers +
         "as a json with each job in the following format: " +
             "{ jobTitle: string, jobDescription: string, reasonForRecommendation : string, avgSalary: string, educationLevel : string}" +
             "where reasonForRecommendation is why the job is suited for me based on my quiz answers.");
@@ -122,8 +122,7 @@ export async function generateQuestions(careerField: string){
         }
     });
     console.log(response.text);
-    let questions = parseQuestions(response.text);
-    return questions;
+    return parseQuestions(response.text);
     // return JSON.parse(response.text || "");
 }
 
@@ -133,21 +132,19 @@ export async function generateQuestions(careerField: string){
  * @returns {Question[]} an array of Questions.
  */
 function parseQuestions(questionsString: string | undefined): Question[] {
-    let questions: Question[] = [];
-    if (questionsString === undefined) return questions;
-    const thingToParse = questionsString;
+    const thingToParse = questionsString ?? "[]";
     try{
-        const object: Question[] = JSON.parse(thingToParse);
-        console.log(object);
-        questions = [...object];
+        const questions: Question[] = JSON.parse(thingToParse);
+        console.log(questions);
+        return [...questions];
     } catch (error){
         console.log("Could not parse JSON ", error, thingToParse);
     }
-    return questions;
+    return [];
 }
 
-function parseAnswers(questions:Question[]): string{
-    let answers: string = ""
+function parseAnswers(questions: Question[]): string{
+    let answers: string = "";
     for (let i =0; i < questions.length; i++){
         answers += "Question: " + questions[i].question;
         if (questions[i].type === "scaled"){
@@ -156,20 +153,18 @@ function parseAnswers(questions:Question[]): string{
             answers += "I answered " + questions[i].answer;
         }
     }
+    console.log(answers);
     return answers;
 }
 
-function parseResults(resultString:string | undefined):Career[]{
-    let careers:Career[]=[];
-    if (resultString !== undefined){
-        try{
-  
-            let object:Career[] = JSON.parse(resultString);
-            console.log(object);
-            careers = [...object];
-        } catch (error){
-                    console.log("Could not parse results JSON ", error, resultString);
-        }
+function parseResults(resultString: string | undefined): Career[] {
+    const thingToParse = resultString ?? "[]";
+    try {
+        const careers: Career[] = JSON.parse(thingToParse);
+        console.log(careers);
+        return [...careers];
+    } catch (error) {
+        console.log("Could not parse results JSON ", error, thingToParse);
     }
-    return careers;
+    return [];
 }

@@ -4,10 +4,6 @@
  * @returns a boolean value representing whether the string is valid or not.
  */
 export function validateText(text:string):boolean{
-    let valid = true;
-    let strippedText = text.replace(/\s/g, "").replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
-    if(strippedText.length < 5){
-        valid = false;
-    }
-    return valid;
+    const strippedText = text.replace(/\s/g, "").replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
+    return strippedText.length >= 5;
 }

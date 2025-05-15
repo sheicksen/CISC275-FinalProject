@@ -19,38 +19,33 @@ const genericQuestions = QuestionData as GenericQuestion[][];
 const quizLength = genericQuestions[0].length;
 
 function parseQuestions(questions: GenericQuestion[]): Question[]{
-    let parsedQuestions: Question[] = [];
-
-    for (let i = 0; i < questions.length; i++){
-       parsedQuestions.push({...questions[i], answer: undefined});
-    }
-    return parsedQuestions;
+    return questions.map((question) => ({...question, answer: undefined}));
 }
 
-let questions: Question[] = parseQuestions(genericQuestions[0]);
+const questions: Question[] = parseQuestions(genericQuestions[0]);
 
 interface BasicQuestionsProps {
-    selectPage: (page:Page)=> void
-    passAnalysis: (analysis: Promise<void | Analysis | undefined>)=>void
+    selectPage: (page: Page) => void
+    passAnalysis: (analysis: Promise<void | Analysis | undefined>) => void
     passQuizRun: (run: QuizRun) => void
 }
-export function BasicQuestions({selectPage, passAnalysis, passQuizRun}:BasicQuestionsProps): React.JSX.Element {
-    let [answeredQs, setAnsweredQs] = useState<Question[]>([]);
+export function BasicQuestions({selectPage, passAnalysis, passQuizRun}: BasicQuestionsProps): React.JSX.Element {
+    const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
-    let updateAnswers = (id:number, q:Question, answer:string | number) =>{
-        let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
-        if(search.length > 0){
-            let editedAnswers:Question[] = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
-            setAnsweredQs(editedAnswers);
-        } else {
-            let addedAnswer = [...answeredQs, {...q, answer:answer}];
-            setAnsweredQs(addedAnswer);
-        }
+
+    function updateAnswers(q: Question, answer: string | number) {
+        const sameQuestion = answeredQs.filter((question) => (question.question === q.question));
+        const q2answer = sameQuestion.at(0) ?? q;
+        const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
+        const answeredQuestion = {...q2answer, answer};
+        const amendedAnswers = [...differentQuestion, answeredQuestion];
+        setAnsweredQs(amendedAnswers);
     }
-    function isFinished():boolean{
+
+    function isFinished(): boolean {
         return questions.length === answeredQs.length;
     }
-    let quizBody = questions.map((question, index)=>(
+    const quizBody = questions.map((question, index) => (
         <ScaledQuestionTile key={index} id={index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
     ));
 
