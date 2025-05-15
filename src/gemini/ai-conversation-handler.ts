@@ -146,20 +146,20 @@ function parseQuestions(questionsString: string | undefined): Question[] {
 
 const [low, high] = [scaleBounds.min, scaleBounds.max];
 const mid = (low + high) / 2;
-function parseAnswer(question: Question): string {
+function stringifyAnswer(question: Question): string {
     return question.type === "scaled" ? 
         `I answered "${question.answer}" on a scale of ${low} to ${high}, where ${low} is "${question.scale[0]}", ${high} is "${question.scale[1]}" and ${mid} would express indifference`
     :   `I answered "${question.answer}"`;
 }
 
-function parseQuestion(question: Question, index: number): string {
-    return `To question ${index}, "${question.question}", ${parseAnswer(question)}.`;
+function stringifyQuestion(question: Question, index: number): string {
+    return `To question ${index}, "${question.question}", ${stringifyAnswer(question)}.`;
 }
 
 function parseAnswers(questions: Question[]): string{
     let answers: string = "";
     for (let i =0; i < questions.length; i++){
-        answers += parseQuestion(questions[i], i);
+        answers += stringifyQuestion(questions[i], i);
     }
     console.log(answers);
     return answers;
