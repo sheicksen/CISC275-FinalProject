@@ -16,13 +16,13 @@ export function ProgBar({totalQuestions, answeredQuestions}:ProgressBarProps){
     //^ dynamic color changing progress bar ^
 
     return (
-        <div className={percent >= 99 ? "sticky-bar complete-quiz" : "sticky-bar in-progress"}>
-            <ProgressBar animated now={percent} 
-            label={percent >= 99 ? "Quiz Complete!":"Quiz Progress"}>
+        <div id="progress-bar" className={percent >= 99 ? "sticky-bar complete-quiz" : "sticky-bar in-progress"}>
+            <ProgressBar animated now={percent} label={percent >= 99 ? "Quiz Complete!":"Quiz Progress"}>
                 <ProgressBar 
-                animated
-                now={percent} style={{backgroundColor: dynamicColor}}
-                label={percent >= 99 ? "Quiz Complete!":"Quiz Progress"}/>
+                    animated
+                    now={percent} style={{backgroundColor: dynamicColor}}
+                    label={percent >= 99 ? "Quiz Complete!":"Quiz Progress"}
+                />
             </ProgressBar>
         </div> 
     );
