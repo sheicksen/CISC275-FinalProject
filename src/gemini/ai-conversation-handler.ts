@@ -93,20 +93,30 @@ where reasonForRecommendation is why the job is suited for me based on my quiz a
 }
 
 /**
- * @function generateQuestions takes a career field and returns a list of 7 Question objects based on that field.
- * @param {string} careerField the career field to base the questions off of.
- * @returns {Question<T>[]} an array of Question objects.
- *
+ * @function generateQuestions Takes a career field and returns a list of Question objects based on that field
+ * @param {string} careerField The career field to base the questions off of
+ * @returns {Promise<Question[]>} The promise to the array of Question objects
  */
-export async function generateQuestions(careerField: string){
+export async function generateQuestions(careerField: string): Promise<Question[]> {
     const ai = getGoogleGenAI();
-    const prompt = `Could you generate 10 questions, 6 scaled and 4 text, dispersed randomly, that would help me find a career in ` + careerField + 
-    ` using this object format for Likert scale questions:
-        Question = {'question':string, 'type':"scaled", answer:undefined, scale:[string, string]}
-    and this JSON scheme for text answered questions:
-        Question = {'question':string, 'type':"text", answer:undefined, scale:[] }
-        Return: Array<Question>
-    `;
+    const prompt = (
+`Could you generate 10 questions, 6 scaled and 4 text, dispersed randomly, that would help me find a career in ${careerField},
+using this object format for Likert scale questions:
+{
+    question: string,
+    type: "scaled",
+    answer: undefined,
+    scale: [string, string]
+}
+and this JSON scheme for text answered questions:
+{
+    question: string,
+    type: "text",
+    answer: undefined,
+    scale:[]
+}
+returning an array of these questions.`
+    );
     const response = await ai.models.generateContent({
         model:"gemini-2.0-flash",
         contents: prompt,
@@ -122,7 +132,6 @@ export async function generateQuestions(careerField: string){
                             type: Type.STRING,
                             pattern: "(scaled)|(text)",
                         },
-                        // answer: { type: Type.TYPE_UNSPECIFIED, description: "always undefined" },
                         scale: {
                             type: Type.ARRAY,
                             description: "empty if text question, that is, if \"type\" is \"text\"",
@@ -132,14 +141,13 @@ export async function generateQuestions(careerField: string){
                             maxItems: "2"
                         }
                     },
-                    propertyOrdering: ["question", "type", /* "answer", */ "scale"]
+                    propertyOrdering: ["question", "type", "scale"]
                 }
             }
         }
     });
     console.log(response.text);
     return parseQuestions(response.text);
-    // return JSON.parse(response.text || "");
 }
 
 /**
