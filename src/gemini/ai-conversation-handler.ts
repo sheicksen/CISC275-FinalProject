@@ -146,23 +146,17 @@ function parseQuestions(questionsString: string | undefined): Question[] {
 
 const [low, high] = [scaleBounds.min, scaleBounds.max];
 const mid = (low + high) / 2;
-function parseScaledAnswer(question: Question & {type: "scaled"}): string {
-    return `I answered "${question.answer}" on a scale of ${low} to ${high}, where ${low} is "${question.scale[0]}", ${high} is "${question.scale[1]}" and ${mid} would express indifference`
-}
-
-function parseTextAnswer(question: Question & {type: "text"}): string {
-    return `I answered "${question.answer}"`;
+function parseAnswer(question: Question): string {
+    return question.type === "scaled" ? 
+        `I answered "${question.answer}" on a scale of ${low} to ${high}, where ${low} is "${question.scale[0]}", ${high} is "${question.scale[1]}" and ${mid} would express indifference`
+    :   `I answered "${question.answer}"`;
 }
 
 function parseAnswers(questions: Question[]): string{
     let answers: string = "";
     for (let i =0; i < questions.length; i++){
         answers += "Question: " + questions[i].question;
-        if (questions[i].type === "scaled"){
-            answers += parseScaledAnswer(questions[i] as Question & {type: "scaled"});
-        } else {
-            answers += parseTextAnswer(questions[i] as Question & {type: "text"});
-        }
+        answers += parseAnswer(questions[i]);
     }
     console.log(answers);
     return answers;
