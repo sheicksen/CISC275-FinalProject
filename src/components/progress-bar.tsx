@@ -5,14 +5,17 @@ interface ProgressBarProps {
     totalQuestions: number
     answeredQuestions: number
 }
-export function ProgBar({totalQuestions, answeredQuestions}:ProgressBarProps){
-    let percent=Math.ceil((answeredQuestions/totalQuestions)*100);
+export function ProgBar({totalQuestions, answeredQuestions}: ProgressBarProps){
+    const percent = Math.ceil(100 * answeredQuestions/totalQuestions);
 
-    let mix = (start: number, end: number) => Math.round(start + (end-start) * (answeredQuestions/totalQuestions));
-    let r = mix(128,48);
-    let g = mix(0,177);
-    let b = mix(128,184);
-    let dynamicColor = `rgb(${r}, ${g}, ${b})`;
+    function mix(start: number, end: number): number {
+        return Math.round(start + (end-start) * (answeredQuestions/totalQuestions));
+    }
+
+    const r = mix(128,48);
+    const g = mix(0,177);
+    const b = mix(128,184);
+    const dynamicColor = `rgb(${r}, ${g}, ${b})`;
     //^ dynamic color changing progress bar ^
 
     return (
