@@ -153,7 +153,7 @@ function stringifyAnswer(question: Question): string {
 }
 
 function stringifyQuestion(question: Question, index: number): string {
-    return `To question ${index}, "${question.question}", ${stringifyAnswer(question)}.`;
+    return `To question ${index+1}, "${question.question}", ${stringifyAnswer(question)}.`;
 }
 
 function parseAnswers(questions: Question[]): string {
