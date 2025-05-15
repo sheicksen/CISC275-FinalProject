@@ -152,11 +152,14 @@ function parseAnswer(question: Question): string {
     :   `I answered "${question.answer}"`;
 }
 
+function parseQuestion(question: Question, index: number): string {
+    return `To question ${index}, "${question.question}", ${parseAnswer(question)}.`;
+}
+
 function parseAnswers(questions: Question[]): string{
     let answers: string = "";
     for (let i =0; i < questions.length; i++){
-        answers += "Question: " + questions[i].question;
-        answers += parseAnswer(questions[i]);
+        answers += parseQuestion(questions[i], i);
     }
     console.log(answers);
     return answers;
