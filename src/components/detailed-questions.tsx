@@ -29,12 +29,13 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [validPrompt, setValidPrompt] = useState<boolean>(false);
     const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
+
     /**
      * @function askGemini sends Gemini raw text and sets response to the returned answer.
      * @param {string} question a string containing what you would like to ask Gemini.
      */
-    function askGemini(question:string){
-        let answer: Promise<string | undefined> = askQuestion(question);
+    function askGemini(question: string) {
+        const answer = askQuestion(question);
         answer
             .then((value) => {
                 if (value){
@@ -42,13 +43,14 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
                     setResponse(value);
                 }
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error);
                 setResponse("Oops, Gemini is unavailable. Try again later.");
                 setLoading("");
             });
     }
-    let updateText = (event:React.ChangeEvent<HTMLInputElement>) => {
+
+    function updateText(event: React.ChangeEvent<HTMLInputElement>) {
         setTextInput(event.target.value);
         if (validateText(event.target.value)){
             setValidPrompt(true);
@@ -57,56 +59,60 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
         }
     };
 
-    let getQuestions = () => {
+    function getQuestions() {
         setLoading("Loading Questions");
         askGemini(("Give me an intro of at most 3 sentences to a career quiz exploring options with " + textInput));
-        let questions: Promise<Question[]> = generateQuestions(textInput);
+        const questions = generateQuestions(textInput);
         questions 
-            .then((value)=>{
+            .then((value) => {
                 console.log(value);
                 setQuestions(value);
                 setLoading("");
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
 
     };
-    let updateAnswers = (q: Question, answer: string | number) => {
-        let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
-        if(search.length > 0){
-            let qAnswer: string = typeof search[0].answer === 'string' ? search[0].answer : "";
-            let editedAnswers: Question[];
-            if(search[0].type === "text" && !validateText(qAnswer)){
-                editedAnswers = answeredQs.filter((question) => question.question !== q.question);
-            } else{
-                editedAnswers = [...answeredQs.filter((question)=>question.question !== q.question), {...search[0], answer:answer}]
-            }
+
+    function updateAnswers(q: Question, answer: string | number) {
+        const sameQuestion = answeredQs.filter((question) => (question.question === q.question));
+        if (sameQuestion.length > 0) {
+            const qAnswer = typeof sameQuestion[0].answer === 'string' ? sameQuestion[0].answer : "";
+            const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));
+            const editedAnswers = (
+                sameQuestion[0].type === "text" && !validateText(qAnswer) ?
+                    differentQuestion : [...differentQuestion, {...sameQuestion[0], answer}]
+            );
             setAnsweredQs(editedAnswers);
         } else {
-            let addedAnswer = [...answeredQs, {...q, answer:answer}];
+            const amendedAnswers = [...answeredQs, {...q, answer:answer}];
             if (typeof answer === 'number' || validateText(answer)){
-                setAnsweredQs(addedAnswer);
+                setAnsweredQs(amendedAnswers);
             }
         }
     }
-    function isFinished():boolean{
-        return( questions.length === answeredQs.length && questions.length !== 0);
+
+    function isFinished(): boolean {
+        return questions.length === answeredQs.length && questions.length !== 0;
     }
-    let quizBody = questions.map((question, index)=>(
-        isText(question) ? <TextQuestionTile key={index} id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile> : 
-        <ScaledQuestionTile key={index} id={index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
-    )
-    );
-    let careerPrompt = (
-        <Form onSubmit={(e) => {preventFormSubmitReload(e); getQuestions()}}>
+    const quizBody = questions.map((question, index) => (
+        isText(question) ?
+            <TextQuestionTile key={index} id={index} question={question} passAnswer={updateAnswers}></TextQuestionTile>
+        :   <ScaledQuestionTile key={index} id={index} question={{...question}} passAnswer={updateAnswers}></ScaledQuestionTile>
+    ));
+    const careerPrompt = (
+        <Form onSubmit={(e) => {
+            preventFormSubmitReload(e);
+            getQuestions();
+        }}>
             <Form.Group>
                 <Form.Text>What type of career fields are you interested in exploring today?</Form.Text>
-                <Form.Control type="textarea" onChange={updateText}>
-                </Form.Control>
+                <Form.Control type="textarea" onChange={updateText}></Form.Control>
                 <Button className="button-style" onClick={getQuestions} disabled={!validPrompt}>{validPrompt ? "Get your quiz" : "Enter prompt"}</Button>
             </Form.Group>
-        </Form>);
+        </Form>
+    );
 
     const quizRun: QuizRun = {
         responses: {name: "", type: "detailed", questions: answeredQs},
