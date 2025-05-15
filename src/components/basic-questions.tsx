@@ -33,7 +33,7 @@ export function BasicQuestions({selectPage, passAnalysis, passQuizRun}: BasicQue
     const [answeredQs, setAnsweredQs] = useState<Question[]>([]);
     const [popupEnabled, setPopupEnabled] = useState<boolean>(true);
 
-    function updateAnswers(id: number, q: Question, answer: string | number) {
+    function updateAnswers(q: Question, answer: string | number) {
         const sameQuestion = answeredQs.filter((question) => (question.question === q.question));
         if (sameQuestion.length > 0) {
             const differentQuestion = answeredQs.filter((question) => (question.question !== q.question));

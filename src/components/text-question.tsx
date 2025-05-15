@@ -7,8 +7,8 @@ import { preventFormSubmitReload } from "../functions/form-submit";
 
 interface TextQuestionProps {
     id: number,
-    question:Question
-    passAnswer: (id:number, question:Question, answer:string)=>void
+    question: Question
+    passAnswer: (question: Question, answer: string) => void
 }
 
 export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
@@ -20,7 +20,7 @@ export function TextQuestionTile({id, question, passAnswer}:TextQuestionProps){
         } else {
             setValid(false);
         }
-        passAnswer(id, question, e.target.value);
+        passAnswer(question, e.target.value);
     }
     const handleFocus = () => {
         setFocused(true)

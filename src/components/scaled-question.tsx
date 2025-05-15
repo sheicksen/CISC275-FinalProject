@@ -4,14 +4,14 @@ import "./css/question-tile.css";
 
 
 interface ScaledQuestionProps {
-    id:number,
-    question:Question
-    passAnswer:(id:number, question:Question, answer:string | number)=>void
+    id: number,
+    question: Question
+    passAnswer: (question: Question, answer: string | number) => void
 }
 export function ScaledQuestionTile({id, question, passAnswer}:ScaledQuestionProps){
     let scale = ["1", "2", "3", "4", "5"]
     let changeAnswer = (e:React.ChangeEvent<HTMLInputElement>) => {
-        passAnswer(id, question, parseInt(e.target.value));
+        passAnswer(question, parseInt(e.target.value));
     }
     return (
         <div className="tile">

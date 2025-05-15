@@ -72,7 +72,7 @@ export function DetailedQuestions({/* apiKey,  */setLoading, selectPage, passAna
             })
 
     };
-    let updateAnswers = (id:number, q:Question, answer:string | number) =>{
+    let updateAnswers = (q: Question, answer: string | number) => {
         let search:Question[] = answeredQs.filter((question)=>question.question===q.question);
         if(search.length > 0){
             let qAnswer: string = typeof search[0].answer === 'string' ? search[0].answer : "";
