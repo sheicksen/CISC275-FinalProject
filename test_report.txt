@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (48 ms)
+  ✕ renders learn react link (51 ms)
 
   ● renders learn react link
 
@@ -61,7 +61,7 @@ FAIL src/App.test.tsx
                       [33mclass[39m=[32m"image-container"[39m
                     [36m>[39m
                       [36m<img[39m
-                        [33malt[39m=[32m"A sillouette of a man with a white question mark on his chest"[39m
+                        [33malt[39m=[32m"A robot looking at a clip board"[39m
                         [33msrc[39m=[32m"CareerHPGraphic.png"[39m
                       [36m/>[39m
                     [36m</div>[39m
@@ -210,5 +210,5 @@ All files                    |    8.55 |     4.96 |    6.55 |    8.54 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.294 s
+Time:        3.454 s
 Ran all test suites.
