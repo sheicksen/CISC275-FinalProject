@@ -1,5 +1,5 @@
 # CISC 275 Final Project - AiDvisor
-### Developed by Sophia Heicksen, Samhein Ackerman, Leif Keane, Henry Leap
+### Developed by Sophia Heicksen, Samhain Ackerman, Leif Keane, Henry Leap
 ## About the App
 AiDvisor is a career quiz featuring both a general, catch-all quiz, and custom quizzes tailored for your specific interests by Google's AI model, Gemini.
 After taking the quiz, you will get a detailed report with several job titles you may want to look into based on your quiz answers.
